@@ -1,66 +1,78 @@
 import IMAGES from "../../theme/images";
 
 const fakeProduct = () => {
-    const categories = [
+    const listCategories = [
         {
             idCategory: 1,
             nameCategory: "Món ăn cho cả nhà",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 2,
             nameCategory: "Món ăn khai vị và tráng miệng",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 3,
             nameCategory: "Công thức pha nước chấm",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'công thức'
         },
         {
             idCategory: 4,
             nameCategory: "Công thức các món canh ngon",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 5,
             nameCategory: "Các món cơm chiên",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 6,
             nameCategory: "Món ăn chơi",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 7,
             nameCategory: "Món xào",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 8,
             nameCategory: "Các món lẩu",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 9,
             nameCategory: "Các món bún, miến",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: 'món ăn'
         },
         {
             idCategory: 10,
             nameCategory: "Trà, cafe",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: '(công thức)'
         },
         {
             idCategory: 11,
             nameCategory: "Sinh tố, kem",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: '(công thức)'
         },
         {
             idCategory: 12,
             nameCategory: "Công thức pha rượu, cốc tai",
             avatarCategory: IMAGES.dishCaBienKko,
+            type: '(công thức)'
         },
     ]
 
@@ -78,9 +90,9 @@ const fakeProduct = () => {
                 {
                     idIMG: 2,
                     urlImage: IMAGES.dishCaBienKko,
-                }
+                },
             ],
-            category: categories[0],
+            category: listCategories[0], // Đã sửa lại để truyền đúng category
             description: "Cơm ngon",
         },
         {
@@ -94,7 +106,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishCanhGheRauMuon,
                 },
             ],
-            category: categories[4],
+            category: listCategories[4],
             description: "canh ngon",
         },
         {
@@ -108,7 +120,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishChaBo,
                 },
             ],
-            category: categories[1],
+            category: listCategories[1],
             description: "canh ngon",
         },
         {
@@ -122,7 +134,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishChaLua,
                 },
             ],
-            category: categories[0],
+            category: listCategories[0],
             description: "canh ngon",
         },
         {
@@ -136,7 +148,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishChaoCaPhoMai,
                 },
             ],
-            category: categories[0],
+            category: listCategories[0],
             description: "canh ngon",
         },
         {
@@ -150,7 +162,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishGoiDuaLeo,
                 },
             ],
-            category: categories[1],
+            category: listCategories[1],
             description: "canh ngon",
         },
         {
@@ -164,7 +176,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishOvernightOat,
                 },
             ],
-            category: categories[5],
+            category: listCategories[5],
             description: "canh ngon",
         },
         {
@@ -178,7 +190,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishPhoXao,
                 },
             ],
-            category: categories[6],
+            category: listCategories[6],
             description: "canh ngon",
         },
 
@@ -186,7 +198,7 @@ const fakeProduct = () => {
     ];
     return {
         listProduct,
-        categories
+        listCategories: listCategories
     }
 }
 export default fakeProduct();

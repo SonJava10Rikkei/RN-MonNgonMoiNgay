@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
@@ -8,19 +8,15 @@ import ItemViewDish from "../components/itemViewDish";
 import useSearch from "../containers/useSearch";
 
 // @ts-ignore
-const SearchScreen = ({route, navigation}) => {
+const SearchScreen = ({}) => {
     const {
         nameKey,
-        setNameKey,
-        listProduct,
         valueInput, setValueInput,
-        keywordInput, setKeywordInput,
-        listFilter, setListFilter,
-        checkData, setCheckData,
-        historySearchKeyword, setHistorySearchKeyword,
-        onHistorySearch,
+        setKeywordInput,
+        listFilter,
+        checkData,
+        historySearchKeyword,
         onKeywordButton,
-        onSearch,
         OPDeleteHistory,
     } = useSearch();
 
@@ -53,7 +49,6 @@ const SearchScreen = ({route, navigation}) => {
                 setKeywordInput={setKeywordInput}
                 valueInput={valueInput}
                 setValueInput={setValueInput}
-
             />
             <View style={styles.container2}>
                 <View>
@@ -106,6 +101,7 @@ const SearchScreen = ({route, navigation}) => {
                         data={listFilter}
                         renderItem={renderProduct}
                         numColumns={2}
+                        showsVerticalScrollIndicator={false}
                     />
                 )}
             </View>
@@ -126,7 +122,6 @@ const styles = StyleSheet.create({
         borderTopStartRadius: 30,
         borderTopEndRadius: 30,
         padding: 20,
-
     },
     icon: {
         width: 17,

@@ -20,23 +20,28 @@ const HeaderComponent = (
 
         setKeywordInput,
         valueInput,
-        setValueInput
+        setValueInput,
+        touchNumberColumnCategory,
+        setTouchNumberColumnCategory,
 
     }:
         {
-            title?: string,
-            iconLeft?: any,
-            iconRight1?: any,
-            iconRight2?: any,
-            showIconLeft?: boolean,
-            showSearchDish?: boolean,
-            showSearchDish2?: boolean,
-            showIconRight1?: boolean,
-            showIconRight2?: boolean,
+            title?: string;
+            iconLeft?: any;
+            iconRight1?: any;
+            iconRight2?: any;
+            showIconLeft?: boolean;
+            showSearchDish?: boolean;
+            showSearchDish2?: boolean;
+            showIconRight1?: boolean;
+            showIconRight2?: boolean;
 
-            setKeywordInput?: any,
-            valueInput?: any,
-            setValueInput?: any,
+            setKeywordInput?: any;
+            valueInput?: any;
+            setValueInput?: any;
+            touchNumberColumnCategory?: any;
+            setTouchNumberColumnCategory?: any;
+
         }) => {
 
     const onChangeTextInput = (changeTextInput: string) => {
@@ -55,12 +60,15 @@ const HeaderComponent = (
         Navigation.navigate(SCREEN.SEARCH_SCREEN);
     };
     const onPressButtonRight1 = () => {
-        // @ts-ignore
-        Navigation.navigate(SCREEN.USER_SCREEN);
+        if (touchNumberColumnCategory === 1) {
+            setTouchNumberColumnCategory(2)
+        } else {
+            setTouchNumberColumnCategory(1)
+        }
     };
     const onPressButtonRight2 = () => {
         // @ts-ignore
-        Navigation.navigate(SCREEN.USER_SCREEN);
+        Navigation.navigate(SCREEN.SEARCH_SCREEN);
     };
 
     return (
@@ -110,7 +118,6 @@ const HeaderComponent = (
                         <Image style={styles.iconHeaderRight} source={iconRight1}/>
                     </TouchableOpacity>
                 )}
-
                 {showIconRight2 && (
                     <TouchableOpacity onPress={onPressButtonRight2}>
                         <Image style={styles.iconHeaderRight} source={iconRight2}/>
@@ -192,7 +199,7 @@ const styles = StyleSheet.create({
     },
     textInputContainer2: {
         backgroundColor: 'transparent',
-        width: '82%',
+        width: '80%',
         fontSize: 14,
         marginLeft: 5,
     },
