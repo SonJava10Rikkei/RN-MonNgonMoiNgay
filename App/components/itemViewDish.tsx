@@ -3,19 +3,18 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ICONS from "../theme/icon";
 
 const ItemViewDish = ({
-                          imageProduct,
-                          title,
-                          imageHeart,
+                          imageItem,
+                          titleItem,
+                          iconItem,
                           product,
                           category,
                           totalDish,
                           totalDishCount,
                           typeCategory,
-
                       }: {
-    imageProduct?: any;
-    title?: string;
-    imageHeart?: boolean;
+    imageItem?: any;
+    titleItem?: string;
+    iconItem?: boolean;
     product?: boolean;
     category?: boolean;
     totalDish?: boolean;
@@ -23,38 +22,53 @@ const ItemViewDish = ({
     typeCategory?: string;
 
 }) => {
+    const imageStyle = []
     const textStyle = [];
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow];
     if (product) {
         // @ts-ignore
-        containerStyle.push(styles.useProduct);
+        containerStyle.push(styles.itemProduct)
+        imageStyle.push(styles.itemImgProduct)
         textStyle.push(styles.textProduct)
+
     } else if (category) {
         // @ts-ignore
-        containerStyle.push(styles.useCategory);
-        textStyle.push(styles.textCategory)
+        containerStyle.push(styles.itemCategory)
+        textStyle.push(styles.textNameCategory)
+        imageStyle.push(styles.itemImgCategory)
+    }
+
+    let count = 0;
+
+    // @ts-ignore
+    const OPDetailCategory = () => {
+        count=count+1;
+        console.log('OPDetailCategory', count +1)
     }
 
     return (
-        <TouchableOpacity style={containerStyle}>
+        <TouchableOpacity onPress={OPDetailCategory} style={containerStyle}>
             <Image
-                source={imageProduct}
-                style={[styles.itemImg, {width: '100%', height: 160}]}
+                source={imageItem}
+                style={imageStyle}
                 resizeMode="cover"
             />
-            <View style={styles.textContent}>
+            <View style={styles.content}>
                 <View>
-                    <Text style={textStyle}>{title}</Text>
+                    <Text style={textStyle}>{titleItem}</Text>
                 </View>
-                {imageHeart &&
-                    <TouchableOpacity>
-                        <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
-                    </TouchableOpacity>
+                {iconItem &&
+                    <View style={styles.iconProduct}>
+                        <TouchableOpacity>
+                            <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
+                        </TouchableOpacity>
+                        <TouchableOpacity>
+                            <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
+                        </TouchableOpacity>
+                    </View>
                 }
                 {totalDish &&
-                    <View style={styles.textView}>
-                        <Text style={styles.textCountCategory}>{totalDishCount} {typeCategory}</Text>
-                    </View>
+                    <Text style={styles.textCountOfCategory}>{totalDishCount} {typeCategory}</Text>
                 }
             </View>
         </TouchableOpacity>
@@ -64,21 +78,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         borderRadius: 10,
-        // margin: 15,
         backgroundColor: '#ffffff',
-
+        marginBottom: 20,
     },
-    useProduct: {
-        height: 200,
-
-    },
-    useCategory: {
-        marginTop: 16,
-        marginLeft: 15,
-        marginRight: 15,
-        height: 235,
-    }
-    ,
     boxShadow: {
         shadowColor: '#000000',
         shadowOffset: {
@@ -89,38 +91,69 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.6,
     },
     androidShadow: {
-        elevation: 3, // Sử dụng thuộc tính elevation để tạo bóng trên Android?
-    }
-    ,
-    itemImg: {
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        elevation: 2, // Sử dụng thuộc tính elevation để tạo bóng trên Android?
     },
-    textContent: {
-        padding: 10,
-    }
-    ,
-    textView: {
+    content: {
+        flex: 1,
+        justifyContent: 'center', // Để căn giữa theo chiều dọc
+        alignItems: 'center', // Để căn giữa theo chiều ngang
+    },
 
+// Phần product
+    itemProduct: {
+        marginLeft: 8,
+        marginRight: 8,
+        height: 215,
+    },
+    itemImgProduct: {
+        borderTopLeftRadius: 6,
+        borderTopRightRadius: 6,
+        width: '100%',
+        height: 150
     },
     textProduct: {
-        fontSize: 14,
+        fontSize: 15,
+     marginTop:-20,
+        width: '100%',
     },
-    textCategory: {
+    iconProduct: {
+        flexDirection: 'row',
+        position: 'absolute', // Đặt vị trí là absolute
+        bottom: 0, // Đặt bottom là 0 để đặt ở phía dưới
+        left: 0, // Đặt left là 0 để căn chỉnh theo viền trái
+        right: 0, // Đặt right là 0 để căn chỉnh theo viền phải
+        justifyContent: 'space-between', // Để biểu tượng ở hai góc
+        padding: 6, // Điều chỉnh khoảng cách xung quanh icon nếu cần
+    },
+    icon: {
+        width: 18,
+        height: 18,
+    },
+
+// Phần Category
+    itemCategory: {
+        marginLeft: 10,
+        marginRight: 10,
+        height: 235,
+    },
+    itemImgCategory: {
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+        width: '100%',
+        height: 160,
+    },
+    textNameCategory: {
         color: '#000000',
         fontSize: 16,
         fontWeight: '700',
-        textAlign:"center"
+        textAlign: "center",
+        marginHorizontal:1
     },
-    textCountCategory: {
-        fontSize: 14,
-        textAlign:"center"
-    }
-    ,
-    icon: {
-        width: 15,
-        height: 15,
+    textCountOfCategory: {
+        textAlign: "center",
+        width: '100%',
     },
+
 });
 
 export default ItemViewDish;

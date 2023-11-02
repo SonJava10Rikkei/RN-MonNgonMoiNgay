@@ -5,73 +5,73 @@ const fakeProduct = () => {
         {
             idCategory: 1,
             nameCategory: "Món ăn cho cả nhà",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonAnChoCaNha,
             type: 'món ăn'
         },
         {
             idCategory: 2,
             nameCategory: "Món ăn khai vị và tráng miệng",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonKhaiVi,
             type: 'món ăn'
         },
         {
             idCategory: 3,
             nameCategory: "Công thức pha nước chấm",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGNuocCham,
             type: 'công thức'
         },
         {
             idCategory: 4,
             nameCategory: "Công thức các món canh ngon",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonCanh,
             type: 'món ăn'
         },
         {
             idCategory: 5,
             nameCategory: "Các món cơm chiên",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGComChien,
             type: 'món ăn'
         },
         {
             idCategory: 6,
             nameCategory: "Món ăn chơi",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonAnVat,
             type: 'món ăn'
         },
         {
             idCategory: 7,
             nameCategory: "Món xào",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonXao,
             type: 'món ăn'
         },
         {
             idCategory: 8,
             nameCategory: "Các món lẩu",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonLau,
             type: 'món ăn'
         },
         {
             idCategory: 9,
             nameCategory: "Các món bún, miến",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGMonBun,
             type: 'món ăn'
         },
         {
             idCategory: 10,
             nameCategory: "Trà, cafe",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGTraCafe,
             type: '(công thức)'
         },
         {
             idCategory: 11,
             nameCategory: "Sinh tố, kem",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGSinhTo,
             type: '(công thức)'
         },
         {
             idCategory: 12,
             nameCategory: "Công thức pha rượu, cốc tai",
-            avatarCategory: IMAGES.dishCaBienKko,
+            avatarCategory: IMAGES.CTGRuouCocTai,
             type: '(công thức)'
         },
     ]

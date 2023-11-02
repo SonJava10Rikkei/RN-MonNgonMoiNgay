@@ -1,9 +1,11 @@
 import {useEffect, useState} from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import fakeProduct from "./data/fakeProduct";
+
 
 const useSearch = () => {
     const {listProduct} = fakeProduct;
-
     const [nameKey, setNameKey] = useState([
         {
             productKeyword: 'Chả',
@@ -21,23 +23,53 @@ const useSearch = () => {
     const [checkData, setCheckData] = useState([{title: 'default'}]);
     const [historySearchKeyword, setHistorySearchKeyword] = useState([]);
 
-    useEffect(() => {
-        onHistorySearch()
-    }, [keywordInput]);
-    const onHistorySearch = () => {
+    const onHistorySearch = async () => {
         if (keywordInput !== '') {
             if (historySearchKeyword.length === 10) {
-                // nếu độ dài của mảng bằng 10 phần tử thì Xóa phần tử cuối cùng của mảng
                 const newHistorySearchKeyword = [...historySearchKeyword];
+                // nếu độ dài của mảng bằng 10 phần tử thì Xóa phần tử cuối cùng của mảng
                 newHistorySearchKeyword.pop();
                 // @ts-ignore
-                setHistorySearchKeyword([{productKeyword: removeExtraSpaces(keywordInput.trim())}, ...newHistorySearchKeyword]);
+                newHistorySearchKeyword.unshift({productKeyword: removeExtraSpaces(keywordInput.trim())});
+                try {
+                    await AsyncStorage.setItem('historySearchKeyword', JSON.stringify(newHistorySearchKeyword));
+                } catch (error) {
+                    console.error('Lỗi khi lưu lịch sử tìm kiếm:', error);
+                }
+                setHistorySearchKeyword(newHistorySearchKeyword);
             } else {
+                const newHistorySearchKeyword = [{productKeyword: removeExtraSpaces(keywordInput.trim())}, ...historySearchKeyword];
+                try {
+                    await AsyncStorage.setItem('historySearchKeyword', JSON.stringify(newHistorySearchKeyword));
+                } catch (error) {
+                    console.error('Lỗi khi lưu lịch sử tìm kiếm:', error);
+                }
                 // @ts-ignore
-                setHistorySearchKeyword([{productKeyword: removeExtraSpaces(keywordInput.trim())}, ...historySearchKeyword]);
+                setHistorySearchKeyword(newHistorySearchKeyword);
             }
         }
     };
+    useEffect(() => {
+        onHistorySearch()
+    }, [keywordInput]);
+
+
+    const loadHistorySearchKeyword = async () => {
+        try {
+            const historySearch = await AsyncStorage.getItem('historySearchKeyword');
+            if (historySearch !== null) {
+                const historySearchArray = JSON.parse(historySearch);
+                setHistorySearchKeyword(historySearchArray);
+            }
+        } catch (error) {
+            console.error('Lỗi khi tải lịch sử tìm kiếm:', error);
+        }
+    };
+// Gọi hàm này khi màn hình được tải để lấy lịch sử tìm kiếm từ bộ nhớ cục bộ
+    useEffect(() => {
+        loadHistorySearchKeyword();
+    }, []);
+
 
 // @ts-ignore
     const onKeywordButton = (takeKeyword) => {
@@ -50,11 +82,9 @@ const useSearch = () => {
 
 // @ts-ignore
     const removeExtraSpaces = (str) => {
-        // Sử dụng regex để thay thế các khoảng trắng liên tiếp bằng một khoảng trắng duy nhất
-        return str.replace(/\s+/g, ' ').trim();
+        return str.replace(/\s+/g, ' ').trim(); // Sử dụng regex để thay thế các khoảng trắng liên tiếp bằng một khoảng trắng duy nhất
     };
 // @ts-ignore
-
     const removeDiacritics = (str) => {
         return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     };
@@ -64,8 +94,7 @@ const useSearch = () => {
     };
 // @ts-ignore
     const onSearch = (searchKeywordInput) => {
-        // Loại bỏ khoảng trắng thừa
-        searchKeywordInput = removeExtraSpaces(searchKeywordInput);
+        searchKeywordInput = removeExtraSpaces(searchKeywordInput); // Loại bỏ khoảng trắng thừa
         let filterData;
         if (hasDiacritics(searchKeywordInput)) {
             // Sử dụng logic tìm kiếm có dấu
@@ -87,15 +116,13 @@ const useSearch = () => {
                 const bNameNormalized = removeDiacritics(b?.nameProduct?.toLowerCase()).trim();
                 const aIndex = aNameNormalized.indexOf(searchKeywordInput);
                 const bIndex = bNameNormalized.indexOf(searchKeywordInput);
-
                 // Ưu tiên kết quả có dấu bằng với giá trị nhập vào
                 if (aIndex !== -1 && bIndex === -1) {
                     return -1;
                 } else if (aIndex === -1 && bIndex !== -1) {
                     return 1;
                 }
-                // Nếu cả hai có dấu hoặc không có dấu, sắp xếp theo thứ tự bình thường
-                return aNameNormalized.localeCompare(bNameNormalized);
+                return aNameNormalized.localeCompare(bNameNormalized); // Nếu cả hai có dấu hoặc không có dấu, sắp xếp theo thứ tự bình thường
             });
             // @ts-ignore
             setListFilter(sortedData);
@@ -104,10 +131,18 @@ const useSearch = () => {
         }
     };
 
+    const clearHistorySearchKeyword = async () => {
+        try {
+            await AsyncStorage.removeItem('historySearchKeyword');
+            setHistorySearchKeyword([]); // Xóa lịch sử trên trạng thái ứng dụng
+            setListFilter([])
+            setKeywordInput('')
+        } catch (error) {
+            console.error('Lỗi khi xóa lịch sử tìm kiếm:', error);
+        }
+    };
     const OPDeleteHistory = () => {
-        setHistorySearchKeyword([]) // Xóa lịch sử về mảng rỗng
-        setListFilter([])
-        setKeywordInput('')
+        clearHistorySearchKeyword();
     };
 
     return {

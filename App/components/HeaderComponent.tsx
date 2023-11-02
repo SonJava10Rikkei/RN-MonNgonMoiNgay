@@ -156,6 +156,7 @@ const styles = StyleSheet.create({
         marginLeft: 15,
         marginRight: 15,
         marginVertical: 5,
+
     },
 
     textView: {
@@ -199,6 +200,7 @@ const styles = StyleSheet.create({
     },
     textInputContainer2: {
         backgroundColor: 'transparent',
+        padding:5,
         width: '80%',
         fontSize: 14,
         marginLeft: 5,

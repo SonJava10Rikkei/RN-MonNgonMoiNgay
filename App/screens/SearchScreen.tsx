@@ -34,9 +34,10 @@ const SearchScreen = ({}) => {
     const renderProduct = ({item}) => {
         return (
             <ItemViewDish
-                imageHeart={true}
-                title={item?.nameProduct}
-                imageProduct={item?.imageProduct[0].urlImage}
+                iconItem={true}
+                titleItem={item?.nameProduct}
+                imageItem={item?.imageProduct[0].urlImage}
+                product={true}
             />
         );
     };
@@ -50,11 +51,11 @@ const SearchScreen = ({}) => {
                 valueInput={valueInput}
                 setValueInput={setValueInput}
             />
-            <View style={styles.container2}>
+            <View style={styles.contents}>
                 <View>
                     <View>
                         <View>
-                            <Text style={styles.text1}>Gợi ý từ khóa</Text>
+                            <Text style={styles.textKeywordStyle}>Gợi ý từ khóa</Text>
                         </View>
                         <FlatList
                             data={nameKey}
@@ -65,10 +66,10 @@ const SearchScreen = ({}) => {
                     </View>
                     <View>
                         {(historySearchKeyword.length !== 0) && (
-                            <View style={[styles.textTitle]}>
+                            <View style={[styles.textTitleHistory]}>
                                 <View style={{flexDirection: 'row'}}>
-                                    <Image source={ICONS.iconClockGreen} style={styles.icon}></Image>
-                                    <Text style={styles.text1}>Lịch sử tìm kiếm</Text>
+                                    <Image source={ICONS.iconClockGreen} style={styles.iconHistory}></Image>
+                                    <Text style={styles.textKeywordStyle}>Lịch sử tìm kiếm</Text>
                                 </View>
                                 <TouchableOpacity onPress={OPDeleteHistory}>
                                     <Text>Xóa lịch sử</Text>
@@ -86,8 +87,8 @@ const SearchScreen = ({}) => {
                 {(checkData.length === 0 || listFilter !== null && listFilter.length !== 0) && (
                     <View>
                         <View style={{flexDirection: 'row', marginTop: 10}}>
-                            <Image source={ICONS.iconSearchBlack} style={styles.icon2}></Image>
-                            <Text style={styles.textTitle2}>Kết quả tìm kiếm :</Text>
+                            <Image source={ICONS.iconSearchBlack} style={styles.iconSearch}></Image>
+                            <Text style={styles.textResultStyle}>Kết quả tìm kiếm :</Text>
                         </View>
                     </View>
                 )}
@@ -113,9 +114,8 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: '#FFD24F',
         borderRadius: 30,
-
     },
-    container2: {
+    contents: {
         marginTop: 5,
         flex: 1,
         backgroundColor: '#fff',
@@ -123,33 +123,33 @@ const styles = StyleSheet.create({
         borderTopEndRadius: 30,
         padding: 20,
     },
-    icon: {
+    iconHistory: {
         width: 17,
         height: 17,
         marginRight: 10,
         marginVertical: 4
     },
-    icon2: {
+    iconSearch: {
         width: 17,
         height: 17,
         marginRight: 10,
         marginVertical: 14
     },
 
-    text1: {
+    textKeywordStyle: {
         color: '#000000',
         fontSize: 17,
         fontWeight: '500',
         marginBottom: 3,
     },
-    textTitle: {
-        marginTop: 30,
+    textTitleHistory: {
+        marginTop: 20,
         textAlign: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    textTitle2: {
+    textResultStyle: {
         color: '#000000',
         fontSize: 17,
         fontWeight: '500',

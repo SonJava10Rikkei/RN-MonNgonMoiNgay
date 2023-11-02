@@ -7,13 +7,12 @@ import ItemViewDish from '../components/itemViewDish';
 import fakeProduct from "../containers/data/fakeProduct";
 
 const CategoryScreen = () => {
-    const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(2);
+    const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(1);
 
     const {
         listCategories,
         listProduct,
     } = fakeProduct;
-
 
     // @ts-ignore
     const render = ({item}) => {
@@ -26,8 +25,8 @@ const CategoryScreen = () => {
 
         return (
             <ItemViewDish
-                title={item?.nameCategory}
-                imageProduct={item?.avatarCategory}
+                titleItem={item?.nameCategory}
+                imageItem={item?.avatarCategory}
                 category={true}
                 totalDish={true}
                 totalDishCount={totalDishCount}
@@ -40,7 +39,7 @@ const CategoryScreen = () => {
             <HeaderComponent
                 title="Chuyên mục"
                 iconLeft={ICONS.iconBack}
-                iconRight1={touchNumberColumnCategory === 2 ? ICONS.iconCategoriesWhite : ICONS.iconListWhite}
+                iconRight1={touchNumberColumnCategory === 1 ? ICONS.iconCategoriesWhite : ICONS.iconListWhite}
                 iconRight2={ICONS.iconSearchWhite}
                 showIconRight1={true}
                 showIconRight2={true}
@@ -54,6 +53,10 @@ const CategoryScreen = () => {
                     numColumns={touchNumberColumnCategory}
                     showsVerticalScrollIndicator={false}
                     key={touchNumberColumnCategory.toString()} // Add this key prop
+                    contentContainerStyle={{
+                        marginTop: 20,
+                        paddingBottom:30
+                    }}
                 />
             </View>
 
@@ -64,14 +67,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffff',
-        height: '200%'
     },
     contents: {
-        marginTop: 9,
-        marginBottom: 80,
-    }
-
-
+        flex: 1,
+    },
 });
 
 export default CategoryScreen;

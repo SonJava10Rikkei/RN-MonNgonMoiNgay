@@ -66,9 +66,9 @@ const UserScreen = () => {
   const render = ({item}) => {
     return (
       <ItemViewDish
-        imageLike={item?.imageLike}
-        title={item?.title}
-        imageProduct={item?.imageProduct}
+        iconItem={item?.imageLike}
+        titleItem={item?.title}
+        imageItem={item?.imageProduct}
       />
     );
   };
