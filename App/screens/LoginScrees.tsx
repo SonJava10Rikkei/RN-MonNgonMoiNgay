@@ -1,19 +1,11 @@
 import React from 'react';
-import {
-    ImageBackground,
-    ScrollView,
-    StatusBar,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
+import {ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 
 import IMAGES from '../theme/images';
 import ICONS from '../theme/icon';
 import TextInputComponent from '../components/TextInputComponent';
 import useLogin from '../containers/login';
-import {SafeAreaView, useSafeAreaInsets} from 'react-native-safe-area-context';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const LoginScreen = () => {
     const {
@@ -32,9 +24,7 @@ const LoginScreen = () => {
 
         <ImageBackground
             source={IMAGES.backgroundHistory}
-            style={[styles.container, { // Paddings to handle safe area
-
-            }]}>
+            style={styles.container}>
             <StatusBar translucent backgroundColor="transparent"/>
             <ScrollView>
                 <Text style={styles.text}>Welcome {userName} !</Text>

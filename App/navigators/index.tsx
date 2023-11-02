@@ -20,7 +20,6 @@ const Navigator = () => {
                     component={LoginScreen}
                     options={{headerShown: false}}
                 />
-
                 <Stack.Screen
                     name={SCREEN.BOTTOM_TAB}
                     component={BottomTab}

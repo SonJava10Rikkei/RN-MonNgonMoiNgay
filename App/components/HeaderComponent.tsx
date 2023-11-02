@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
 
     box: {
         backgroundColor: '#FFD24F',
-        paddingTop: 36,
+        paddingTop: 44,
         paddingBottom: 10,
         display: 'flex',
     },
@@ -151,8 +151,8 @@ const styles = StyleSheet.create({
         marginVertical: 10
     },
     iconHeaderRight: {
-        width: 22,
-        height: 22,
+        width: 25,
+        height: 25,
         marginLeft: 15,
         marginRight: 15,
         marginVertical: 5,
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     },
     textInputContainer2: {
         backgroundColor: 'transparent',
-        padding:5,
+        padding: 5,
         width: '80%',
         fontSize: 14,
         marginLeft: 5,
