@@ -1,5 +1,6 @@
 import React from "react";
 import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import Animated, {FadeIn, FadeInDown,} from "react-native-reanimated";
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
@@ -98,7 +99,8 @@ const SearchScreen = ({}) => {
                     </View>
                 )}
                 {listFilter !== null && listFilter.length !== 0 && (
-                    <FlatList
+                    <Animated.FlatList
+                        entering={FadeInDown.delay(200)}
                         data={listFilter}
                         renderItem={renderProduct}
                         numColumns={2}

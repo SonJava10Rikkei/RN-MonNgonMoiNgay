@@ -1,18 +1,24 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, View,} from 'react-native';
+import {FlatList, SafeAreaView, StyleSheet, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
 import ItemViewDish from '../components/itemViewDish';
 import fakeProduct from "../containers/data/fakeProduct";
+import {useNavigation} from "@react-navigation/native";
+import SCREEN from "../navigators/RouteKey";
+
+const {
+    listCategories,
+    listProduct,
+} = fakeProduct
+
 
 const CategoryScreen = () => {
+    const navigation = useNavigation();
     const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(1);
+    // Tạo một hàm để lọc các sản phẩm dựa trên idCategory
 
-    const {
-        listCategories,
-        listProduct,
-    } = fakeProduct;
 
     // @ts-ignore
     const render = ({item}) => {
@@ -23,19 +29,40 @@ const CategoryScreen = () => {
             return count;
         }, 0);
 
+        // Hàm lấy ra product có category giống nhau
+        const getProductsForCategory = (categoryId = item.idCategory) => {
+            return listProduct.filter((product) => product.category && product.category.idCategory === categoryId);
+        };
+        const productsOfCategory = getProductsForCategory(item.idCategory);
+
+
+        // @ts-ignore
+        const onDetailCategory = (takeDetailCategory) => {
+            // @ts-ignore
+            navigation.navigate(SCREEN.DETAIL_CATEGORY, {
+                takeDetailCategory,
+                listCategories,
+                listProduct,
+                totalDishCount,
+                productsOfCategory
+            }); // đi đến màn hình và truyền dữ liệu
+        };
+
         return (
             <ItemViewDish
+                detailCategory={item}
                 titleItem={item?.nameCategory}
                 imageItem={item?.avatarCategory}
                 category={true}
                 totalDish={true}
                 totalDishCount={totalDishCount}
                 typeCategory={item?.type}
+                onDetailCategory={onDetailCategory}
             />
         );
     };
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <HeaderComponent
                 title="Chuyên mục"
                 iconLeft={ICONS.iconBack}
@@ -55,12 +82,11 @@ const CategoryScreen = () => {
                     key={touchNumberColumnCategory.toString()} // Add this key prop
                     contentContainerStyle={{
                         marginTop: 20,
-                        paddingBottom:30
+                        paddingBottom: 30
                     }}
                 />
             </View>
-
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

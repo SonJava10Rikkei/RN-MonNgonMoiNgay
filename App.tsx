@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Text, View, SafeAreaView, StyleSheet, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
-import Navigator from "./App/navigators";
+import RootNavigator from "./App/navigators/RootNavigator";
 
 
 const App = () => {
 
   return (
-  <Navigator/>
+  <RootNavigator/>
   )
 }
 export default App;

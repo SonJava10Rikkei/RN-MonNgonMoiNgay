@@ -21,7 +21,6 @@ const LoginScreen = () => {
     const insets = useSafeAreaInsets();
 
     return (
-
         <ImageBackground
             source={IMAGES.backgroundHistory}
             style={styles.container}>

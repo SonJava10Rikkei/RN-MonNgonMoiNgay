@@ -1,8 +1,10 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ICONS from "../theme/icon";
+import {useNavigation} from "@react-navigation/native";
 
 const ItemViewDish = ({
+                          detailCategory,
                           imageItem,
                           titleItem,
                           iconItem,
@@ -11,7 +13,11 @@ const ItemViewDish = ({
                           totalDish,
                           totalDishCount,
                           typeCategory,
+                          onDetailCategory,
+
+
                       }: {
+    detailCategory?:any;
     imageItem?: any;
     titleItem?: string;
     iconItem?: boolean;
@@ -20,6 +26,7 @@ const ItemViewDish = ({
     totalDish?: boolean;
     totalDishCount?: any;
     typeCategory?: string;
+    onDetailCategory?: (onDetailCategory: any) => void; // Thêm kiểu của hàm xử lý
 
 }) => {
     const imageStyle = []
@@ -38,16 +45,21 @@ const ItemViewDish = ({
         imageStyle.push(styles.itemImgCategory)
     }
 
+    const Navigation = useNavigation();
+
     let count = 0;
 
     // @ts-ignore
-    const OPDetailCategory = () => {
+    const OPDetailItem = () => {
         count=count+1;
         console.log('OPDetailCategory', count +1)
+        if (onDetailCategory) {
+            onDetailCategory(detailCategory); // Gọi hàm xử lý và truyền keyword
+        }
     }
 
     return (
-        <TouchableOpacity onPress={OPDetailCategory} style={containerStyle}>
+        <TouchableOpacity onPress={()=>OPDetailItem()} style={containerStyle}>
             <Image
                 source={imageItem}
                 style={imageStyle}
@@ -63,7 +75,7 @@ const ItemViewDish = ({
                             <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
                         </TouchableOpacity>
                         <TouchableOpacity>
-                            <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
+                            <Image source={ICONS.iconNote} resizeMode="contain" style={styles.icon}/>
                         </TouchableOpacity>
                     </View>
                 }
@@ -124,10 +136,13 @@ const styles = StyleSheet.create({
         right: 0, // Đặt right là 0 để căn chỉnh theo viền phải
         justifyContent: 'space-between', // Để biểu tượng ở hai góc
         padding: 6, // Điều chỉnh khoảng cách xung quanh icon nếu cần
+        marginHorizontal:4,
+
     },
     icon: {
-        width: 18,
-        height: 18,
+        width: 10,
+        height: 10,
+        padding:10
     },
 
 // Phần Category

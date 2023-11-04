@@ -1,11 +1,32 @@
 import React from 'react';
-import {Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
+import {Image, Pressable, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View,} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import SCREEN from '../navigators/RouteKey';
 import ICONS from '../theme/icon';
+import {useSafeAreaInsets} from "react-native-safe-area-context";
+import Animated, {FadeIn} from "react-native-reanimated";
 
-// @ts-ignore
+
+export type Props = {
+    title?: string;
+    iconLeft?: any;
+    iconRight1?: any;
+    iconRight2?: any;
+    showIconLeft?: boolean;
+    showSearchDish?: boolean;
+    showSearchDish2?: boolean;
+    showIconRight1?: boolean;
+    showIconRight2?: boolean;
+    setKeywordInput?: any;
+    valueInput?: any;
+    setValueInput?: any;
+    touchNumberColumnCategory?: any;
+    setTouchNumberColumnCategory?: any;
+    detailStyle?: boolean;
+
+};
+
 const HeaderComponent = (
     {
         title,
@@ -23,26 +44,24 @@ const HeaderComponent = (
         setValueInput,
         touchNumberColumnCategory,
         setTouchNumberColumnCategory,
+        detailStyle,
 
-    }:
-        {
-            title?: string;
-            iconLeft?: any;
-            iconRight1?: any;
-            iconRight2?: any;
-            showIconLeft?: boolean;
-            showSearchDish?: boolean;
-            showSearchDish2?: boolean;
-            showIconRight1?: boolean;
-            showIconRight2?: boolean;
+    }: Props) => {
 
-            setKeywordInput?: any;
-            valueInput?: any;
-            setValueInput?: any;
-            touchNumberColumnCategory?: any;
-            setTouchNumberColumnCategory?: any;
+    const containerStyle = [];
 
-        }) => {
+    const iconLeftStyle = [styles.iconLeftHeader,];
+    const iconLeftBackground = []
+
+    if (detailStyle) {
+        containerStyle.push(styles.headerDetailScreen)
+        // @ts-ignore
+        iconLeftStyle.push(styles.iconLeftDetailHeader)
+        iconLeftBackground.push(styles.iconLeftDetailHeaderBackground)
+    } else {
+        containerStyle.push(styles.container)
+    }
+    ;
 
     const onChangeTextInput = (changeTextInput: string) => {
         setValueInput(changeTextInput)
@@ -70,15 +89,18 @@ const HeaderComponent = (
         // @ts-ignore
         Navigation.navigate(SCREEN.SEARCH_SCREEN);
     };
+    const inset = useSafeAreaInsets()
 
     return (
-        <View style={styles.box}>
+        <Animated.View
+            entering={FadeIn.delay(300)}
+            style={[containerStyle]}>
             <StatusBar translucent backgroundColor="transparent"/>
             <View style={styles.header}>
                 {showIconLeft && (
-                    <TouchableOpacity onPress={onPressClickButtonLeft}>
-                        <Image style={styles.iconHeaderLeft} source={iconLeft}/>
-                    </TouchableOpacity>
+                    <Pressable style={iconLeftBackground} onPress={onPressClickButtonLeft}>
+                        <Image style={iconLeftStyle} source={iconLeft}/>
+                    </Pressable>
                 )}
                 {showSearchDish && (
                     <TouchableOpacity onPress={onPressSearchDish}>
@@ -115,42 +137,63 @@ const HeaderComponent = (
 
                 {showIconRight1 && (
                     <TouchableOpacity onPress={onPressButtonRight1}>
-                        <Image style={styles.iconHeaderRight} source={iconRight1}/>
+                        <Image style={styles.iconRightHeader} source={iconRight1}/>
                     </TouchableOpacity>
                 )}
                 {showIconRight2 && (
                     <TouchableOpacity onPress={onPressButtonRight2}>
-                        <Image style={styles.iconHeaderRight} source={iconRight2}/>
+                        <Image style={styles.iconRightHeader} source={iconRight2}/>
                     </TouchableOpacity>
                 )}
             </View>
-        </View>
+        </Animated.View>
     );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
+    headerDetailScreen: {
+        position: 'absolute',
+        zIndex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        left: 10,
+        top: 35,
+        right: 29,
     },
 
-    box: {
+    container: {
         backgroundColor: '#FFD24F',
-        paddingTop: 44,
+        paddingTop: 43,
         paddingBottom: 10,
         display: 'flex',
     },
     header: {
         flexDirection: 'row',
     },
-    iconHeaderLeft: {
+
+    iconLeftHeader: {
         width: 16,
         height: 16,
         marginLeft: 15,
-        marginVertical: 10
+        marginVertical: 10,
     },
-    iconHeaderRight: {
+    iconLeftDetailHeaderBackground: {
+        top:10,
+        left:5,
+        width: 30,
+        height: 30,
+        backgroundColor: 'rgba(45,38,38,0.59)',
+        borderRadius: 50,
+        alignItems: "center",
+        justifyContent: 'center',
+        textAlign: "center",
+    },
+    iconLeftDetailHeader: {
+        marginLeft: 0,
+    },
+
+
+    iconRightHeader: {
         width: 25,
         height: 25,
         marginLeft: 15,
