@@ -3,7 +3,7 @@ import {FlatList, SafeAreaView, StyleSheet, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
-import ItemViewDish from '../components/itemViewDish';
+import ListItemViewCategory from '../components/ListItemViewCategory';
 import fakeProduct from "../containers/data/fakeProduct";
 import {useNavigation} from "@react-navigation/native";
 import SCREEN from "../navigators/RouteKey";
@@ -49,7 +49,7 @@ const CategoryScreen = () => {
         };
 
         return (
-            <ItemViewDish
+            <ListItemViewCategory
                 detailCategory={item}
                 titleItem={item?.nameCategory}
                 imageItem={item?.avatarCategory}

@@ -12,7 +12,7 @@ import {useNavigation} from '@react-navigation/native';
 import HeaderComponent from '../components/HeaderComponent';
 import IMAGES from '../theme/images';
 import ICONS from '../theme/icon';
-import ItemViewDish from '../components/itemViewDish';
+import ListItemViewCategory from '../components/ListItemViewCategory';
 
 const HomeScreen = () => {
   const Navigation = useNavigation();
@@ -72,7 +72,7 @@ const HomeScreen = () => {
   // @ts-ignore
   const render = ({item}) => {
     return (
-      <ItemViewDish
+      <ListItemViewCategory
         iconItem={item?.imageLike}
         titleItem={item?.title}
         imageItem={item?.imageProduct}

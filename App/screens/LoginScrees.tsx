@@ -4,7 +4,7 @@ import {ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpaci
 import IMAGES from '../theme/images';
 import ICONS from '../theme/icon';
 import TextInputComponent from '../components/TextInputComponent';
-import useLogin from '../containers/login';
+import useLogin from '../containers/useLogin';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 
 const LoginScreen = () => {

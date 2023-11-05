@@ -1,10 +1,12 @@
-import React from "react";
-import {StyleSheet, Text, useWindowDimensions, View} from "react-native";
+import React, {useRef} from "react";
+import {ScrollView, StyleSheet, Text, useWindowDimensions, View} from "react-native";
 import {useRoute} from '@react-navigation/native';
 import HeaderComponent from "../components/HeaderComponent";
 import ICONS from "../theme/icon";
-import ItemViewDish from "../components/itemViewDish";
-import Animated, {FadeIn, FadeInDown,} from "react-native-reanimated";
+import Animated, {FadeIn,} from "react-native-reanimated";
+import ListItemView from "../components/ListItemViewProduct";
+import IMAGES from "../theme/images";
+
 
 const DetailCategory = () => {
 
@@ -13,17 +15,8 @@ const DetailCategory = () => {
     // @ts-ignore
     const {takeDetailCategory, totalDishCount, productsOfCategory} = route.params;
 
-    // @ts-ignore
-    const renderProduct = ({item}) => {
-        return (
-            <ItemViewDish
-                iconItem={true}
-                titleItem={item?.nameProduct}
-                imageItem={item?.imageProduct[0].urlImage}
-                product={true}
-            />
-        );
-    };
+
+
     return (
         <View style={styles.container}>
             <HeaderComponent
@@ -32,33 +25,34 @@ const DetailCategory = () => {
                 showIconLeft={true}
                 detailStyle={true}
             />
-            <View>
-                <Animated.FlatList
-                    entering={FadeInDown.delay(200)}
-                    ListHeaderComponent={() => (
-                        <View style={styles.container}>
-                            <Animated.Image
-                                sharedTransitionTag={takeDetailCategory.nameCategory}
-                                source={takeDetailCategory.avatarCategory}
-                                style={{width: width, height: 260}}
-                            />
-                            <Animated.View
-                                entering={FadeIn.delay(500)}
-                                style={styles.textContainer}>
-                                <Text style={styles.textNameCategory}>{takeDetailCategory.nameCategory}</Text>
-                                <Text
-                                    style={styles.textCountCategory}>{totalDishCount} {takeDetailCategory.type}</Text>
-                            </Animated.View>
-                        </View>
-                    )}
-                    data={productsOfCategory}
-                    renderItem={renderProduct}
-                    numColumns={2}
-                    showsVerticalScrollIndicator={false}
-                    contentContainerStyle={{marginTop: 0, paddingBottom: 10}}
+            <ScrollView
+                showsHorizontalScrollIndicator={false}
+                showsVerticalScrollIndicator={false}
+                // onScroll={e => console.log(e.nativeEvent.contentOffset.y)}
 
-                />
-            </View>
+
+            >
+                <View>
+                    <View style={styles.container}>
+                        <Animated.Image
+
+                            sharedTransitionTag={takeDetailCategory.nameCategory}
+                            source={takeDetailCategory.avatarCategory}
+                            style={{width: width, height: 260}}
+                        />
+                        <Animated.View
+                            entering={FadeIn.delay(500)}
+                            style={styles.textContainer}>
+                            <Text style={styles.textNameCategory}>{takeDetailCategory.nameCategory}</Text>
+                            <Text
+                                style={styles.textCountCategory}>{totalDishCount} {takeDetailCategory.type}</Text>
+                        </Animated.View>
+                    </View>
+                    <ListItemView
+                        data={productsOfCategory}
+                    />
+                </View>
+            </ScrollView>
         </View>
     );
 };

@@ -4,12 +4,13 @@ import Animated, {FadeIn, FadeInDown,} from "react-native-reanimated";
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
-import ButtonTextNameDish from "../components/buttonTextNameDish";
-import ItemViewDish from "../components/itemViewDish";
+import ButtonTextNameDish from "../components/ButtonTextNameDish";
+import ListItemViewCategory from "../components/ListItemViewCategory";
 import useSearch from "../containers/useSearch";
+import ListItemView from "../components/ListItemViewProduct";
 
 // @ts-ignore
-const SearchScreen = ({}) => {
+const SearchScreen = () => {
     const {
         nameKey,
         valueInput, setValueInput,
@@ -34,7 +35,7 @@ const SearchScreen = ({}) => {
     // @ts-ignore
     const renderProduct = ({item}) => {
         return (
-            <ItemViewDish
+            <ListItemViewCategory
                 iconItem={true}
                 titleItem={item?.nameProduct}
                 imageItem={item?.imageProduct[0].urlImage}
@@ -99,12 +100,15 @@ const SearchScreen = ({}) => {
                     </View>
                 )}
                 {listFilter !== null && listFilter.length !== 0 && (
-                    <Animated.FlatList
-                        entering={FadeInDown.delay(200)}
-                        data={listFilter}
-                        renderItem={renderProduct}
-                        numColumns={2}
-                        showsVerticalScrollIndicator={false}
+                    // <Animated.FlatList
+                    //     entering={FadeInDown.delay(200)}
+                    //     data={listFilter}
+                    //     renderItem={renderProduct}
+                    //     numColumns={2}
+                    //     showsVerticalScrollIndicator={false}
+                    // />
+                    <ListItemView
+                    data={listFilter}
                     />
                 )}
             </View>

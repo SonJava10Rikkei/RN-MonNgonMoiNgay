@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import SCREEN from '../navigators/RouteKey';
 import ICONS from '../theme/icon';
 import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Animated, {FadeIn} from "react-native-reanimated";
+import Animated, {FadeIn, FadeInRight} from "react-native-reanimated";
 
 
 export type Props = {
@@ -93,7 +93,6 @@ const HeaderComponent = (
 
     return (
         <Animated.View
-            entering={FadeIn.delay(300)}
             style={[containerStyle]}>
             <StatusBar translucent backgroundColor="transparent"/>
             <View style={styles.header}>
@@ -116,7 +115,10 @@ const HeaderComponent = (
                 )}
                 {showSearchDish2 && (
                     <TouchableOpacity>
-                        <View style={styles.searchInput2}>
+                        <Animated.View
+                            entering={FadeInRight.delay(300)}
+
+                            style={styles.searchInput2}>
                             <Image source={ICONS.iconSearchGreen} style={styles.iconSearch}/>
                             <TextInput
                                 style={styles.textInputContainer2}
@@ -128,7 +130,7 @@ const HeaderComponent = (
                                     onSubmitKeyword(submitNativeEvent);
                                 }}
                             />
-                        </View>
+                        </Animated.View>
                     </TouchableOpacity>
                 )}
                 <View style={styles.textView}>

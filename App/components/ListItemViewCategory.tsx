@@ -3,7 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ICONS from "../theme/icon";
 import {useNavigation} from "@react-navigation/native";
 
-const ItemViewDish = ({
+const ListItemViewCategory = ({
                           detailCategory,
                           imageItem,
                           titleItem,
@@ -29,9 +29,9 @@ const ItemViewDish = ({
     onDetailCategory?: (onDetailCategory: any) => void; // Thêm kiểu của hàm xử lý
 
 }) => {
+    const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow];
     const imageStyle = []
     const textStyle = [];
-    const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow];
     if (product) {
         // @ts-ignore
         containerStyle.push(styles.itemProduct)
@@ -171,4 +171,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ItemViewDish;
+export default ListItemViewCategory;
