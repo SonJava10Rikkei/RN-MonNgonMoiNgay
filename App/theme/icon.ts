@@ -36,6 +36,7 @@ const ICONS = {
     iconListWhite: require('../assets/Icon/list.png'),
 
     iconHeart: require('../assets/Icon/heart.png'),
+    iconHeartWhite: require('../assets/Icon/heart-white.png'),
     iconHeartRed: require('../assets/Icon/heartRed.png'),
 
     iconSearchBlack: require('../assets/Icon/search-black.png'),
@@ -45,6 +46,7 @@ const ICONS = {
     iconClockGreen: require('../assets/Icon/clockGreen.png'),
 
     iconNote: require('../assets/Icon/edit.png'),
+    iconNoteWhite: require('../assets/Icon/edit-white.png'),
     iconNoteGreen: require('../assets/Icon/editGreen.png'),
 
 

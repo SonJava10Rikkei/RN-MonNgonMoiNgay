@@ -5,7 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  FlatList,
+  FlatList, SafeAreaView,
 } from 'react-native';
 
 import {useNavigation} from '@react-navigation/native';
@@ -72,7 +72,7 @@ const SuggestScreen = () => {
     );
   };
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       {/* <ImageBackground source={IMAGES.backgroundHistory} style={styles.container}> */}
       <HeaderComponent
         title="Gợi ý hôm nay"
@@ -102,7 +102,7 @@ const SuggestScreen = () => {
         </View>
       </ScrollView>
       {/* </ImageBackground> */}
-    </View>
+    </SafeAreaView>
   );
 };
 const styles = StyleSheet.create({

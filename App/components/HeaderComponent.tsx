@@ -24,6 +24,7 @@ export type Props = {
     touchNumberColumnCategory?: any;
     setTouchNumberColumnCategory?: any;
     detailStyle?: boolean;
+    activeDetailProduct?: boolean;
 
 };
 
@@ -45,11 +46,11 @@ const HeaderComponent = (
         touchNumberColumnCategory,
         setTouchNumberColumnCategory,
         detailStyle,
+        activeDetailProduct,
 
     }: Props) => {
 
     const containerStyle = [];
-
     const iconLeftStyle = [styles.iconLeftHeader,];
     const iconLeftBackground = []
 
@@ -61,7 +62,7 @@ const HeaderComponent = (
     } else {
         containerStyle.push(styles.container)
     }
-    ;
+
 
     const onChangeTextInput = (changeTextInput: string) => {
         setValueInput(changeTextInput)
@@ -79,17 +80,25 @@ const HeaderComponent = (
         Navigation.navigate(SCREEN.SEARCH_SCREEN);
     };
     const onPressButtonRight1 = () => {
-        if (touchNumberColumnCategory === 1) {
-            setTouchNumberColumnCategory(2)
+        if(activeDetailProduct){
+            console.log('activeDetailProduct Heart')
         } else {
-            setTouchNumberColumnCategory(1)
+            if (touchNumberColumnCategory === 1) {
+                setTouchNumberColumnCategory(2)
+            } else {
+                setTouchNumberColumnCategory(1)
+            }
         }
     };
     const onPressButtonRight2 = () => {
-        // @ts-ignore
-        Navigation.navigate(SCREEN.SEARCH_SCREEN);
+        if(activeDetailProduct){
+            console.log('activeDetailProduct note')
+        } else {
+            // @ts-ignore
+            Navigation.navigate(SCREEN.SEARCH_SCREEN);
+        }
     };
-    const inset = useSafeAreaInsets()
+    // const inset = useSafeAreaInsets()
 
     return (
         <Animated.View
@@ -196,8 +205,8 @@ const styles = StyleSheet.create({
 
 
     iconRightHeader: {
-        width: 25,
-        height: 25,
+        width: 22,
+        height: 22,
         marginLeft: 15,
         marginRight: 15,
         marginVertical: 5,

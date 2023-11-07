@@ -6,6 +6,9 @@ import RNSpeedometer from "react-native-speedometer";
 import _ from 'lodash';
 import ICONS from "../theme/icon";
 import Animated, {FadeIn} from "react-native-reanimated";
+import {useNavigation} from "@react-navigation/native";
+import SCREEN from "../navigators/RouteKey";
+
 
 const ListItemViewProduct = (
     {
@@ -13,9 +16,13 @@ const ListItemViewProduct = (
     }: {
         data?: any;
     }) => {
-    // @ts-ignore
-    const OPDetailItem = () => {
 
+    const navigation = useNavigation()
+
+    // @ts-ignore
+    const OPDetailItem = (subItem) => {
+    // @ts-ignore
+        navigation.navigate(SCREEN.DETAIL_PRODUCT, subItem)
     }
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct];
     const imageStyle = [styles.itemImgProduct]
@@ -32,7 +39,7 @@ const ListItemViewProduct = (
                     <View key={index} style={{flexDirection: 'row'}}>
                         {/*@ts-ignore*/}
                         {item.map((subItem, subIndex) => (
-                            <TouchableOpacity key={subIndex} onPress={() => OPDetailItem()} style={containerStyle}>
+                            <TouchableOpacity key={subIndex} onPress={() => OPDetailItem(subItem)} style={containerStyle}>
                                     <Animated.Image
                                         entering={FadeIn.delay(200)}
                                         source={subItem.imageProduct[0].urlImage}

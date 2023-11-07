@@ -10,7 +10,13 @@ const IMAGES = {
     dishChaoCaPhoMai: require('../assets/Img/Products/Dish/chao-ca-hoi-pho-mai-mon-chao-an-dam-dinh-duong-cho-tre.jpg'),
     dishGoiDuaLeo: require('../assets/Img/Products/Dish/goi-dua-leo-kho-ca-sac.jpg'),
     dishOvernightOat: require('../assets/Img/Products/Dish/overnight-oat.jpg'),
-    dishPhoXao: require('../assets/Img/Products/Dish/pho-xao.jpg'),
+
+    dishPhoXao: require('../assets/Img/Products/Dish/phoxao/pho-xao.jpg'),
+    dishPhoXaoCachLam: require('../assets/Img/Products/Dish/phoxao/cach-lam-pho-xao.jpg'),
+    dishPhoXaoXot: require('../assets/Img/Products/Dish/phoxao/lam-xot-xao-pho.jpg'),
+    dishPhoXaoThitBoChinTai: require('../assets/Img/Products/Dish/phoxao/xao-thit-bo-chin-tai.jpg'),
+    dishPhoXaoAll: require('../assets/Img/Products/Dish/phoxao/cho-tat-ca-nguyen-lieu-vao-xao-roi-tat-bep.jpg'),
+    dishPhoXaoDone: require('../assets/Img/Products/Dish/phoxao/thanh-pham-xao-gion-khong-nat.jpg'),
 
     CTGMonAnChoCaNha: require('../assets/Img/Products/Categories/mon-an-cho-ca-nha.jpg'),
     CTGMonKhaiVi: require('../assets/Img/Products/Categories/salad-ca-ngu.jpg'),

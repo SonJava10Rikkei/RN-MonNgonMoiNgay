@@ -8,7 +8,7 @@ import ListItemView from "../components/ListItemViewProduct";
 import IMAGES from "../theme/images";
 
 
-const DetailCategory = () => {
+const DetailCategoryScreen = () => {
 
     const {width} = useWindowDimensions();
     const route = useRoute();
@@ -87,4 +87,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default DetailCategory;
+export default DetailCategoryScreen;

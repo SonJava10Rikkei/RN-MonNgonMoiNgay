@@ -10,7 +10,8 @@ import SearchScreen from '../screens/SearchScreen';
 import SuggestScreen from "../screens/SuggestScreen";
 import CategoryScreen from "../screens/CategoryScreen";
 import UserScreen from "../screens/UserScreen";
-import DetailCategory from "../screens/DetailCategory";
+import DetailCategoryScreen from "../screens/DetailCategoryScreen";
+import DetailProductScreen from "../screens/DetailProductScreen";
 
 type RootStackParamList = {
     SearchScreen: undefined;
@@ -60,7 +61,7 @@ const RootNavigator = () => {
                 <Stack.Screen
                     // @ts-ignore
                     name={SCREEN.DETAIL_CATEGORY}
-                    component={DetailCategory}
+                    component={DetailCategoryScreen}
                     options={{headerShown: false, animation: 'slide_from_left'}}
                 />
 
@@ -77,6 +78,13 @@ const RootNavigator = () => {
                     component={BottomTab}
                     options={{headerShown: false, animation: 'slide_from_right'}}
                 />
+                <Stack.Screen
+                    // @ts-ignore
+                    name={SCREEN.DETAIL_PRODUCT}
+                    component={DetailProductScreen}
+                    options={{headerShown: false, animation: 'slide_from_right'}}
+                />
+
             </Stack.Navigator>
         </NavigationContainer>
     );

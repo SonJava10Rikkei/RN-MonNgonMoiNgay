@@ -1,15 +1,21 @@
 import React from 'react';
-import {StyleSheet, View,} from 'react-native';
+import {SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
 import ListItemView from "../components/ListItemViewProduct";
+import DetailProductScreen from "./DetailProductScreen";
+import SCREEN from "../navigators/RouteKey";
 
 const UserScreen = () => {
-    const Navigation = useNavigation();
+    const navigation = useNavigation()
+    const OPGotoDetailProduct = () => {
+        // @ts-ignore
+        navigation.navigate(SCREEN.DETAIL_PRODUCT)
+    }
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             {/* <ImageBackground source={IMAGES.backgroundHistory} style={styles.container}> */}
             <HeaderComponent
                 title="Cá nhân"
@@ -21,9 +27,11 @@ const UserScreen = () => {
                 // showIconRight1={true}
                 showIconRight2={true}
             />
-            <ListItemView/>
+            <TouchableOpacity onPress={OPGotoDetailProduct}>
+                <Text>OPGotoDetailProduct</Text>
+            </TouchableOpacity>
             {/* </ImageBackground> */}
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

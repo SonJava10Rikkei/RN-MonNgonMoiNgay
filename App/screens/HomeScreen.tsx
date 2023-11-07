@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  FlatList,
+  FlatList, SafeAreaView,
   ScrollView,
   StyleSheet,
   Text,
@@ -82,7 +82,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <HeaderComponent
         iconLeft={ICONS.iconBack}
         iconRight1={ICONS.iconCategoriesWhite}
@@ -105,7 +105,7 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View>
       </ScrollView>
-    </View>
+    </SafeAreaView>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Image, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import Animated, {FadeIn, FadeInDown,} from "react-native-reanimated";
 
 import HeaderComponent from '../components/HeaderComponent';
@@ -44,7 +44,7 @@ const SearchScreen = () => {
         );
     };
     return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
             <HeaderComponent
                 iconLeft={ICONS.iconBackWhite}
                 showIconLeft={true}
@@ -112,7 +112,7 @@ const SearchScreen = () => {
                     />
                 )}
             </View>
-        </View>
+        </SafeAreaView>
     );
 };
 const styles = StyleSheet.create({

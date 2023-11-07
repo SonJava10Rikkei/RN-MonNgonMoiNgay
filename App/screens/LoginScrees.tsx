@@ -1,5 +1,14 @@
 import React from 'react';
-import {ImageBackground, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {
+    ImageBackground,
+    SafeAreaView,
+    ScrollView,
+    StatusBar,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+} from 'react-native';
 
 import IMAGES from '../theme/images';
 import ICONS from '../theme/icon';
@@ -25,6 +34,7 @@ const LoginScreen = () => {
             source={IMAGES.backgroundHistory}
             style={styles.container}>
             <StatusBar translucent backgroundColor="transparent"/>
+            <SafeAreaView>
             <ScrollView>
                 <Text style={styles.text}>Welcome {userName} !</Text>
                 <TextInputComponent
@@ -51,6 +61,7 @@ const LoginScreen = () => {
                     </View>
                 </TouchableOpacity>
             </ScrollView>
+            </SafeAreaView>
         </ImageBackground>
     );
 };

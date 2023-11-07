@@ -1,6 +1,12 @@
-import IMAGES from "../../theme/images";
+import React from "react";
+import {Image, SafeAreaView, ScrollView, StyleSheet, Text, View} from "react-native";
+import HeaderComponent from "../components/HeaderComponent";
+import ICONS from "../theme/icon";
+import IMAGES from "../theme/images";
 
-const fakeProduct = () => {
+const DetailProductScreen = (
+    {}: {}
+) => {
     const listCategories = [
         {
             idCategory: 1,
@@ -697,9 +703,70 @@ const fakeProduct = () => {
         },
 
     ];
-    return {
-        listProduct,
-        listCategories: listCategories
-    }
-}
-export default fakeProduct();
+
+    const detailObject = listProduct[7].description[0].ingredient.detail[1];
+
+    const formattedText = Object.entries(detailObject).map(([key, value]) => `${key}: ${value}`).join('\n');
+    return (
+        <SafeAreaView style={styles.container}>
+            <HeaderComponent
+                title="Detail Product"
+                iconLeft={ICONS.iconBackWhite}
+                iconRight1={ICONS.iconHeartWhite}
+                iconRight2={ICONS.iconNoteWhite}
+                activeDetailProduct={true}
+                showIconLeft={true}
+                showIconRight1={true}
+                showIconRight2={true}
+            />
+            <SafeAreaView>
+                <ScrollView
+                    style={styles.content}
+                    showsHorizontalScrollIndicator={false}
+                    showsVerticalScrollIndicator={false}
+                    contentContainerStyle={{marginBottom: 1, paddingBottom: 140}}
+                >
+
+                    <View>
+                        <Text>{listProduct[7].nameProduct}</Text>
+                        <Text>{listProduct[7].description[0].name}</Text>
+                        <Image source={listProduct[7].imageProduct[0].urlImage}/>
+                        <Text>{listProduct[7].description[0].ingredient.name} :</Text>
+                        {listProduct[7].description[0].ingredient.detail.map((item, index) => (
+                            <View key={index} style={{padding: 8}}>
+                                {Object.entries(item).map(([key, value]) => (
+                                    <Text key={key}>{`${key}: ${value}`}</Text>
+                                ))}
+                            </View>
+                        ))}
+                    </View>
+                    <View>
+                        <Text>{listProduct[7].description[0].makeFood.name} :</Text>
+                        <View>
+                            {listProduct[7].description[0].makeFood.detail.map((item, index) => (
+                                <View key={index}>
+                                    <Text>{item.name}</Text>
+                                    <Text>{item.content}</Text>
+                                    <Image source={item.image} style={{width:300,height:300}}/>
+                                </View>
+                            ))}
+                        </View>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        </SafeAreaView>
+    )
+
+};
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    content: {
+        padding: 10,
+
+    },
+
+})
+
+export default DetailProductScreen;
