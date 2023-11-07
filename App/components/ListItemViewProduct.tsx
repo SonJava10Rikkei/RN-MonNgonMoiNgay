@@ -22,7 +22,7 @@ const ListItemViewProduct = (
     // @ts-ignore
     const OPDetailItem = (subItem) => {
     // @ts-ignore
-        navigation.navigate(SCREEN.DETAIL_PRODUCT, subItem)
+        navigation.navigate(SCREEN.DETAIL_PRODUCT, {subItem})
     }
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct];
     const imageStyle = [styles.itemImgProduct]

@@ -634,7 +634,8 @@ const fakeProduct = () => {
             category: listCategories[6],
             description: [
                 {
-                    name: 'Phở xào là món ăn yêu thích, món ngon của nhiều người vì có cách làm đơn giản và dễ biến tấu cùng nhiều nguyên liệu như nấm, thịt bò, rau cải,… Tuy nhiên, để đảm bảo món ăn không bị dính, nát khi thực hiện, bạn hãy tham khảo cách làm phở xào thịt bò ngon khó cưỡng được chia sẻ dưới đây',
+                    name: 'Phở xào là món ăn yêu thích, món ngon của nhiều người vì có cách làm đơn giản và dễ biến tấu cùng nhiều nguyên liệu như nấm, thịt bò, rau cải,…{\n}' +
+                        'Tuy nhiên, để đảm bảo món ăn không bị dính, nát khi thực hiện, bạn hãy tham khảo cách làm phở xào thịt bò ngon khó cưỡng được chia sẻ dưới đây',
                     ingredient: {
                         name: 'Nguyên liệu',
                         detail: [
