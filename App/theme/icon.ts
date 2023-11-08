@@ -50,5 +50,9 @@ const ICONS = {
     iconNoteGreen: require('../assets/Icon/editGreen.png'),
 
 
+    iconStarYellow: require('../assets/Icon/star.png'),
+    iconShareBlue: require('../assets/Icon/share.png'),
+    iconExclamation: require('../assets/Icon/exclamation.png'),
+
 };
 export default ICONS;
