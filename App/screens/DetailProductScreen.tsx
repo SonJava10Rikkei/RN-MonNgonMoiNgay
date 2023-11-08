@@ -27,7 +27,7 @@ const DetailProductScreen = (
                 showIconRight1={true}
                 showIconRight2={true}
             />
-            <SafeAreaView>
+            <View>
                 <ScrollView
                     style={styles.content}
                     showsHorizontalScrollIndicator={false}
@@ -57,13 +57,15 @@ const DetailProductScreen = (
                                 <View key={index}>
                                     <Text style={[styles.text, styles.textMakeFood]}>{item.name}</Text>
                                     <Text style={styles.text}>   {item.content}</Text>
-                                    <Image source={item.image} style={styles.image} resizeMode="cover"/>
+                                    {item.image && (
+                                        <Image source={item.image} style={styles.image} resizeMode="cover"/>
+                                    )}
                                 </View>
                             ))}
                         </View>
                     </View>
                 </ScrollView>
-            </SafeAreaView>
+            </View>
         </SafeAreaView>
     )
 };
@@ -115,3 +117,4 @@ const styles = StyleSheet.create({
 })
 
 export default DetailProductScreen;
+

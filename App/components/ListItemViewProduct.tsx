@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     },
     textProduct: {
         fontSize: 15,
-        marginTop: -15,
+        marginTop: -20,
         width: "100%",
     },
     iconProduct: {

@@ -26,7 +26,7 @@ const HomeScreen = () => {
 
     {
       id:2,
-      imageProduct: IMAGES.dishCanhGheRauMuon,
+      imageProduct: IMAGES.dishCanhGheRauMuong,
       title: 'Canh ghẹ rau muống',
       imageLike: ICONS.iconHeart,
     },

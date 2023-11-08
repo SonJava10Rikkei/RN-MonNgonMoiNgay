@@ -25,7 +25,7 @@ const SuggestScreen = () => {
     },
 
     {
-      imageProduct: IMAGES.dishCanhGheRauMuon,
+      imageProduct: IMAGES.dishCanhGheRauMuong,
       title: 'Canh ghẹ rau muống',
       imageLike: ICONS.iconHeart,
     },

@@ -119,7 +119,7 @@ export const listProduct: DataProduct[] = [
         imageProduct: [
             {
                 idIMG: 1,
-                urlImage: IMAGES.dishCanhGheRauMuon,
+                urlImage: IMAGES.dishCanhGheRauMuong,
             },
         ],
         category: listCategories[4],
