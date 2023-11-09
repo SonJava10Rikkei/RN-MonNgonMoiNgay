@@ -12,6 +12,7 @@ import CategoryScreen from "../screens/CategoryScreen";
 import UserScreen from "../screens/UserScreen";
 import DetailCategoryScreen from "../screens/DetailCategoryScreen";
 import DetailProductScreen from "../screens/DetailProductScreen";
+import StorageUserScreen from "../screens/StorageUserScreen";
 
 type RootStackParamList = {
     SearchScreen: undefined;
@@ -32,7 +33,7 @@ const RootNavigator = () => {
                     // @ts-ignore
                     name={SCREEN.LOGIN_SCREEN}
                     component={LoginScreen}
-                    options={{headerShown: false, animation: 'slide_from_right'}}
+                    options={{headerShown: false, animation: 'slide_from_left'}}
                 />
                 <Stack.Screen
                     // @ts-ignore
@@ -60,30 +61,35 @@ const RootNavigator = () => {
                 />
                 <Stack.Screen
                     // @ts-ignore
-                    name={SCREEN.DETAIL_CATEGORY}
+                    name={SCREEN.DETAIL_CATEGORY_SCREEN}
                     component={DetailCategoryScreen}
                     options={{headerShown: false, animation: 'slide_from_left'}}
                 />
-
                 <Stack.Screen
                     // @ts-ignore
                     name={SCREEN.SEARCH_SCREEN}
                     component={SearchScreen}
                     options={{headerShown: false, animation: 'fade_from_bottom'}}
-
                 />
                 <Stack.Screen
                     // @ts-ignore
                     name={SCREEN.BOTTOM_TAB}
                     component={BottomTab}
-                    options={{headerShown: false, animation: 'slide_from_right'}}
+                    options={{headerShown: false, animation: 'slide_from_left'}}
                 />
                 <Stack.Screen
                     // @ts-ignore
-                    name={SCREEN.DETAIL_PRODUCT}
+                    name={SCREEN.DETAIL_PRODUCT_SCREEN}
                     component={DetailProductScreen}
-                    options={{headerShown: false, animation: 'slide_from_right'}}
+                    options={{headerShown: false, animation: 'slide_from_left'}}
                 />
+                <Stack.Screen
+                    // @ts-ignore
+                    name={SCREEN.STORAGE_USER_SCREEN}
+                    component={StorageUserScreen}
+                    options={{headerShown: false, animation: 'fade_from_bottom'}}
+                />
+
 
             </Stack.Navigator>
         </NavigationContainer>

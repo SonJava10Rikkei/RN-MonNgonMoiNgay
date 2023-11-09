@@ -1,110 +1,163 @@
 import React, {useState} from 'react';
-import {Image, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {Image, Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
+import {useNavigation} from "@react-navigation/native";
+import SCREEN from "../navigators/RouteKey";
 
 const UserScreen = () => {
-    const [isPressed, setIsPressed] = useState(false);
-    const handlePressIn = () => {
-        // Xử lý sự kiện khi người dùng bấm xuống ở đây
-        console.log('Bấm xuống');
-        setIsPressed(true);
+    const navigation = useNavigation();
+
+    const [isPressed, setIsPressed] = useState([false, false, false]);
+    const [isPressed2, setIsPressed2] = useState([false, false, false]);
+    const [icons] = useState([
+        ICONS.iconHeartRed,
+        ICONS.iconClockGreen,
+        ICONS.iconNoteGreen
+    ]);
+    const [icons2] = useState([
+        ICONS.iconStarYellow,
+        ICONS.iconShareBlue,
+        ICONS.iconExclamation
+    ]);
+    const [texts] = useState([
+        'Món yêu thích',
+        'Món đã xem',
+        'Món có ghi chú'
+    ]);
+    const [texts2] = useState([
+        'Đánh giá ứng dụng',
+        'Chia sẻ ứng dụng',
+        'Thông tin ứng dụng'
+    ]);
+
+    // @ts-ignore
+    const handlePressIn = (index, setIsPressed) => {
+        const newIsPressed = [...isPressed];
+        newIsPressed[index] = true;
+        setIsPressed(newIsPressed);
     };
 
-    const handlePressOut = () => {
-        // Xử lý sự kiện khi người dùng nhả ra ở đây
-        console.log('Nhả ra');
-        setIsPressed(false);
+    // @ts-ignore
+    const handlePressOut = (index, setIsPressed) => {
+        const newIsPressed = [...isPressed];
+        newIsPressed[index] = false;
+        setIsPressed(newIsPressed);
+        if (index===0){
+            // @ts-ignore
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
+        } else if (index===1){
+            // @ts-ignore
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
+        } else {
+            // @ts-ignore
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
+        }
+
     };
-    const pressableStyle = isPressed ? [styles.pressable, { backgroundColor: 'yellow' }] : styles.pressable;
+    // @ts-ignore
+    const handlePressIn2 = (index, setIsPressed) => {
+        const newIsPressed = [...isPressed];
+        newIsPressed[index] = true;
+        setIsPressed(newIsPressed);
+    };
+
+    // @ts-ignore
+    const handlePressOut2 = (index, setIsPressed) => {
+        const newIsPressed = [...isPressed];
+        newIsPressed[index] = false;
+        setIsPressed(newIsPressed);
+        if (index===0){
+            console.log('2--1')
+        } else if (index===1){
+            console.log('2--2')
+        } else {
+            console.log('2--3')
+        }
+    };
+
+    // @ts-ignore
+    const pressableStyles = (isPressedArray) => (index) => ({
+        borderTopLeftRadius: index === 0 ? 20 : 0,
+        borderTopRightRadius: index === 0 ? 20 : 0,
+        borderBottomStartRadius: index === 2 ? 19 : 0,
+        borderBottomEndRadius: index === 2 ? 19 : 0,
+        flexDirection: 'row',
+        paddingVertical: 19,
+        backgroundColor: isPressedArray[index] ? 'rgba(255,210,79,0.7)' : 'transparent',
+        ...styles.shadow,
+        elevation: index === 0.1 ? 0.01 : 0.3,
+    });
+
     return (
         <SafeAreaView style={styles.container}>
             <HeaderComponent
                 title="Cá nhân"
-                iconLeft={ICONS.iconBack}
-                iconRight1={ICONS.iconCategoriesWhite}
                 iconRight2={ICONS.iconSearchWhite}
                 showIconRight2={true}
             />
-
             <View style={styles.content}>
-                <View style={[styles.subContent, styles.boxShadow, styles.androidShadow1]}>
-                    <Pressable
-                        onPressIn={handlePressIn}
-                        onPressOut={handlePressOut}
-                        style={pressableStyle}>
-                        <Image style={styles.icon} source={ICONS.iconHeartRed}/>
-                        <Text style={styles.text}>Món yêu thích</Text>
-                    </Pressable>
-                    <Pressable style={[styles.buttons, styles.boxShadow, styles.androidShadow2]}>
-                        <Image style={styles.icon} source={ICONS.iconClockGreen}/>
-                        <Text style={styles.text}>Món đã xem</Text>
-                    </Pressable>
-                    <Pressable style={[styles.buttons,]}>
-                        <Image style={styles.icon} source={ICONS.iconNoteGreen}/>
-                        <Text style={styles.text}>Món có ghi chú</Text>
-                    </Pressable>
+                <View style={[styles.boxShadow,styles.shadow]}>
+                {isPressed.map((isPressedState, index) => (
+                        <Pressable
+                            key={index}
+                            onPressIn={() => handlePressIn(index, setIsPressed)}
+                            onPressOut={() => handlePressOut(index, setIsPressed)}
+                            // @ts-ignore
+                            style={pressableStyles(isPressed)(index)}
+                        >
+                            <Image style={styles.icon} source={icons[index]}/>
+                            <Text style={styles.text}>{texts[index]}</Text>
+                        </Pressable>
+                    ))}
                 </View>
-                <View style={[styles.subContent, styles.boxShadow, styles.androidShadow1]}>
-                    <Pressable style={[styles.buttons,]}>
-                        <Image style={styles.icon} source={ICONS.iconStarYellow}/>
-                        <Text style={styles.text}>Dánh giá ứng dụng</Text>
-                    </Pressable>
-                    <Pressable style={[styles.buttons, styles.boxShadow, styles.androidShadow2]}>
-                        <Image style={styles.icon} source={ICONS.iconShareBlue}/>
-                        <Text style={styles.text}>Chia sẻ ứng dụng</Text>
-                    </Pressable>
-                    <Pressable style={[styles.buttons,]}>
-                        <Image style={styles.icon} source={ICONS.iconExclamation}/>
-                        <Text style={styles.text}>Thông tin ứng dụng</Text>
-                    </Pressable>
+
+                <View style={[styles.boxShadow,styles.shadow,{marginTop: 20}]}>
+                    {isPressed2.map((isPressedState, index) => (
+                        <Pressable
+                            key={index}
+                            onPressIn={() => handlePressIn2(index, setIsPressed2)}
+                            onPressOut={() => handlePressOut2(index, setIsPressed2)}
+                            // @ts-ignore
+                            style={pressableStyles(isPressed2)(index)}
+                        >
+                            <Image style={styles.icon} source={icons2[index]}/>
+                            <Text style={styles.text}>{texts2[index]}</Text>
+                        </Pressable>
+                    ))}
                 </View>
             </View>
         </SafeAreaView>
     );
 };
+
+
 const styles = StyleSheet.create({
-    pressable: {
-        flexDirection: 'row',
-        paddingVertical: 19,
-        backgroundColor: 'transparent' // Màu nền mặc định
+    shadow: {
+        shadowColor: 'rgba(0,0,0,0.45)',
+        shadowOffset: {
+            width: 1.95,
+            height: 1.95,
+        },
+        shadowRadius: 2.6,
     },
+
+    boxShadow: {
+        borderTopLeftRadius:20,
+        borderTopRightRadius:20,
+        borderBottomLeftRadius:19,
+        borderBottomRightRadius:19,
+        elevation:1,
+    },
+
     container: {
         flex: 1,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#ffffff',
     },
     content: {
         marginTop: 25,
         padding: 20,
-    },
-    subContent: {
-        marginBottom: 16,
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        borderBottomStartRadius: 19,
-        borderBottomEndRadius: 19,
-    },
-    buttons: {
-        flexDirection: "row",
-        paddingVertical: 19,
-
-    },
-    boxShadow: {
-        shadowColor: 'rgba(0,0,0,0.45)',
-        shadowOffset: {
-            width: 1.95, // Điều chỉnh giá trị width
-            height: 1.95, // Điều chỉnh giá trị height
-        },
-        shadowRadius: 2.6, // Điều chỉnh giá trị shadowRadius
-    },
-    androidShadow1: {
-        elevation: 1,
-        shadowColor: '#000000',
-    },
-    androidShadow2: {
-        borderRadius:0.3,
-        elevation: 0.01, // Sử dụng thuộc tính elevation để tạo bóng trên Android?
     },
     icon: {
         width: 24,
@@ -114,7 +167,8 @@ const styles = StyleSheet.create({
     text: {
         color: '#000000',
         fontSize: 15,
-        fontWeight: '500'
+        fontWeight: '500',
     },
 });
+
 export default UserScreen;

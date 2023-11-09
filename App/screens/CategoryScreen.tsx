@@ -39,7 +39,7 @@ const CategoryScreen = () => {
         // @ts-ignore
         const onDetailCategory = (takeDetailCategory) => {
             // @ts-ignore
-            navigation.navigate(SCREEN.DETAIL_CATEGORY, {
+            navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
                 takeDetailCategory,
                 listCategories,
                 listProduct,

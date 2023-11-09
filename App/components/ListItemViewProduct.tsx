@@ -22,7 +22,7 @@ const ListItemViewProduct = (
     // @ts-ignore
     const OPDetailItem = (subItem) => {
     // @ts-ignore
-        navigation.navigate(SCREEN.DETAIL_PRODUCT, {subItem})
+        navigation.navigate(SCREEN.DETAIL_PRODUCT_SCREEN, {subItem})
     }
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct];
     const imageStyle = [styles.itemImgProduct]
@@ -33,7 +33,7 @@ const ListItemViewProduct = (
             showsVerticalScrollIndicator={false}
             horizontal={false}
         >
-            <SafeAreaView style={{flexDirection: 'column', marginVertical: 5, marginHorizontal: 5}}>
+            <SafeAreaView style={{flexDirection: 'column', marginVertical: 30, marginHorizontal: 8}}>
                 {/*@ts-ignore*/}
                 {_.chunk(data, 2).map((item, index) => (
                     <View key={index} style={{flexDirection: 'row'}}>

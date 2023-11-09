@@ -29,13 +29,10 @@ const DetailCategoryScreen = () => {
                 showsHorizontalScrollIndicator={false}
                 showsVerticalScrollIndicator={false}
                 // onScroll={e => console.log(e.nativeEvent.contentOffset.y)}
-
-
             >
                 <View>
                     <View style={styles.container}>
                         <Animated.Image
-
                             sharedTransitionTag={takeDetailCategory.nameCategory}
                             source={takeDetailCategory.avatarCategory}
                             style={{width: width, height: 260}}
@@ -61,7 +58,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ffffffff',
-        marginBottom: 25
     },
     textContainer: {
         position: 'absolute',
