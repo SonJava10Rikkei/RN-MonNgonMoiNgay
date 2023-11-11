@@ -13,6 +13,8 @@ import UserScreen from "../screens/UserScreen";
 import DetailCategoryScreen from "../screens/DetailCategoryScreen";
 import DetailProductScreen from "../screens/DetailProductScreen";
 import StorageUserScreen from "../screens/StorageUserScreen";
+import TestRedux from "../screens/TestRedux";
+import Calculator from "../screens/TestRedux";
 
 type RootStackParamList = {
     SearchScreen: undefined;
@@ -35,6 +37,13 @@ const RootNavigator = () => {
                     component={LoginScreen}
                     options={{headerShown: false, animation: 'slide_from_left'}}
                 />
+                <Stack.Screen
+                    // @ts-ignore
+                    name={SCREEN.TEST_REDUX}
+                    component={Calculator}
+                    options={{headerShown: false, animation: 'slide_from_left'}}
+                />
+
                 <Stack.Screen
                     // @ts-ignore
                     name={SCREEN.HOME_SCREEN}

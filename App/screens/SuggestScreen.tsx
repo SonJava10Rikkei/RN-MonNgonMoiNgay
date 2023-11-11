@@ -9,7 +9,6 @@ import ListItemViewProduct from "../components/ListItemViewProduct";
 import fakeProduct from "../containers/data/fakeProduct";
 
 const SuggestScreen = () => {
-    const Navigation = useNavigation();
     const {listProduct, listCategories} = fakeProduct;
 
     // Hàm lấy ra product có category giống nhau
@@ -18,7 +17,7 @@ const SuggestScreen = () => {
         return listProduct.filter((product) => product.category && product.category.idCategory === categoryId);
     };
     const productsOfCategory = getProductsForCategory(1);
-    const productsOfCategory2 = getProductsForCategory(2);
+    const productsOfCategory2 = getProductsForCategory(4);
     const productsOfCategory3 = getProductsForCategory(6);
 
 

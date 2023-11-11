@@ -80,6 +80,13 @@ const IMAGES = {
     dishComRangDuaBoRangCom: require('../assets/Img/Products/Dish/ComRangDuaBo/cach-nau-com-rang-dua-bo-ngon.jpg'),
     dishComRangDuaBoDone: require('../assets/Img/Products/Dish/ComRangDuaBo/com-rang-bo.png'),
 
+    dishCanhChuaCaLoc: require('../assets/Img/Products/Dish/CanhChuaCaLoc/canh-chua-ca-loc.jpg'),
+    dishCanhRongBien: require('../assets/Img/Products/Dish/CanhRongBien/canh-rong-bien.jpg'),
+    dishCanhNgaoChua: require('../assets/Img/Products/Dish/CanhNgaoChua/canh-ngao-nau-sau.jpg'),
+    dishMamKhoQuet: require('../assets/Img/Products/Dish/MamKhoQuet/nuoc-mam-kho-quet.jpg'),
+    dishSalaCaNgu: require('../assets/Img/Products/Dish/SalaCaNgu/salad-ca-ngu.jpg'),
+    dishSalaDuaHau: require('../assets/Img/Products/Dish/SalaDuaHau/salad-dua-hau-rau-arugula.jpg'),
+
 
 
 

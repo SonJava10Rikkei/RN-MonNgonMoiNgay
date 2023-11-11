@@ -1,55 +1,187 @@
-import React from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text, View,} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, {useState} from 'react';
+import {Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
-import ListItemViewCategory from '../components/ListItemViewCategory';
-import fakeProduct from "../containers/data/fakeProduct";
+// @ts-ignore
+import _ from "lodash";
+import {useNavigation} from "@react-navigation/native";
+import SCREEN from "../navigators/RouteKey";
+import Ripple from "../components/Ripple";
+
 
 const HomeScreen = () => {
-    const Navigation = useNavigation();
-    const listProduct = fakeProduct;
+        // @ts-ignore
+        const data = [
+            {
+                id: 1,
+                icon: ICONS.iconGraphOrange,
+                name: 'Được xem nhiều'
+            },
+            {
+                id: 2,
+                icon: ICONS.iconShiningPink,
+                name: 'Hôm nay ăn gì'
+            },
+            {
+                id: 3,
+                icon: ICONS.iconHeartRed,
+                name: 'Món yêu thích'
+            },
+        ];
+        const navigation = useNavigation();
 
-    // @ts-ignore
-    const render = ({item}) => {
+        let [count, setCount] = useState(0);
+        const onTap = () => {
+            // @ts-ignore
+            // navigation.navigate(SCREEN.LOGIN_SCREEN)
+            setCount(count + 1);
+            console.log('tap', count)
+        }
+        const contentNavigationButton = (subItemId: number) => {
+            if (subItemId === 1) {
+                // @ts-ignore
+                navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: data[0].name})
+            } else if (subItemId === 2) {
+                // @ts-ignore
+                navigation.navigate(SCREEN.SUGGEST_SCREEN)
+            } else {
+                // @ts-ignore
+                navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: data[2].name})
+            }
+        }
+
         return (
-            <ListItemViewCategory
-                iconItem={item?.imageLike}
-                titleItem={item?.title}
-                imageItem={item?.imageProduct}
-                product={true}
-            />
-        );
-    };
+            <SafeAreaView style={styles.container}>
+                <HeaderComponent
+                    iconLeft={ICONS.iconBack}
+                    iconRight1={ICONS.iconCategoriesWhite}
+                    iconRight2={ICONS.iconSearchWhite}
+                    showSearchDish={true}
+                />
+                <ScrollView
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    style={styles.content}
+                >
+                    <ScrollView
+                        showsHorizontalScrollIndicator={false}
+                        horizontal={true}>
+                        <View style={{flexDirection: 'row'}}>
+                            {/*@ts-ignore*/}
+                            {_.chunk(data, 1).map((item, index) => (
+                                <View key={index} style={{flexDirection: 'column'}}>
+                                    {/*@ts-ignore*/}
+                                    {item.map((subItem, subIndex) => (
+                                        <Pressable
+                                            key={subIndex}
+                                            onPress={() => contentNavigationButton(subItem.id)}
+                                            style={({pressed}) => [
+                                                {
+                                                    backgroundColor: pressed ? 'rgb(234,193,78)' : '#4BA468',
+                                                },
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <HeaderComponent
-                iconLeft={ICONS.iconBack}
-                iconRight1={ICONS.iconCategoriesWhite}
-                iconRight2={ICONS.iconSearchWhite}
-                showSearchDish={true}
-            />
-            <ScrollView>
-                <View>
-                    <Text>Man Chinh</Text>
-                </View>
-            </ScrollView>
-        </SafeAreaView>
-    );
-};
+                                                styles.contentButton
+                                            ]}
+                                        >
+                                            <View
+                                                style={styles.button}
+                                            >
+                                                <View style={styles.containerIcon}>
+                                                    <Image style={styles.icon} source={subItem.icon}/>
+                                                </View>
+                                                <Text style={styles.text}>{subItem.name}</Text>
+                                            </View>
+                                        </Pressable>
+                                    ))}
+                                </View>
+                            ))}
+                        </View>
+                    </ScrollView>
+
+
+                    <View style={styles.container2}>
+                        <Ripple
+                            style={styles.ripple}
+                            onTap={() => onTap()}
+                            rippleScaleColor='rgba(253,0,152,0.62)' // Thay đổi màu scale ở đây
+                        >
+                            <Text style={{fontSize: 20, zIndex: 1}}>Tap</Text>
+                        </Ripple>
+                    </View>
+
+                </ScrollView>
+            </SafeAreaView>
+        )
+            ;
+    }
+;
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#ffffff',
+
+    },
+    content: {
+        paddingHorizontal: 10,
+    },
+    contentButton: {
+        marginVertical: 20,
+        borderRadius: 50,
+        padding: 3,
+        marginHorizontal: 8,
+    },
+    button: {
+        flexDirection: 'row',
+    },
+    containerIcon: {
+        width: 25,
+        height: 25,
+        backgroundColor: 'rgb(255,255,255)',
+        borderRadius: 50,
+        alignItems: "center",
+        justifyContent: 'center',
+        textAlign: "center",
+    },
+    icon: {
+        width: 15,
+        height: 15,
+        alignItems: "center",
     },
     text: {
-        color: '#ff0000',
-        textAlign: 'center',
-        fontSize: 20,
-        fontWeight: '600',
+        color: '#ffffff',
+        fontWeight: '500',
+        marginHorizontal: 5,
+        marginVertical: 2,
     },
+
+    container2: {
+        flex: 1,
+        backgroundColor: '#ffffff',
+        alignItems: "center",
+        justifyContent: 'center',
+        marginHorizontal: 20,
+        marginVertical: 100,
+
+    },
+    ripple: {
+        width: 200,
+        height: 200,
+        backgroundColor: '#ffffff',
+        alignItems: "center",
+        justifyContent: 'center',
+        borderRadius: 25,
+        // IOS
+        shadowOpacity: 1,
+        shadowOffset: {width: 0, height: 0},
+        shadowRadius: 20,
+        // Android
+        elevation: 10,
+
+    },
+
+
 });
 
 export default HomeScreen;

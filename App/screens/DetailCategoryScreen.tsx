@@ -14,9 +14,6 @@ const DetailCategoryScreen = () => {
     const route = useRoute();
     // @ts-ignore
     const {takeDetailCategory, totalDishCount, productsOfCategory} = route.params;
-
-
-
     return (
         <View style={styles.container}>
             <HeaderComponent

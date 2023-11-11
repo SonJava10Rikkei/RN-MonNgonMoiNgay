@@ -28,6 +28,7 @@ const ICONS = {
 
     iconShining: require('../assets/Icon/shining.png'),
     iconShiningO: require('../assets/Icon/shiningO.png'),
+    iconShiningPink: require('../assets/Icon/shiningPink.png'),
 
     iconCategory: require('../assets/Icon/category.png'),
     iconCategoryO: require('../assets/Icon/categoryO.png'),
@@ -53,6 +54,10 @@ const ICONS = {
     iconStarYellow: require('../assets/Icon/star.png'),
     iconShareBlue: require('../assets/Icon/share.png'),
     iconExclamation: require('../assets/Icon/exclamation.png'),
+
+    iconGraphOrange: require('../assets/Icon/graph.png'),
+
+
 
 };
 export default ICONS;

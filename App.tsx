@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { Text, View, SafeAreaView, StyleSheet, TextInput, Button, TouchableOpacity, Alert } from 'react-native'
-import RootNavigator from "./App/navigators/RootNavigator";
+import React from "react";
+import {Provider} from 'react-redux';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
+import RootNavigator from "./App/navigators/RootNavigator";
+import store from "./App/redux/store";
 
 const App = () => {
+    return (
+        <Provider store={store}>
+            <GestureHandlerRootView style={{flex: 1}}>
+                <RootNavigator/>
+            </GestureHandlerRootView>
+        </Provider>
+    );
+};
 
-  return (
-  <RootNavigator/>
-  )
-}
 export default App;

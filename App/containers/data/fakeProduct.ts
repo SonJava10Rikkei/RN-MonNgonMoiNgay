@@ -265,7 +265,7 @@ const fakeProduct = () => {
                     urlImage: IMAGES.dishChaBo,
                 },
             ],
-            category: listCategories[1],
+            category: listCategories[0],
             description: [
                 {
                     name: 'Chả bò là món ngon mỗi ngày quen thuộc của ngừời dân Việt Nam trong những dịp lễ Tết. ' +
@@ -1271,6 +1271,304 @@ const fakeProduct = () => {
 
                 }
             ]
+        },
+        {
+            id: 15,
+            nameProduct: 'Canh chua cá lóc',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishCanhChuaCaLoc,
+                },
+            ],
+            category: listCategories[3],
+            description: [
+                {
+                    name: 'Canh chua cá lóc (cá quả) là món ngon mỗi ngày dân dã, quen thuộc ở những miền quê, sông nước Việt Nam.' +
+                        ' Món canh này có nhiều cách chế biến tùy theo đặc trưng của từng vùng miền.\n' +
+                        '\n' +
+                        ' Tuy nhiên, để món ăn được hấp dẫn, chuẩn vị hơn mà không bị hôi tanh mùi cá,' +
+                        ' hãy tham khảo cách làm canh chua cá lóc thanh mát ngày được chia sẻ dưới đây nhé!',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: '1 con cá lóc khoảng 700g'},
+                            {2: '3 trái cà chua'},
+                            {3: '2 cây dọc mùng'},
+                            {4: '5 trái sấu cỡ vừa'},
+                            {5: '2 củ hành tím băm'},
+                            {6: '1 miếng nghệ giã nhỏ'},
+                            {7: 'Các loại rau: thì là, mùi tàu, hành lá'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1.  Sơ chế cá lóc và các nguyên liệu khác',
+                                content: 'Cá lóc cần được cạo sạch vảy và làm sạch bụng. Sau đó xát muối và rửa sạch, cắt thành từng khứa vừa ăn.\n' +
+                                    '\n' +
+                                    'Đem cá ướp với 2 muỗng cà phê bột canh, ½ muỗng cà phê đường, ¼ muỗng cà phê nước mắm, 1 ít hành tím băm, nghệ giã nhỏ.',
+                                image: '',
+                            },
+                        ]
+                    }
+
+                }
+            ]
+
+        },
+        {
+            id: 16,
+            nameProduct: 'Canh rong biển',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishCanhRongBien,
+                },
+            ],
+            category: listCategories[3],
+            description: [
+                {
+                    name: 'Canh rong biển món ngon mỗi ngày có xuất xứ từ Hàn Quốc thanh mát có tính giải nhiệt cao nên được rất nhiều người yêu thích.' +
+                        ' Tuy cách nấu canh rong biển đơn giản nhưng không phải ai cũng biết cách tạo nên thành phẩm thơm ngon, không có mùi tanh.\n' +
+                        '\n' +
+                        ' Nếu cũng đang loay hoay tìm cách nấu canh rong biển thịt bò ngon thì bạn có thể tham khảo bài viết dưới đây.',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: '150g rong biển khô'},
+                            {2: '150g thịt bò'},
+                            {3: '½ chén rượu trắng'},
+                            {4: '½ chén nước tương'},
+                            {5: '4 tép tỏi (đã bóc vỏ, đập dập)'},
+                            {6: '2 thìa tiêu xay'},
+                            {7: '1 nhánh gừng tươi (gọt vỏ, rửa sạch, đập dập)'},
+                            {8: 'Một vài miếng đậu phụ non (đã cắt nhỏ)'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1. Xử lý thịt bò',
+                                content: 'Đầu tiên, bạn rửa sạch thịt bò mua nhiều lần với nước, dùng giấy thấm khô rồi thái thành lát mỏng vừa ăn.\n' +
+                                    '\n' +
+                                    'Sau đó, bạn cho thịt bò vào trong bát, cho thêm 1 thìa cà phê nước tương, 1 thìa rượu trắng,' +
+                                    ' 1/3 thìa cà phê tiêu xay, trộn đều và ướp trong vòng khoảng 30 phút.\n' +
+                                    '\n' +
+                                    ' Công đoạn ướp thịt bò nhằm đảm bảo món canh rong biển thịt bò đậu phụ thu về đạt hương vị đậm đà, hấp dẫn.',
+                                image: '',
+                            },
+
+                        ]
+                    }
+
+                }
+            ]
+
+        },
+        {
+            id: 17,
+            nameProduct: 'Canh ngao chua',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishCanhNgaoChua,
+                },
+            ],
+            category: listCategories[3],
+            description: [
+                {
+                    name: 'Trong những ngày nắng nóng, oi bức, canh ngao nấu sấu trở thành món ăn  mỗi ngày ngon  thanh mát tuyệt vời cho bữa cơm gia đình.' +
+                        ' Cùng vào bếp với cách nấu canh ngao chua với sấu cực ngon sau đây nhé.',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: '1 kg ngao'},
+                            {2: '5 – 7 quả sấu xanh'},
+                            {3: '½ quả dứa'},
+                            {4: '2 quả cà chua chín'},
+                            {5: 'Hành lá, hành tím, rau răm'},
+                            {6: 'Gia vị: hạt nêm, nước mắm, bột ngọt'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1. Sơ chế nguyên liệu',
+                                content: 'Ngao mua về ngâm với nước muối pha loãng và vài lát ớt cho ngao nhả sạch nhớt và cát, sau đó rửa sạch nhiều lần với nước.\n' +
+                                    '\n' +
+                                    ' Cho ngao vào nồi ngập nước, đun sôi trên bếp cho đến khi ngao mở hết miệng thì vớt ra,' +
+                                    ' nhặt lấy phần thịt ngao. Những con ngao sau khi luộc vẫn không mở miệng thì bạn nên loại bỏ vì sẽ gây đau bụng.',
+                                image: '',
+                            },
+                        ]
+                    }
+
+                }
+            ]
+
+        },
+        {
+            id: 18,
+            nameProduct: 'Mắm kho quẹt',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishMamKhoQuet,
+                },
+            ],
+            category: listCategories[2],
+            description: [
+                {
+                    name: 'Mắm kho quẹt là món ngon mỗi ngày, món ăn dân dã, quen thuộc với người dân miền Nam Bộ. \n' +
+                        '\n' +
+                        'Nếu từng thưởng thức qua dù chỉ một lần, chắn hẳn bạn cũng đã xiêu lòng trước vị mặn, ngọt, cay hòa quyện trong bát mắm.',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: '200g thịt ba chỉ'},
+                            {2: '50g tôm khô'},
+                            {3: '200g nước mắm'},
+                            {4: '50g đường cát'},
+                            {5: '5g tiêu đen'},
+                            {6: '10g tiêu xanh'},
+                            {7: '50g nước sôi'},
+                            {8: '30g hành tím (bóc vỏ, băm nhỏ)'},
+                            {9: '1 ít hành lá (rửa sạch, thái nhỏ)'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1. Sơ chế nguyên liệu',
+                                content: 'Đầu tiên, bạn rửa sạch thịt ba chỉ mua về với nước muối pha loãng rồi thái thành lát thật mỏng.\n' +
+                                    '\n' +
+                                    ' Sau đó, bạn bắc chảo lên bếp, cho thịt ba chỉ vào xào với lửa vừa.' +
+                                    ' Đây là cách làm mắm kho quẹt bằng tóp mỡ đơn giản tại nhà được rất nhiều người áp dụng.',
+                                image: '',
+                            },
+                        ]
+                    }
+
+                }
+            ]
+
+        },
+        {
+            id: 19,
+            nameProduct: 'Salad cá ngừ',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishSalaCaNgu,
+                },
+            ],
+            category: listCategories[1],
+            description: [
+                {
+                    name: 'Món salad cá ngừ (tuna salad) thường được rất nhiều người yêu thích và dùng làm món khai vị trong các bữa ăn.\n' +
+                        '\n' +
+                        ' Cách làm salad cá ngừ lại đơn giản, trong cá ngừ có chứa nguồn Protein dồi dào,' +
+                        ' nhiều loại Vitamin và khoáng chất có lợi cho cơ thể, lại ít béo nên rất ngon và bổ dưỡng.\n' +
+                        '\n' +
+                        ' Chính vì thế mà món salad cá ngừ được xem là món ngon mỗi ngày,' +
+                        ' giàu dinh dưỡng và còn thích hợp cho những người đang có nhu cầu giảm cân, giữ dáng hoặc ăn kiêng vì sức khoẻ.',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: 'Cá ngừ hộp: 1 hộp'},
+                            {2: 'Rau xà lách: 100g'},
+                            {3: 'Cà chua bi: 150g'},
+                            {4: 'Hành tây: 1 củ'},
+                            {5: 'Dưa leo: 2 trái'},
+                            {6: 'Xốt mayonnaise.'},
+                            {7: 'Gia vị gồm: đường, muối, hạt nêm, hạt tiêu'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1. Sơ chế các nguyên liệu.',
+                                content: 'Rau xà lách tách lá, cắt bỏ những chỗ bị dập nát, rửa sạch, ngâm với nước muối loãng trong khoảng 5 phút. Sau đó, vớt ra rổ để ráo nước rồi thái thành từng miếng vừa ăn.\n' +
+                                    '\n' +
+                                    'Cà chua bi rửa sạch, ngâm với nước muối loãng trong khoảng 5 -10 phút, để ráo, bổ làm hai (hoặc để nguyên quả nếu thích).\n' +
+                                    '\n' +
+                                    'Dưa leo rửa sạch, gọt vỏ, cắt bỏ hai đầu rồi chà sạch hai đầu cho ra hết nhựa đắng, thái lát mỏng hoặc cắt hạt lựu. Tuỳ theo sở thích mà bạn có thể chọn cách gọt vỏ hay để nguyên vỏ.\n' +
+                                    '\n' +
+                                    'Hành tây rửa sạch, thái lát mỏng và ngâm trong nước đá lạnh trong vòng 5 -10 phút để hành bớt hăng. Nếu thích hành đậm đà hương vị, có thể ngâm hành trước trong nước giấm đường 30 phút. Sau đó vớt ra để ráo nước.',
+                                image: ''
+                            },
+                        ]
+                    }
+
+                }
+            ]
+
+        },
+        {
+            id: 20,
+            nameProduct: 'Salad dưa hấu',
+            price: 100000.0,
+            quantity: 20,
+            imageProduct: [
+                {
+                    idIMG: 1,
+                    urlImage: IMAGES.dishSalaDuaHau,
+                },
+            ],
+            category: listCategories[1],
+            description: [
+                {
+                    name: 'Cùng giải nhiệt những cơn nóng mùa hè với món salad dưa hấu mát lạnh (Watermelon Arugula Salad).\n' +
+                        '\n' +
+                        ' Hoặc bạn có thể áp dụng vào thực đơn ăn kiêng hay đơn giản là món ngon mỗi ngày làm món khai vị cho bữa tiệc nhé!',
+                    ingredient: {
+                        name: 'Nguyên liệu',
+                        detail: [
+                            {1: '800g dưa hấu'},
+                            {2: '45ml dầu olive'},
+                            {3: '15ml nước cốt chanh'},
+                            {4: '60g bạc hà, húng quế, mùi tây, thì là'},
+                            {5: '100g phô mai'},
+                            {6: '50g mâm xôi'},
+                            {7: '1 muỗng canh rượu vang'},
+                            {8: 'Gia vị: tiêu, muối'},
+                        ]
+                    },
+                    makeFood: {
+                        name: 'Các bước làm',
+                        detail: [
+                            {
+                                name: '1. Sơ chế',
+                                content: 'Rửa sạch các nguyên liệu',
+                                image: ''
+                            },
+                            {
+                                name: '2. Cho mâm xôi vào cối xay nhuyễn để làm nước xốt',
+                                content: 'a',
+                                image: ''
+                            },
+                        ]
+                    }
+
+                }
+            ]
+
         },
 
         // {

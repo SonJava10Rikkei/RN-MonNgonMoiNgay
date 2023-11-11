@@ -4,8 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 
 import SCREEN from '../navigators/RouteKey';
 import ICONS from '../theme/icon';
-import {useSafeAreaInsets} from "react-native-safe-area-context";
-import Animated, {FadeIn, FadeInRight} from "react-native-reanimated";
+import Animated, {FadeInRight} from "react-native-reanimated";
 
 
 export type Props = {
@@ -80,7 +79,7 @@ const HeaderComponent = (
         Navigation.navigate(SCREEN.SEARCH_SCREEN);
     };
     const onPressButtonRight1 = () => {
-        if(activeDetailProduct){
+        if (activeDetailProduct) {
             console.log('activeDetailProduct Heart')
         } else {
             if (touchNumberColumnCategory === 1) {
@@ -91,7 +90,7 @@ const HeaderComponent = (
         }
     };
     const onPressButtonRight2 = () => {
-        if(activeDetailProduct){
+        if (activeDetailProduct) {
             console.log('activeDetailProduct note')
         } else {
             // @ts-ignore
@@ -189,8 +188,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     iconLeftDetailHeaderBackground: {
-        top:10,
-        left:5,
+        top: 10,
+        left: 5,
         width: 30,
         height: 30,
         backgroundColor: 'rgba(45,38,38,0.59)',

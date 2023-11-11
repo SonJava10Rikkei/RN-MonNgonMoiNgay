@@ -16,9 +16,7 @@ const ListItemViewProduct = (
     }: {
         data?: any;
     }) => {
-
     const navigation = useNavigation()
-
     // @ts-ignore
     const OPDetailItem = (subItem) => {
     // @ts-ignore
@@ -33,7 +31,7 @@ const ListItemViewProduct = (
             showsVerticalScrollIndicator={false}
             horizontal={false}
         >
-            <SafeAreaView style={{flexDirection: 'column', marginVertical: 30, marginHorizontal: 8}}>
+            <View style={{flexDirection: 'column', marginVertical: 30, marginHorizontal: 8}}>
                 {/*@ts-ignore*/}
                 {_.chunk(data, 2).map((item, index) => (
                     <View key={index} style={{flexDirection: 'row'}}>
@@ -67,7 +65,7 @@ const ListItemViewProduct = (
                         ))}
                     </View>
                 ))}
-            </SafeAreaView>
+            </View>
         </ScrollView>
     );
 };

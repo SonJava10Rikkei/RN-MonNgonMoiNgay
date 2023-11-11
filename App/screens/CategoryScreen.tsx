@@ -13,12 +13,9 @@ const {
     listProduct,
 } = fakeProduct
 
-
 const CategoryScreen = () => {
     const navigation = useNavigation();
     const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(1);
-    // Tạo một hàm để lọc các sản phẩm dựa trên idCategory
-
 
     // @ts-ignore
     const render = ({item}) => {
@@ -28,13 +25,11 @@ const CategoryScreen = () => {
             }
             return count;
         }, 0);
-
         // Hàm lấy ra product có category giống nhau
         const getProductsForCategory = (categoryId = item.idCategory) => {
             return listProduct.filter((product) => product.category && product.category.idCategory === categoryId);
         };
         const productsOfCategory = getProductsForCategory(item.idCategory);
-
 
         // @ts-ignore
         const onDetailCategory = (takeDetailCategory) => {
@@ -47,7 +42,6 @@ const CategoryScreen = () => {
                 productsOfCategory
             }); // đi đến màn hình và truyền dữ liệu
         };
-
         return (
             <ListItemViewCategory
                 detailCategory={item}
