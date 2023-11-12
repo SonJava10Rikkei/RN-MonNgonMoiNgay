@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-const countPlusSlice = createSlice({
+const countPlusStateSlice = createSlice({
     name: 'CountPlus',
     initialState: {
         count: 0,
@@ -13,5 +13,5 @@ const countPlusSlice = createSlice({
         }
     }
 });
-export const {add, dec} = countPlusSlice.actions;
-export default countPlusSlice.reducer;
+export const {add, dec} = countPlusStateSlice.actions;
+export default countPlusStateSlice.reducer;

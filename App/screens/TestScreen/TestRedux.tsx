@@ -3,9 +3,9 @@ import {useDispatch} from 'react-redux'
 
 import {Text, TouchableOpacity, View} from "react-native";
 import DisplayValue from "./TestReduxToolkit";
-import HeaderComponent from "../components/HeaderComponent";
-import {decrement, increment} from '../redux/reducers/CalculatorSlice';
-import {add, dec} from '../redux/reducers/CountPlusSlice';
+import HeaderComponent from "../../components/HeaderComponent";
+import {decrement, increment} from '../../redux/ReduxToolkit/CalculatorStateSlice';
+import {add, dec} from '../../redux/ReduxToolkit/CountPlusStateSlice';
 
 const Calculator = () => {
     const dispatch = useDispatch();

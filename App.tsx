@@ -2,8 +2,8 @@ import React from "react";
 import {Provider} from 'react-redux';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
 
+import store from './App/redux/RuduxToolkitSaga/store'
 import RootNavigator from "./App/navigators/RootNavigator";
-import store from "./App/redux/store";
 
 const App = () => {
     return (

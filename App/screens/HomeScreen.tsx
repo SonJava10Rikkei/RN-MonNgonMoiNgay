@@ -7,7 +7,8 @@ import ICONS from '../theme/icon';
 import _ from "lodash";
 import {useNavigation} from "@react-navigation/native";
 import SCREEN from "../navigators/RouteKey";
-import Ripple from "../components/Ripple";
+import TestRipple from "./TestScreen/TestRipple";
+import TestReduxToolkitSaga from "./TestScreen/TestReduxToolkitSaga";
 
 
 const HomeScreen = () => {
@@ -31,13 +32,6 @@ const HomeScreen = () => {
         ];
         const navigation = useNavigation();
 
-        let [count, setCount] = useState(0);
-        const onTap = () => {
-            // @ts-ignore
-            // navigation.navigate(SCREEN.LOGIN_SCREEN)
-            setCount(count + 1);
-            console.log('tap', count)
-        }
         const contentNavigationButton = (subItemId: number) => {
             if (subItemId === 1) {
                 // @ts-ignore
@@ -99,17 +93,7 @@ const HomeScreen = () => {
                         </View>
                     </ScrollView>
 
-
-                    <View style={styles.container2}>
-                        <Ripple
-                            style={styles.ripple}
-                            onTap={() => onTap()}
-                            rippleScaleColor='rgba(253,0,152,0.62)' // Thay đổi màu scale ở đây
-                        >
-                            <Text style={{fontSize: 20, zIndex: 1}}>Tap</Text>
-                        </Ripple>
-                    </View>
-
+                    <TestReduxToolkitSaga/>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -154,31 +138,6 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         marginHorizontal: 5,
         marginVertical: 2,
-    },
-
-    container2: {
-        flex: 1,
-        backgroundColor: '#ffffff',
-        alignItems: "center",
-        justifyContent: 'center',
-        marginHorizontal: 20,
-        marginVertical: 100,
-
-    },
-    ripple: {
-        width: 200,
-        height: 200,
-        backgroundColor: '#ffffff',
-        alignItems: "center",
-        justifyContent: 'center',
-        borderRadius: 25,
-        // IOS
-        shadowOpacity: 1,
-        shadowOffset: {width: 0, height: 0},
-        shadowRadius: 20,
-        // Android
-        elevation: 10,
-
     },
 
 

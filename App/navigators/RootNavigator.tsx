@@ -13,8 +13,8 @@ import UserScreen from "../screens/UserScreen";
 import DetailCategoryScreen from "../screens/DetailCategoryScreen";
 import DetailProductScreen from "../screens/DetailProductScreen";
 import StorageUserScreen from "../screens/StorageUserScreen";
-import TestRedux from "../screens/TestRedux";
-import Calculator from "../screens/TestRedux";
+import TestRedux from "../screens/TestScreen/TestRedux";
+import Calculator from "../screens/TestScreen/TestRedux";
 
 type RootStackParamList = {
     SearchScreen: undefined;

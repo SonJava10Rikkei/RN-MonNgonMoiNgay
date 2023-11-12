@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
-import calculatorReducer from "./reducers/CalculatorSlice";
-import countReducer from "./reducers/CountPlusSlice";
+import calculatorReducer from "./CalculatorStateSlice";
+import countReducer from "./CountPlusStateSlice";
 
 
 const store = configureStore(
