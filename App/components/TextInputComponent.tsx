@@ -24,7 +24,7 @@ const TextInputComponent = ({
         <View style={styles.containerItem}>
             {iconLeft && <Image source={iconLeft} style={styles.icon}/>}
             <TextInput
-                style={styles.tpcontainer}
+                style={styles.tpContainer}
                 placeholder={placeholder}
                 value={value}
                 onChangeText={onChangeText}
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         height: 24,
         marginHorizontal: 10,
     },
-    tpcontainer: {
+    tpContainer: {
         flex: 1,
         backgroundColor: 'transparent',
     },

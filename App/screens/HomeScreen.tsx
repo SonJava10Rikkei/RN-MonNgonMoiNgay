@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
@@ -7,8 +7,7 @@ import ICONS from '../theme/icon';
 import _ from "lodash";
 import {useNavigation} from "@react-navigation/native";
 import SCREEN from "../navigators/RouteKey";
-import TestRipple from "./TestScreen/TestRipple";
-import TestReduxToolkitSaga from "./TestScreen/TestReduxToolkitSaga";
+import {TestCounter} from "./TestScreen/TestCounter";
 
 
 const HomeScreen = () => {
@@ -92,8 +91,7 @@ const HomeScreen = () => {
                             ))}
                         </View>
                     </ScrollView>
-
-                    <TestReduxToolkitSaga/>
+                    <TestCounter/>
                 </ScrollView>
             </SafeAreaView>
         )

@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
-import {getCatsSuccess} from '../reducers/slices/catSateSlice';
+import {getCatsSuccess} from '../../reducers/slices/catSateSlice';
 
 type GeneratorFunction = Generator<any, any, any>;
 
@@ -15,8 +15,7 @@ export function* workGetCatsFetch(): GeneratorFunction {
 }
 
 // Hàm generator root của saga
-export function* catSaga() {
+export default function* catSaga() {
   yield takeEvery('cats/getCatsFetch', workGetCatsFetch);
 }
 
-export default catSaga;

@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
-import {getUsersFailure, getUsersSuccess} from '../reducers/slices/userSlice';
+import {getUsersFailure, getUsersSuccess} from '../../reducers/slices/userSlice';
 
 type GeneratorFunction = Generator<any, any, any>;
 
@@ -17,8 +17,7 @@ export function* workGetUsersFetch(): GeneratorFunction {
 }
 
 // Hàm generator root của saga cho người dùng
-export function* userSaga() {
+export default function* userSaga() {
     yield takeEvery('users/getUsersFetch', workGetUsersFetch);
 }
 
-export default userSaga;
