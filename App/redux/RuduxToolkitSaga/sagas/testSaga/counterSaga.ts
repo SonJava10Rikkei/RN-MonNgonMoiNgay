@@ -29,5 +29,7 @@ export default function* counterSaga() {
     console.log('TestCounter Saga');
     yield takeEvery('*', log);
     yield takeEvery(incrementSaga.toString(), handleIncrementSaga);
+    // yield takeEvery('counter/incrementByAmount', handleIncrementSaga);
+
     // yield takeLatest(incrementSaga.toString(), handleIncrementSaga)
 }

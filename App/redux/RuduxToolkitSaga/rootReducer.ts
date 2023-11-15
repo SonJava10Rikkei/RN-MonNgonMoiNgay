@@ -1,8 +1,8 @@
 import {combineReducers} from '@reduxjs/toolkit'
-import {catSateSlice} from "./slices/catSateSlice";
-import {productSlice} from "./slices/productsSlice";
-import {userSlice} from "./slices/userSlice";
-import {counterSlice} from "./slices/counter/counterSlice";
+import {catSateSlice} from "./reducers/slices/catSateSlice";
+import {productSlice} from "./reducers/slices/productsSlice";
+import {userSlice} from "./reducers/slices/userSlice";
+import {counterSlice} from "./reducers/slices/counter/counterSlice";
 
 
 const rootReducer = combineReducers({
