@@ -1,1 +1,0 @@
-Chứa các giao diện màn hình ('Chủ yếu chỉ xây dựng UI')

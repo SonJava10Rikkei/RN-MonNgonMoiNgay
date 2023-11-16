@@ -10,8 +10,8 @@ import SCREEN from "../navigators/RouteKey";
 
 import categoryApi from "../api/categoryApi";
 // @ts-ignore
-import {response} from "express";
-import TestCamera from "./TestScreen/TestCamera";
+import {json, response} from "express";
+import UploadFileImg from "../components/UploadFileImg";
 
 const HomeScreen = () => {
     // @ts-ignore
@@ -39,7 +39,22 @@ const HomeScreen = () => {
     useEffect(() => {
         // @ts-ignore
         categoryApi.getAll().then((response) => setListCategory(response.data))
+    }, [])
+
+    const getUser = async () => {
+        try {
+            const response = await fetch('http://192.168.9.104:3000/api/user');
+            const json = await response.json();
+            console.log('Json', json);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        getUser();
     }, []);
+
 
     // console.log(listCategory)
 
@@ -129,7 +144,7 @@ const HomeScreen = () => {
                     </ScrollView>
                 </View>
 
-                <TestCamera/>
+                <UploadFileImg/>
 
             </ScrollView>
         </SafeAreaView>
