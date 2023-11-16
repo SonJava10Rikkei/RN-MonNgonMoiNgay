@@ -1,6 +1,7 @@
 export interface Category {
     id?: number;
-    name: string;
+    nameCategory: string;
+    avatarCategory: string;
     createdAt?: string;
     updatedAt?: string;
 }

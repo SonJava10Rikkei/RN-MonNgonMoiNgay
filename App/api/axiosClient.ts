@@ -21,9 +21,8 @@ axiosClient.interceptors.request.use(
 
 // Add a request interceptor
 axios.interceptors.request.use(
+// @ts-ignore
     function (config: AxiosRequestConfig) {
-
-    // function (config) {
         // Do something before request is sent
         return config;
     },

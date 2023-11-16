@@ -182,7 +182,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 2,
             nameProduct: 'Canh ghẹ rau muống',
@@ -255,7 +254,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 3,
             nameProduct: 'Chả bò',
@@ -343,7 +341,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 4,
             nameProduct: 'Chả lụa siêu dễ',
@@ -425,7 +422,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 5,
             nameProduct: 'Cháo cá phô mai',
@@ -498,7 +494,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 6,
             nameProduct: 'Gỏi dưa leo',
@@ -577,7 +572,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 7,
             nameProduct: 'Kem Overnight Oat',
@@ -630,7 +624,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 8,
             nameProduct: 'Phở xào',
@@ -707,7 +700,6 @@ const fakeProduct = () => {
                 }
             ]
         },
-
         {
             id: 9,
             nameProduct: 'Cá biển kho',
@@ -783,7 +775,6 @@ const fakeProduct = () => {
             ]
 
         },
-
         {
             id: 10,
             nameProduct: 'Cá trê lai kho tiêu',
@@ -889,7 +880,6 @@ const fakeProduct = () => {
             ]
 
         },
-        
         {
             id: 11,
             nameProduct: 'Bò nấu đậu chay',
