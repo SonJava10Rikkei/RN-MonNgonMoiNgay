@@ -1,11 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { getProductsSuccess, getProductsFailure } from '../../reducers/slices/productsSlice';
+import { getProductsSuccess, getProductsFailure } from '../reducers/slices/productsSlice';
 
 type GeneratorFunction = Generator<any, any, any>;
 
 export function* workGetProductsFetch(): GeneratorFunction {
-        const products = yield call(() => fetch('https://dummyjson.com/products'));
-        const formattedProducts = yield products.json();
+        const listProducts = yield call(() => fetch('http://192.168.9.104:3000/api/products'));
+        const formattedProducts = yield listProducts.json();
         yield put(getProductsSuccess(formattedProducts.products));
         yield put(getProductsFailure());
 

@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../../store';
-import { fetchCount } from './counterAPI';
+import { fetchCount } from './testCounterAPI';
 
 export interface CounterState {
     value: number;
@@ -17,7 +17,7 @@ export const incrementAsync = createAsyncThunk('counter/fetchCount', async (amou
     return response.data;
 });
 
-export const counterSlice = createSlice({
+export const testCounterSlice = createSlice({
     name: 'counter',
     initialState,
     reducers: {
@@ -52,7 +52,7 @@ export const counterSlice = createSlice({
 });
 
 export const { increment, decrement, incrementByAmount, incrementSaga, incrementSagaSuccess } =
-    counterSlice.actions;
+    testCounterSlice.actions;
 
 export const selectCount = (state: RootState) => state.counterReducer.value;
 export const incrementIfOdd =
@@ -64,4 +64,4 @@ export const incrementIfOdd =
             }
         };
 
-export default counterSlice.reducer;
+export default testCounterSlice.reducer;

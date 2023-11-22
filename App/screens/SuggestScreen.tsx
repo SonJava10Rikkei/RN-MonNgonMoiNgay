@@ -1,20 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {SafeAreaView, ScrollView, StyleSheet, Text, View,} from 'react-native';
 
-import {useNavigation} from '@react-navigation/native';
-
 import HeaderComponent from '../components/HeaderComponent';
-import ListItemViewCategory from '../components/ListItemViewCategory';
 import ListItemViewProduct from "../components/ListItemViewProduct";
-import fakeProduct from "../containers/data/fakeProduct";
+import productApi from "../api/productApi";
 
 const SuggestScreen = () => {
-    const {listProduct, listCategories} = fakeProduct;
+    const [listProducts, setListProducts] = useState([]);
+    useEffect(() => {
+        // @ts-ignore
+        productApi.getAll().then((response) => setListProducts(response.data))
+    }, [])
 
     // Hàm lấy ra product có category giống nhau
     // @ts-ignore
     const getProductsForCategory = (categoryId) => {
-        return listProduct.filter((product) => product.category && product.category.idCategory === categoryId);
+        // @ts-ignore
+        return listProducts.filter((product) => product.categoryId && product.categoryId === categoryId);
     };
     const productsOfCategory = getProductsForCategory(1);
     const productsOfCategory2 = getProductsForCategory(4);
@@ -30,17 +32,6 @@ const SuggestScreen = () => {
     const randomProducts2 = getRandomProducts(productsOfCategory2);
     const randomProducts3 = getRandomProducts(productsOfCategory3);
 
-
-    // @ts-ignore
-    const render = ({item}) => {
-        return (
-            <ListItemViewCategory
-                iconItem={item?.imageLike}
-                titleItem={item?.title}
-                imageItem={item?.imageProduct}
-            />
-        );
-    };
     return (
         <SafeAreaView style={styles.container}>
             <HeaderComponent

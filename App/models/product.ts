@@ -11,7 +11,6 @@ export interface Product {
 }
 
 export interface Image {
-    idIMG: number;
     urlImage: string;
 }
 
@@ -31,12 +30,12 @@ export interface IngredientDetail {
 }
 
 export interface MakeFood {
-    name: string;
+    steps: string;
     detail: MakeFoodDetail[];
 }
 
 export interface MakeFoodDetail {
-    name: string;
+    step: string;
     content: string;
     image?: string;
 }

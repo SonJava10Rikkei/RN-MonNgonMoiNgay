@@ -8,7 +8,7 @@ import {
     incrementIfOdd,
     incrementSaga,
     selectCount,
-} from '../../redux/RuduxToolkitSaga/reducers/slices/counter/counterSlice';
+} from '../../redux/RuduxToolkitSaga/reducers/slices/testCounter/testCounterSlice';
 import {StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 
 export function TestCounter() {

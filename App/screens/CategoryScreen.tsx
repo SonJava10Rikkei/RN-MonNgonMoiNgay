@@ -1,35 +1,43 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {FlatList, SafeAreaView, StyleSheet, View,} from 'react-native';
+import {useNavigation} from "@react-navigation/native";
 
 import HeaderComponent from '../components/HeaderComponent';
-import ICONS from '../theme/icon';
 import ListItemViewCategory from '../components/ListItemViewCategory';
-import fakeProduct from "../containers/data/fakeProduct";
-import {useNavigation} from "@react-navigation/native";
+import categoryApi from "../api/categoryApi";
+import productApi from "../api/productApi";
 import SCREEN from "../navigators/RouteKey";
-
-const {
-    listCategories,
-    listProduct,
-} = fakeProduct
+import ICONS from '../theme/icon';
 
 const CategoryScreen = () => {
+    const [listCategories, setListCategories] = useState([]);
+    const [listProducts, setListProducts] = useState([]);
+
+    useEffect(() => {
+        // @ts-ignore
+        categoryApi.getAll().then((response) => setListCategories(response.data))
+        // @ts-ignore
+        productApi.getAll().then((response) => setListProducts(response.data))
+    }, [])
+
     const navigation = useNavigation();
     const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(1);
 
     // @ts-ignore
     const render = ({item}) => {
-        const totalDishCount = listProduct.reduce((count, product) => {
-            if (product.category && product.category.idCategory === item.idCategory) {
+        const totalDishCount = listProducts.reduce((count, product) => {
+            // @ts-ignore
+            if (product?.categoryId && product?.categoryId === item.id) {
                 return count + 1;
             }
             return count;
         }, 0);
         // Hàm lấy ra product có category giống nhau
-        const getProductsForCategory = (categoryId = item.idCategory) => {
-            return listProduct.filter((product) => product.category && product.category.idCategory === categoryId);
+        const getProductsForCategory = (categoryId = item.id) => {
+            // @ts-ignore
+            return listProducts.filter((product) => product.categoryId && product.categoryId === categoryId);
         };
-        const productsOfCategory = getProductsForCategory(item.idCategory);
+        const productsOfCategory = getProductsForCategory(item.id);
 
         // @ts-ignore
         const onDetailCategory = (takeDetailCategory) => {
@@ -37,7 +45,7 @@ const CategoryScreen = () => {
             navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
                 takeDetailCategory,
                 listCategories,
-                listProduct,
+                listProducts,
                 totalDishCount,
                 productsOfCategory
             }); // đi đến màn hình và truyền dữ liệu

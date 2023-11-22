@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 // @ts-ignore
 import RNSpeedometer from "react-native-speedometer";
 // @ts-ignore
@@ -19,7 +19,7 @@ const ListItemViewProduct = (
     const navigation = useNavigation()
     // @ts-ignore
     const OPDetailItem = (subItem) => {
-    // @ts-ignore
+        // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_PRODUCT_SCREEN, {subItem})
     }
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct];
@@ -37,30 +37,31 @@ const ListItemViewProduct = (
                     <View key={index} style={{flexDirection: 'row'}}>
                         {/*@ts-ignore*/}
                         {item.map((subItem, subIndex) => (
-                            <TouchableOpacity key={subIndex} onPress={() => OPDetailItem(subItem)} style={containerStyle}>
-                                    <Animated.Image
-                                        entering={FadeIn.delay(200)}
-                                        source={subItem.imageProduct[0].urlImage}
-                                        style={imageStyle}
-                                        resizeMode="cover"
-                                    />
-                                    <Animated.View
-                                        entering={FadeIn.delay(200)}
-                                        style={styles.content}>
-                                        <View>
-                                            <Text style={textStyle}>{subItem.nameProduct}</Text>
-                                        </View>
-                                        <View style={styles.iconProduct}>
-                                            <TouchableOpacity>
-                                                <Image source={ICONS.iconHeart} resizeMode="contain"
-                                                       style={styles.icon}/>
-                                            </TouchableOpacity>
-                                            <TouchableOpacity>
-                                                <Image source={ICONS.iconNote} resizeMode="contain"
-                                                       style={styles.icon}/>
-                                            </TouchableOpacity>
-                                        </View>
-                                    </Animated.View>
+                            <TouchableOpacity key={subIndex} onPress={() => OPDetailItem(subItem)}
+                                              style={containerStyle}>
+                                <Animated.Image
+                                    entering={FadeIn.delay(200)}
+                                    source={{uri:subItem.imageProduct[0].urlImage}}
+                                    style={imageStyle}
+                                    resizeMode="cover"
+                                />
+                                <Animated.View
+                                    entering={FadeIn.delay(200)}
+                                    style={styles.content}>
+                                    <View>
+                                        <Text style={textStyle}>{subItem.nameProduct}</Text>
+                                    </View>
+                                    <View style={styles.iconProduct}>
+                                        <TouchableOpacity>
+                                            <Image source={ICONS.iconHeart} resizeMode="contain"
+                                                   style={styles.icon}/>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity>
+                                            <Image source={ICONS.iconNote} resizeMode="contain"
+                                                   style={styles.icon}/>
+                                        </TouchableOpacity>
+                                    </View>
+                                </Animated.View>
                             </TouchableOpacity>
                         ))}
                     </View>

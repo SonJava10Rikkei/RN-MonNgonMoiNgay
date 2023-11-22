@@ -11,14 +11,14 @@ import CategoryScreen from '../screens/CategoryScreen';
 
 const Tab = createBottomTabNavigator();
 
-// @ts-ignore
-const tabLabelStyle = focused => ({
+const tabLabelStyle = (focused: any) => ({
     color: focused ? '#FF9900' : '#9B4A10',
+    bottom:-15
 });
 
 const tabIconStyle = {
-    width: 20,
-    height: 20,
+    width: 23,
+    height: 23,
 };
 
 const BottomTab = () => {
@@ -28,9 +28,15 @@ const BottomTab = () => {
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: '#EDF8F7',
+                    height: 70,
+                    position: "absolute",
+                    bottom: 15,
+                    right: 15,
+                    left: 15,
+                    borderRadius: 10,
                 },
                 tabBarItemStyle: {
-                    marginTop: 7,
+                    marginTop:24,
                 }
             }}
             initialRouteName={SCREEN.HOME_SCREEN}
@@ -47,7 +53,6 @@ const BottomTab = () => {
                     ),
                 }}
             />
-
             <Tab.Screen
                 component={SuggestScreen}
                 name={SCREEN.SUGGEST_SCREEN}
@@ -58,10 +63,8 @@ const BottomTab = () => {
                     tabBarIcon: ({focused}) => (
                         <Image source={focused ? ICONS.iconShiningO : ICONS.iconShining} style={tabIconStyle}/>
                     ),
-
                 }}
             />
-
             <Tab.Screen
                 component={CategoryScreen}
                 name={SCREEN.CATEGORY_SCREEN}
@@ -72,7 +75,6 @@ const BottomTab = () => {
                     tabBarIcon: ({focused}) => (
                         <Image source={focused ? ICONS.iconCategoryO : ICONS.iconCategory} style={tabIconStyle}/>
                     ),
-
                 }}
             />
             <Tab.Screen
@@ -85,7 +87,6 @@ const BottomTab = () => {
                     tabBarIcon: ({focused}) => (
                         <Image source={focused ? ICONS.iconUserO : ICONS.iconUserOD} style={tabIconStyle}/>
                     ),
-
                 }}
             />
         </Tab.Navigator>

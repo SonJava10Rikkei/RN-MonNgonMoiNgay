@@ -1,12 +1,11 @@
 import {PayloadAction} from "@reduxjs/toolkit";
 import {call, delay, put, takeEvery} from "redux-saga/effects";
-import {incrementSaga, incrementSagaSuccess} from "../../reducers/slices/counter/counterSlice";
-import {fetchCount} from "../../reducers/slices/counter/counterAPI";
+import {incrementSaga, incrementSagaSuccess} from "../../reducers/slices/testCounter/testCounterSlice";
+import {fetchCount} from "../../reducers/slices/testCounter/testCounterAPI";
 
-
-export function* log(action: PayloadAction) {
-    console.log('Log', action)
-}
+// export function* log(action: PayloadAction) {
+//     console.log('Log', action)
+// }
 
 export function* test() {
     yield fetchCount(2);
@@ -26,8 +25,7 @@ export function* handleIncrementSaga(action: PayloadAction<number>) {
 }
 
 export default function* counterSaga() {
-    console.log('TestCounter Saga');
-    yield takeEvery('*', log);
+    // yield takeEvery('*', log);
     yield takeEvery(incrementSaga.toString(), handleIncrementSaga);
     // yield takeEvery('counter/incrementByAmount', handleIncrementSaga);
 

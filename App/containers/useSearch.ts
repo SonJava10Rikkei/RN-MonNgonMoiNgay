@@ -1,11 +1,23 @@
 import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import fakeProduct from "./data/fakeProduct";
+import fakeProduct from "../api/data/fakeProduct";
+import categoryApi from "../api/categoryApi";
+import productApi from "../api/productApi";
 
 
 const useSearch = () => {
-    const {listProduct} = fakeProduct;
+
+    const [listCategories, setListCategories] = useState([]);
+    const [listProducts, setListProducts] = useState([]);
+
+    useEffect(() => {
+        // @ts-ignore
+        categoryApi.getAll().then((response) => setListCategories(response.data))
+        // @ts-ignore
+        productApi.getAll().then((response) => setListProducts(response.data))
+    }, [])
+
     const [nameKey, setNameKey] = useState([
         {
             productKeyword: 'Chả',
@@ -98,13 +110,15 @@ const useSearch = () => {
         let filterData;
         if (hasDiacritics(searchKeywordInput)) {
             // Sử dụng logic tìm kiếm có dấu
-            filterData = listProduct.filter?.(
+            filterData = listProducts.filter?.(
+                // @ts-ignore
                 item => item?.nameProduct?.toLowerCase().indexOf?.(searchKeywordInput?.toLowerCase()) !== -1
             );
         } else {
             // Sử dụng logic tìm kiếm không dấu
             const searchKeywordNormalized = removeDiacritics(searchKeywordInput.toLowerCase()).trim();
-            filterData = listProduct.filter?.(item => {
+            filterData = listProducts.filter?.(item => {
+                // @ts-ignore
                 const itemNameNormalized = removeDiacritics(item?.nameProduct?.toLowerCase()).trim();
                 return itemNameNormalized.indexOf(searchKeywordNormalized) !== -1;
             });
@@ -112,7 +126,9 @@ const useSearch = () => {
         if (searchKeywordInput !== '') {
             // Sắp xếp mảng kết quả dựa trên độ tương đồng với giá trị nhập vào
             const sortedData = filterData.sort((a, b) => {
+                // @ts-ignore
                 const aNameNormalized = removeDiacritics(a?.nameProduct?.toLowerCase()).trim();
+                // @ts-ignore
                 const bNameNormalized = removeDiacritics(b?.nameProduct?.toLowerCase()).trim();
                 const aIndex = aNameNormalized.indexOf(searchKeywordInput);
                 const bIndex = bNameNormalized.indexOf(searchKeywordInput);
@@ -148,7 +164,7 @@ const useSearch = () => {
     return {
         nameKey,
         setNameKey,
-        listProduct,
+        listProducts,
         valueInput, setValueInput,
         keywordInput, setKeywordInput,
         listFilter, setListFilter,

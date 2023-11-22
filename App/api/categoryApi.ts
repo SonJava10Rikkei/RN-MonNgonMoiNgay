@@ -1,15 +1,10 @@
 import axiosClient from './axiosClient';
-import { ListResponse, Category } from '../models';
+import {ListResponse, Category, ListParams} from '../models';
 
 const categoryApi = {
-    getAll(): Promise<ListResponse<Category>> {
+    getAll(params?: ListParams): Promise<ListResponse<Category>> {
         const url = '/categories';
-        return axiosClient.get(url, {
-            params: {
-                _page: 1,
-                _limit: 10,
-            },
-        });
+        return axiosClient.get(url, {params});
     },
 };
 

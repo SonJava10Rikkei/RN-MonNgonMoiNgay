@@ -1,23 +1,9 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ICONS from "../theme/icon";
-import {useNavigation} from "@react-navigation/native";
 
-const ListItemViewCategory = ({
-                          detailCategory,
-                          imageItem,
-                          titleItem,
-                          iconItem,
-                          product,
-                          category,
-                          totalDish,
-                          totalDishCount,
-                          typeCategory,
-                          onDetailCategory,
-
-
-                      }: {
-    detailCategory?:any;
+type Props = {
+    detailCategory?: any;
     imageItem?: any;
     titleItem?: string;
     iconItem?: boolean;
@@ -27,8 +13,19 @@ const ListItemViewCategory = ({
     totalDishCount?: any;
     typeCategory?: string;
     onDetailCategory?: (onDetailCategory: any) => void; // Thêm kiểu của hàm xử lý
-
-}) => {
+}
+const ListItemViewCategory = ({
+                                  detailCategory,
+                                  imageItem,
+                                  titleItem,
+                                  iconItem,
+                                  product,
+                                  category,
+                                  totalDish,
+                                  totalDishCount,
+                                  typeCategory,
+                                  onDetailCategory,
+                              }: Props) => {
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow];
     const imageStyle = []
     const textStyle = [];
@@ -45,23 +42,21 @@ const ListItemViewCategory = ({
         imageStyle.push(styles.itemImgCategory)
     }
 
-    const Navigation = useNavigation();
-
     let count = 0;
 
     // @ts-ignore
     const OPDetailItem = () => {
-        count=count+1;
-        console.log('OPDetailCategory', count +1)
+        count = count + 1;
+        console.log('OPDetailCategory', count + 1)
         if (onDetailCategory) {
             onDetailCategory(detailCategory); // Gọi hàm xử lý và truyền keyword
         }
     }
 
     return (
-        <TouchableOpacity onPress={()=>OPDetailItem()} style={containerStyle}>
+        <TouchableOpacity onPress={() => OPDetailItem()} style={containerStyle}>
             <Image
-                source={imageItem}
+                source={{uri:imageItem}}
                 style={imageStyle}
                 resizeMode="cover"
             />
@@ -125,7 +120,7 @@ const styles = StyleSheet.create({
     },
     textProduct: {
         fontSize: 15,
-     marginTop:-20,
+        marginTop: -20,
         width: '100%',
     },
     iconProduct: {
@@ -136,13 +131,13 @@ const styles = StyleSheet.create({
         right: 0, // Đặt right là 0 để căn chỉnh theo viền phải
         justifyContent: 'space-between', // Để biểu tượng ở hai góc
         padding: 6, // Điều chỉnh khoảng cách xung quanh icon nếu cần
-        marginHorizontal:4,
+        marginHorizontal: 4,
 
     },
     icon: {
         width: 10,
         height: 10,
-        padding:10
+        padding: 10
     },
 
 // Phần Category
@@ -162,7 +157,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '700',
         textAlign: "center",
-        marginHorizontal:1
+        marginHorizontal: 1
     },
     textCountOfCategory: {
         textAlign: "center",

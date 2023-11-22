@@ -3,73 +3,73 @@ import IMAGES from "../../theme/images";
 const fakeProduct = () => {
     const listCategories = [
         {
-            idCategory: 1,
+            id: 1,
             nameCategory: "Món ăn cho cả nhà",
             avatarCategory: IMAGES.CTGMonAnChoCaNha,
             type: 'món ăn'
         },
         {
-            idCategory: 2,
+            id: 2,
             nameCategory: "Món ăn khai vị và tráng miệng",
             avatarCategory: IMAGES.CTGMonKhaiVi,
             type: 'món ăn'
         },
         {
-            idCategory: 3,
+            id: 3,
             nameCategory: "Công thức pha nước chấm",
             avatarCategory: IMAGES.CTGNuocCham,
             type: 'công thức'
         },
         {
-            idCategory: 4,
+            id: 4,
             nameCategory: "Công thức các món canh ngon",
             avatarCategory: IMAGES.CTGMonCanh,
             type: 'món ăn'
         },
         {
-            idCategory: 5,
+            id: 5,
             nameCategory: "Các món cơm chiên",
             avatarCategory: IMAGES.CTGComChien,
             type: 'món ăn'
         },
         {
-            idCategory: 6,
+            id: 6,
             nameCategory: "Món ăn chơi",
             avatarCategory: IMAGES.CTGMonAnVat,
             type: 'món ăn'
         },
         {
-            idCategory: 7,
+            id: 7,
             nameCategory: "Món xào",
             avatarCategory: IMAGES.CTGMonXao,
             type: 'món ăn'
         },
         {
-            idCategory: 8,
+            id: 8,
             nameCategory: "Các món lẩu",
             avatarCategory: IMAGES.CTGMonLau,
             type: 'món ăn'
         },
         {
-            idCategory: 9,
+            id: 9,
             nameCategory: "Các món bún, miến",
             avatarCategory: IMAGES.CTGMonBun,
             type: 'món ăn'
         },
         {
-            idCategory: 10,
+            id: 10,
             nameCategory: "Trà, cafe",
             avatarCategory: IMAGES.CTGTraCafe,
             type: '(công thức)'
         },
         {
-            idCategory: 11,
+            id: 11,
             nameCategory: "Sinh tố, kem",
             avatarCategory: IMAGES.CTGSinhTo,
             type: '(công thức)'
         },
         {
-            idCategory: 12,
+            id: 12,
             nameCategory: "Công thức pha rượu, cốc tai",
             avatarCategory: IMAGES.CTGRuouCocTai,
             type: '(công thức)'

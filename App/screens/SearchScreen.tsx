@@ -39,7 +39,7 @@ const SearchScreen = () => {
                 iconItem={true}
                 titleItem={item?.nameProduct}
                 imageItem={item?.imageProduct[0].urlImage}
-                product={true}
+                // product={true}
             />
         );
     };

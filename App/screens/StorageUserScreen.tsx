@@ -5,10 +5,10 @@ import ICONS from "../theme/icon";
 import {useRoute} from "@react-navigation/native";
 import ListItemView from "../components/ListItemViewProduct";
 import IMAGES from "../theme/images";
-import fakeProduct from "../containers/data/fakeProduct";
+import fakeProduct from "../api/data/fakeProduct";
 
 const StorageUserScreen = () => {
-    const {listProduct} =fakeProduct;
+    // const {listProduct} =fakeProduct;
 
     const router = useRoute();
 
@@ -23,9 +23,9 @@ const StorageUserScreen = () => {
             />
 
             <View style={styles.content}>
-                <ListItemView
-                    data={listProduct}
-                />
+                {/*<ListItemView*/}
+                {/*    data={listProduct}*/}
+                {/*/>*/}
             </View>
         </SafeAreaView>
     )

@@ -31,7 +31,7 @@ const DetailCategoryScreen = () => {
                     <View style={styles.container}>
                         <Animated.Image
                             sharedTransitionTag={takeDetailCategory.nameCategory}
-                            source={takeDetailCategory.avatarCategory}
+                            source={{uri:takeDetailCategory.avatarCategory}}
                             style={{width: width, height: 260}}
                         />
                         <Animated.View

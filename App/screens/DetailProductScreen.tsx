@@ -37,7 +37,7 @@ const DetailProductScreen = (
                     <View>
                         <Text style={[styles.text, styles.textProduct]}>{subItem.nameProduct}</Text>
                         <Text style={styles.text}>    {subItem.description[0].name} :</Text>
-                        <Image style={styles.image} source={subItem.imageProduct[0].urlImage}/>
+                        <Image style={styles.image} source={{uri:subItem.imageProduct[0].urlImage}}/>
                         <Text
                             style={[styles.text, styles.textContent]}>{subItem.description[0].ingredient.name} :</Text>
                         {/*@ts-ignore*/}
@@ -50,15 +50,15 @@ const DetailProductScreen = (
                         ))}
                     </View>
                     <View>
-                        <Text style={[styles.text, styles.textContent]}>{subItem.description[0].makeFood.name} :</Text>
+                        <Text style={[styles.text, styles.textContent]}>{subItem.description[0].makeFood.steps} :</Text>
                         <View>
                             {/*@ts-ignore*/}
                             {subItem.description[0].makeFood.detail.map((item, index) => (
                                 <View key={index}>
-                                    <Text style={[styles.text, styles.textMakeFood]}>{item.name}</Text>
+                                    <Text style={[styles.text, styles.textMakeFood]}>{item.step}</Text>
                                     <Text style={styles.text}>   {item.content}</Text>
                                     {item.image && (
-                                        <Image source={item.image} style={styles.image} resizeMode="cover"/>
+                                        <Image source={{uri:item.image}} style={styles.image} resizeMode="cover"/>
                                     )}
                                 </View>
                             ))}

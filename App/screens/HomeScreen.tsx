@@ -1,17 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import {Image, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, View,} from 'react-native';
-
-import HeaderComponent from '../components/HeaderComponent';
-import ICONS from '../theme/icon';
+import {useNavigation} from "@react-navigation/native";
 // @ts-ignore
 import _ from "lodash";
-import {useNavigation} from "@react-navigation/native";
+import HeaderComponent from '../components/HeaderComponent';
+import TestReduxToolkitSaga from "./TestScreen/TestReduxToolkitSaga";
+import ICONS from '../theme/icon';
 import SCREEN from "../navigators/RouteKey";
-
 import categoryApi from "../api/categoryApi";
-// @ts-ignore
-import {json, response} from "express";
-import UploadFileImg from "../components/UploadFileImg";
 
 const HomeScreen = () => {
     // @ts-ignore
@@ -41,23 +37,6 @@ const HomeScreen = () => {
         categoryApi.getAll().then((response) => setListCategory(response.data))
     }, [])
 
-    const getUser = async () => {
-        try {
-            const response = await fetch('http://192.168.9.104:3000/api/user');
-            const json = await response.json();
-            console.log('Json', json);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    useEffect(() => {
-        getUser();
-    }, []);
-
-
-    // console.log(listCategory)
-
     const contentNavigationButton = (subItemId: number) => {
         if (subItemId === 1) {
             // @ts-ignore
@@ -70,7 +49,6 @@ const HomeScreen = () => {
             navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: data[2].name})
         }
     }
-
     return (
         <SafeAreaView style={styles.container}>
             <HeaderComponent
@@ -125,7 +103,7 @@ const HomeScreen = () => {
                     >
                         <View style={{flexDirection: 'row'}}>
                             {/*@ts-ignore*/}
-                            {_.chunk(listCategory?.data, 1).map((item, index) => (
+                            {_.chunk(listCategory, 1).map((item, index) => (
                                 <View key={index} style={{flexDirection: 'column'}}>
                                     {/*@ts-ignore*/}
                                     {item.map((item, subIndex) => (
@@ -143,8 +121,7 @@ const HomeScreen = () => {
                         </View>
                     </ScrollView>
                 </View>
-
-                <UploadFileImg/>
+                <TestReduxToolkitSaga/>
 
             </ScrollView>
         </SafeAreaView>
@@ -189,7 +166,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 5,
         marginVertical: 2,
     },
-
 
 });
 

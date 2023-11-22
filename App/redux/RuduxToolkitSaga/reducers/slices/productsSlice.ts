@@ -1,17 +1,24 @@
-import { createSlice } from '@reduxjs/toolkit';
+import {createSlice} from '@reduxjs/toolkit';
+import {Product} from "../../../../models";
 
+interface UserState {
+    listProducts: Product[];
+    isLoading: boolean;
+}
+
+const initialState: UserState = {
+    listProducts: [],
+    isLoading: false,
+};
 export const productSlice = createSlice({
-    name: 'products',
-    initialState: {
-        products: [],
-        isLoading: false,
-    },
+    name: 'listProducts',
+    initialState: initialState,
     reducers: {
         getProductsFetch: (state) => {
             state.isLoading = true;
         },
         getProductsSuccess: (state, action) => {
-            state.products = action.payload;
+            state.listProducts = action.payload;
             state.isLoading = false;
         },
         getProductsFailure: (state) => {
@@ -20,5 +27,5 @@ export const productSlice = createSlice({
     },
 });
 
-export const { getProductsFetch, getProductsSuccess, getProductsFailure } = productSlice.actions;
+export const {getProductsFetch, getProductsSuccess, getProductsFailure} = productSlice.actions;
 export default productSlice.reducer;

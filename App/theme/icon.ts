@@ -1,63 +1,60 @@
 const ICONS = {
-    iconBack: require('../assets/Icon/back.png'),
-    iconBackWhite: require('../assets/Icon/back-white.png'),
+    iconBack: require('../assets/icons/back.png'),
+    iconBackWhite: require('../assets/icons/back-white.png'),
 
-    iconQuestion: require('../assets/Icon/question.png'),
+    iconQuestion: require('../assets/icons/question.png'),
 
-    iconHome: require('../assets/Icon/home.png'),
-    iconHomeRed: require('../assets/Icon/homeRed.png'),
-    iconHomeO: require('../assets/Icon/homeO.png'),
-    iconHomeOD: require('../assets/Icon/homeOD.png'),
+    iconHome: require('../assets/icons/home.png'),
+    iconHomeRed: require('../assets/icons/homeRed.png'),
+    iconHomeO: require('../assets/icons/homeO.png'),
+    iconHomeOD: require('../assets/icons/homeOD.png'),
 
-    iconUser: require('../assets/Icon/user.png'),
-    iconUserRed: require('../assets/Icon/userRed.png'),
-    iconUserO: require('../assets/Icon/userO.png'),
-    iconUserOD: require('../assets/Icon/userOD.png'),
+    iconUser: require('../assets/icons/user.png'),
+    iconUserRed: require('../assets/icons/userRed.png'),
+    iconUserO: require('../assets/icons/userO.png'),
+    iconUserOD: require('../assets/icons/userOD.png'),
 
-    iconGroup: require('../assets/Icon/group.png'),
-    iconGroupRed: require('../assets/Icon/groupRed.png'),
+    iconGroup: require('../assets/icons/group.png'),
+    iconGroupRed: require('../assets/icons/groupRed.png'),
 
-    iconMessage: require('../assets/Icon/message.png'),
-    iconMessageRed: require('../assets/Icon/messageRed.png'),
+    iconMessage: require('../assets/icons/message.png'),
+    iconMessageRed: require('../assets/icons/messageRed.png'),
 
-    iconEyeHide: require('../assets/Icon/eye_hide.png'),
-    iconEyeVisible: require('../assets/Icon/eye_visible.png'),
+    iconEyeHide: require('../assets/icons/eye_hide.png'),
+    iconEyeVisible: require('../assets/icons/eye_visible.png'),
 
-    iconPadlock: require('../assets/Icon/padlock.png'),
-    iconEmail: require('../assets/Icon/email.png'),
+    iconPadlock: require('../assets/icons/padlock.png'),
+    iconEmail: require('../assets/icons/email.png'),
 
-    iconShining: require('../assets/Icon/shining.png'),
-    iconShiningO: require('../assets/Icon/shiningO.png'),
-    iconShiningPink: require('../assets/Icon/shiningPink.png'),
+    iconShining: require('../assets/icons/shining.png'),
+    iconShiningO: require('../assets/icons/shiningO.png'),
+    iconShiningPink: require('../assets/icons/shiningPink.png'),
 
-    iconCategory: require('../assets/Icon/category.png'),
-    iconCategoryO: require('../assets/Icon/categoryO.png'),
-    iconCategoriesWhite: require('../assets/Icon/categories.png'),
+    iconCategory: require('../assets/icons/category.png'),
+    iconCategoryO: require('../assets/icons/categoryO.png'),
+    iconCategoriesWhite: require('../assets/icons/categories.png'),
 
-    iconListWhite: require('../assets/Icon/list.png'),
+    iconListWhite: require('../assets/icons/list.png'),
 
-    iconHeart: require('../assets/Icon/heart.png'),
-    iconHeartWhite: require('../assets/Icon/heart-white.png'),
-    iconHeartRed: require('../assets/Icon/heartRed.png'),
+    iconHeart: require('../assets/icons/heart.png'),
+    iconHeartWhite: require('../assets/icons/heart-white.png'),
+    iconHeartRed: require('../assets/icons/heartRed.png'),
 
-    iconSearchBlack: require('../assets/Icon/search-black.png'),
-    iconSearchGreen: require('../assets/Icon/search-green.png'),
-    iconSearchWhite: require('../assets/Icon/search-white.png'),
+    iconSearchBlack: require('../assets/icons/search-black.png'),
+    iconSearchGreen: require('../assets/icons/search-green.png'),
+    iconSearchWhite: require('../assets/icons/search-white.png'),
 
-    iconClockGreen: require('../assets/Icon/clockGreen.png'),
+    iconClockGreen: require('../assets/icons/clockGreen.png'),
 
-    iconNote: require('../assets/Icon/edit.png'),
-    iconNoteWhite: require('../assets/Icon/edit-white.png'),
-    iconNoteGreen: require('../assets/Icon/editGreen.png'),
+    iconNote: require('../assets/icons/edit.png'),
+    iconNoteWhite: require('../assets/icons/edit-white.png'),
+    iconNoteGreen: require('../assets/icons/editGreen.png'),
 
+    iconStarYellow: require('../assets/icons/star.png'),
+    iconShareBlue: require('../assets/icons/share.png'),
+    iconExclamation: require('../assets/icons/exclamation.png'),
 
-    iconStarYellow: require('../assets/Icon/star.png'),
-    iconShareBlue: require('../assets/Icon/share.png'),
-    iconExclamation: require('../assets/Icon/exclamation.png'),
-
-    iconGraphOrange: require('../assets/Icon/graph.png'),
-
-
+    iconGraphOrange: require('../assets/icons/graph.png'),
 
 };
 export default ICONS;

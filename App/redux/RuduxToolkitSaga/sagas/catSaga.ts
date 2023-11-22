@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from 'redux-saga/effects';
-import {getCatsSuccess} from '../../reducers/slices/catSateSlice';
+import {getCatsSuccess} from '../reducers/slices/catSateSlice';
 
 type GeneratorFunction = Generator<any, any, any>;
 

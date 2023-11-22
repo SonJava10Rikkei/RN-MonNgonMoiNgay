@@ -18,7 +18,12 @@ interface RippleProps {
     children?: any;
 }
 
-const Ripple: React.FC<RippleProps> = ({style, onTap, children, rippleScaleColor = 'rgba(255, 179, 0, 0.56)'}) => {
+const Ripple: React.FC<RippleProps> = ({
+                                           children,
+                                           style,
+                                           onTap,
+                                           rippleScaleColor = 'rgba(255, 179, 0, 0.56)'
+                                       }) => {
     const centerX = useSharedValue(0);
     const centerY = useSharedValue(0);
     const scale = useSharedValue(0);
@@ -45,12 +50,12 @@ const Ripple: React.FC<RippleProps> = ({style, onTap, children, rippleScaleColor
             scale.value = withTiming(1, {duration: 1});
         },
         onActive: () => {
-                if (onTap) runOnJS(onTap)();
+            if (onTap) runOnJS(onTap)();
         },
         onFinish: () => {
             scale.value = withTiming(0, {duration: 600});
-                // Thu màu sắc về điểm bấm
-                rippleOpacity.value = withTiming(0, {duration: 600});
+            // Thu màu sắc về điểm bấm
+            rippleOpacity.value = withTiming(0, {duration: 600});
         },
     });
 

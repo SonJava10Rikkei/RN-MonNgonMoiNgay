@@ -97,7 +97,6 @@ const HeaderComponent = (
             Navigation.navigate(SCREEN.SEARCH_SCREEN);
         }
     };
-    // const inset = useSafeAreaInsets()
 
     return (
         <Animated.View
@@ -202,7 +201,6 @@ const styles = StyleSheet.create({
         marginLeft: 0,
     },
 
-
     iconRightHeader: {
         width: 22,
         height: 22,
@@ -218,7 +216,7 @@ const styles = StyleSheet.create({
     text: {
         color: '#fff',
         fontSize: 18,
-        fontWeight: '600',
+        fontWeight: '900',
         marginLeft: 15,
         marginVertical: 5,
     },
