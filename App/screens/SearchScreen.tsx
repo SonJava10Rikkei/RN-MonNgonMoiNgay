@@ -1,25 +1,24 @@
 import React from "react";
 import {FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
-import Animated, {FadeIn, FadeInDown,} from "react-native-reanimated";
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
 import ButtonTextNameDish from "../components/ButtonTextNameDish";
-import ListItemViewCategory from "../components/ListItemViewCategory";
 import useSearch from "../containers/useSearch";
-import ListItemView from "../components/ListItemViewProduct";
+import ListItemViewProducts from "../components/ListItemViewProduct";
 
 // @ts-ignore
 const SearchScreen = () => {
     const {
         nameKey,
-        valueInput, setValueInput,
-        setKeywordInput,
+        valueInput,
         listFilter,
         checkData,
         historySearchKeyword,
+        setValueInput,
+        setKeywordInput,
         onKeywordButton,
-        OPDeleteHistory,
+        OPClearHistorySearch,
     } = useSearch();
 
     // @ts-ignore
@@ -28,18 +27,6 @@ const SearchScreen = () => {
             <ButtonTextNameDish
                 productKeyword={item?.productKeyword}
                 onKeywordButton={onKeywordButton} // Truyền hàm xử lý vào ButtonTextNameDish
-            />
-        );
-    };
-
-    // @ts-ignore
-    const renderProduct = ({item}) => {
-        return (
-            <ListItemViewCategory
-                iconItem={true}
-                titleItem={item?.nameProduct}
-                imageItem={item?.imageProduct[0].urlImage}
-                // product={true}
             />
         );
     };
@@ -64,6 +51,7 @@ const SearchScreen = () => {
                             renderItem={renderItem}
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}
+
                         />
                     </View>
                     <View>
@@ -73,7 +61,7 @@ const SearchScreen = () => {
                                     <Image source={ICONS.iconClockGreen} style={styles.iconHistory}></Image>
                                     <Text style={styles.textKeywordStyle}>Lịch sử tìm kiếm</Text>
                                 </View>
-                                <TouchableOpacity onPress={OPDeleteHistory}>
+                                <TouchableOpacity onPress={OPClearHistorySearch}>
                                     <Text>Xóa lịch sử</Text>
                                 </TouchableOpacity>
                             </View>
@@ -100,15 +88,8 @@ const SearchScreen = () => {
                     </View>
                 )}
                 {listFilter !== null && listFilter.length !== 0 && (
-                    // <Animated.FlatList
-                    //     entering={FadeInDown.delay(200)}
-                    //     data={listFilter}
-                    //     renderItem={renderProduct}
-                    //     numColumns={2}
-                    //     showsVerticalScrollIndicator={false}
-                    // />
-                    <ListItemView
-                    data={listFilter}
+                    <ListItemViewProducts
+                        data={listFilter}
                     />
                 )}
             </View>

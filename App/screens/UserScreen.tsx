@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import {Image, Pressable, SafeAreaView, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, SafeAreaView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
 import {useNavigation} from "@react-navigation/native";
 import SCREEN from "../navigators/RouteKey";
+import {authActions, selectIsLoggedIn} from "../redux/RuduxToolkitSaga/auth/authSlice";
+import {useDispatch, useSelector} from "react-redux";
 
 const UserScreen = () => {
     const navigation = useNavigation();
+    const dispatch = useDispatch();
+    const isLoggedIn = useSelector(selectIsLoggedIn);
 
     const [isPressed, setIsPressed] = useState([false, false, false]);
     const [isPressed2, setIsPressed2] = useState([false, false, false]);
@@ -44,15 +48,15 @@ const UserScreen = () => {
         const newIsPressed = [...isPressed];
         newIsPressed[index] = false;
         setIsPressed(newIsPressed);
-        if (index===0){
+        if (index === 0) {
             // @ts-ignore
-            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
-        } else if (index===1){
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: texts[index]});
+        } else if (index === 1) {
             // @ts-ignore
-            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: texts[index]});
         } else {
             // @ts-ignore
-            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param:texts[index]});
+            navigation.navigate(SCREEN.STORAGE_USER_SCREEN, {param: texts[index]});
         }
 
     };
@@ -68,9 +72,9 @@ const UserScreen = () => {
         const newIsPressed = [...isPressed];
         newIsPressed[index] = false;
         setIsPressed(newIsPressed);
-        if (index===0){
+        if (index === 0) {
             console.log('2--1')
-        } else if (index===1){
+        } else if (index === 1) {
             console.log('2--2')
         } else {
             console.log('2--3')
@@ -90,6 +94,20 @@ const UserScreen = () => {
         elevation: index === 0.1 ? 0.01 : 0.3,
     });
 
+    const onLogoutClick = () => {
+        dispatch(authActions.logout());
+        // @ts-ignore
+        navigation.navigate(SCREEN.LOGIN_SCREEN)
+    };
+
+    const onLoginClick = () => {
+        // @ts-ignore
+        navigation.navigate(SCREEN.LOGIN_SCREEN)
+    };
+    const onRegisterClick = () => {
+        // @ts-ignore
+        navigation.navigate(SCREEN.LOGIN_SCREEN)
+    };
     return (
         <SafeAreaView style={styles.container}>
             <HeaderComponent
@@ -98,8 +116,8 @@ const UserScreen = () => {
                 showIconRight2={true}
             />
             <View style={styles.content}>
-                <View style={[styles.boxShadow,styles.shadow]}>
-                {isPressed.map((isPressedState, index) => (
+                <View style={[styles.boxShadow, styles.shadow]}>
+                    {isPressed.map((isPressedState, index) => (
                         <Pressable
                             key={index}
                             onPressIn={() => handlePressIn(index, setIsPressed)}
@@ -113,7 +131,7 @@ const UserScreen = () => {
                     ))}
                 </View>
 
-                <View style={[styles.boxShadow,styles.shadow,{marginTop: 20}]}>
+                <View style={[styles.boxShadow, styles.shadow, {marginTop: 20}]}>
                     {isPressed2.map((isPressedState, index) => (
                         <Pressable
                             key={index}
@@ -127,6 +145,24 @@ const UserScreen = () => {
                         </Pressable>
                     ))}
                 </View>
+            </View>
+            <View>
+                {!isLoggedIn
+                    ?
+                    <View style={styles.btnContainer}>
+                        <TouchableOpacity onPress={onLoginClick} style={styles.btnSubmit}>
+                            <Text style={styles.textSubmit}>Login</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={onRegisterClick}
+                                          style={[styles.btnSubmit, {backgroundColor: '#4cc53d'}]}>
+                            <Text style={styles.textSubmit}>Register</Text>
+                        </TouchableOpacity>
+                    </View>
+                    :
+                    <TouchableOpacity onPress={onLogoutClick} style={[styles.btnSubmit, {backgroundColor: '#c53d3d'}]}>
+                        <Text style={styles.textSubmit}>Logout</Text>
+                    </TouchableOpacity>
+                }
             </View>
         </SafeAreaView>
     );
@@ -144,11 +180,11 @@ const styles = StyleSheet.create({
     },
 
     boxShadow: {
-        borderTopLeftRadius:20,
-        borderTopRightRadius:20,
-        borderBottomLeftRadius:19,
-        borderBottomRightRadius:19,
-        elevation:1,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        borderBottomLeftRadius: 19,
+        borderBottomRightRadius: 19,
+        elevation: 1,
     },
 
     container: {
@@ -168,6 +204,25 @@ const styles = StyleSheet.create({
         color: '#000000',
         fontSize: 15,
         fontWeight: '500',
+    },
+    btnContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+
+    },
+    textSubmit: {
+        color: '#ffffff',
+        fontSize: 20,
+        fontWeight: '600',
+    },
+    btnSubmit: {
+        backgroundColor: '#007eff',
+        alignItems: 'center',
+        padding: 10,
+        width: '30%',
+        alignSelf: 'center',
+        borderRadius: 30,
+        margin: 10,
     },
 });
 

@@ -8,17 +8,19 @@ import UserScreen from '../screens/UserScreen';
 import ICONS from '../theme/icon';
 import SuggestScreen from '../screens/SuggestScreen';
 import CategoryScreen from '../screens/CategoryScreen';
+import Fonts from "../theme/fonts";
 
 const Tab = createBottomTabNavigator();
 
 const tabLabelStyle = (focused: any) => ({
     color: focused ? '#FF9900' : '#9B4A10',
-    bottom:-15
+    bottom: -5,
+    fontFamily:Fonts.RobotoBold,
 });
 
 const tabIconStyle = {
-    width: 23,
-    height: 23,
+    width: 20,
+    height: 20,
 };
 
 const BottomTab = () => {
@@ -28,15 +30,15 @@ const BottomTab = () => {
                 headerShown: false,
                 tabBarStyle: {
                     backgroundColor: '#EDF8F7',
-                    height: 70,
-                    position: "absolute",
-                    bottom: 15,
-                    right: 15,
-                    left: 15,
-                    borderRadius: 10,
+                    // height: 70,
+                    // position: "absolute",
+                    // bottom: 15,
+                    // right: 15,
+                    // left: 15,
+                    // borderRadius: 10,
                 },
                 tabBarItemStyle: {
-                    marginTop:24,
+                    marginTop: 10,
                 }
             }}
             initialRouteName={SCREEN.HOME_SCREEN}
@@ -85,12 +87,13 @@ const BottomTab = () => {
                         <Text style={tabLabelStyle(focused)}>Cá nhân</Text>
                     ),
                     tabBarIcon: ({focused}) => (
-                        <Image source={focused ? ICONS.iconUserO : ICONS.iconUserOD} style={tabIconStyle}/>
+                        <Image source={focused ? ICONS.iconUserO : ICONS.iconUserOD} style={[tabIconStyle]}/>
                     ),
                 }}
             />
         </Tab.Navigator>
     );
 };
+
 
 export default BottomTab;

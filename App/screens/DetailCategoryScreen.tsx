@@ -4,7 +4,7 @@ import {useRoute} from '@react-navigation/native';
 import HeaderComponent from "../components/HeaderComponent";
 import ICONS from "../theme/icon";
 import Animated, {FadeIn,} from "react-native-reanimated";
-import ListItemView from "../components/ListItemViewProduct";
+import ListItemViewProduct from "../components/ListItemViewProduct";
 import IMAGES from "../theme/images";
 
 
@@ -42,7 +42,7 @@ const DetailCategoryScreen = () => {
                                 style={styles.textCountCategory}>{totalDishCount} {takeDetailCategory.type}</Text>
                         </Animated.View>
                     </View>
-                    <ListItemView
+                    <ListItemViewProduct
                         data={productsOfCategory}
                     />
                 </View>

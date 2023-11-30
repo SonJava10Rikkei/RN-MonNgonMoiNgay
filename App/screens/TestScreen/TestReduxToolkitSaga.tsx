@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {getProductsFetch} from '../../redux/RuduxToolkitSaga/reducers/slices/productsSlice';
+import {getProductsFetch} from '../../redux/RuduxToolkitSaga/product/productSlice';
 // @ts-ignore
 import _ from 'lodash';
 import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
-import productApi from "../../api/productApi";
+import categoryApi from "../../api/categoryApi";
 
 const TestReduxToolkitSaga = () => {
     // @ts-ignore
@@ -15,29 +15,21 @@ const TestReduxToolkitSaga = () => {
     useEffect(() => {
         dispatch(getProductsFetch());
     }, [dispatch]);
-    console.log(listProducts)
-
-    const getProducts = async () => {
-        try {
-            const response = await fetch('http://192.168.9.104:3000/api/products');
-            const json = await response.json();
-            console.log('json: ',json)
-        } catch (error) {
-            console.error(error);
-        }
-    };
 
     useEffect(() => {
-        getProducts();
-    }, []);
-
+        categoryApi.getAll().then((response) =>
+            console.log('response: ', response)
+        )
+    })
 
 
     return (
         <View>
             <Text>Test</Text>
             <Text>{listProducts[0]?.title}</Text>
-            <ScrollView showsHorizontalScrollIndicator={false} horizontal={true}>
+            <ScrollView
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}>
                 <View style={{flexDirection: 'column'}}>
                     {/*@ts-ignore*/}
                     {_.chunk(listProducts, 1).map((item, index) => (

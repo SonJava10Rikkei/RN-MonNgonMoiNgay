@@ -1,46 +1,42 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import ICONS from "../theme/icon";
 
 type Props = {
+    homeScreen?: boolean,
+    categoryScreen?: boolean,
     detailCategory?: any;
-    imageItem?: any;
-    titleItem?: string;
-    iconItem?: boolean;
-    product?: boolean;
-    category?: boolean;
-    totalDish?: boolean;
+    imageItem: any;
+    titleItem: string;
+    typeCategory: string;
     totalDishCount?: any;
-    typeCategory?: string;
     onDetailCategory?: (onDetailCategory: any) => void; // Thêm kiểu của hàm xử lý
 }
 const ListItemViewCategory = ({
+                                  homeScreen,
+                                  categoryScreen,
                                   detailCategory,
                                   imageItem,
                                   titleItem,
-                                  iconItem,
-                                  product,
-                                  category,
-                                  totalDish,
-                                  totalDishCount,
                                   typeCategory,
+                                  totalDishCount,
                                   onDetailCategory,
                               }: Props) => {
     const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow];
-    const imageStyle = []
+    const contentStyle = [styles.subContentCategoryScreen];
+    const imageStyle = [];
     const textStyle = [];
-    if (product) {
+    if (homeScreen) {
         // @ts-ignore
-        containerStyle.push(styles.itemProduct)
-        imageStyle.push(styles.itemImgProduct)
-        textStyle.push(styles.textProduct)
-
-    } else if (category) {
+        containerStyle.push(styles.subContainerHome)
+        imageStyle.push(styles.itemImgCategoryHome)
+        textStyle.push(styles.textNameHome)
+    } else if (categoryScreen) {
         // @ts-ignore
         containerStyle.push(styles.itemCategory)
-        textStyle.push(styles.textNameCategory)
         imageStyle.push(styles.itemImgCategory)
+        textStyle.push(styles.textNameCategory)
     }
+    ;
 
     let count = 0;
 
@@ -56,27 +52,15 @@ const ListItemViewCategory = ({
     return (
         <TouchableOpacity onPress={() => OPDetailItem()} style={containerStyle}>
             <Image
-                source={{uri:imageItem}}
+                source={{uri: imageItem}}
                 style={imageStyle}
                 resizeMode="cover"
             />
-            <View style={styles.content}>
-                <View>
-                    <Text style={textStyle}>{titleItem}</Text>
-                </View>
-                {iconItem &&
-                    <View style={styles.iconProduct}>
-                        <TouchableOpacity>
-                            <Image source={ICONS.iconHeart} resizeMode="contain" style={styles.icon}/>
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={ICONS.iconNote} resizeMode="contain" style={styles.icon}/>
-                        </TouchableOpacity>
+            <View style={contentStyle}>
+                    <View>
+                        <Text style={textStyle}>{titleItem}</Text>
                     </View>
-                }
-                {totalDish &&
                     <Text style={styles.textCountOfCategory}>{totalDishCount} {typeCategory}</Text>
-                }
             </View>
         </TouchableOpacity>
     );
@@ -84,7 +68,7 @@ const ListItemViewCategory = ({
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        borderRadius: 10,
+        borderRadius: 9,
         backgroundColor: '#ffffff',
         marginBottom: 20,
     },
@@ -100,47 +84,34 @@ const styles = StyleSheet.create({
     androidShadow: {
         elevation: 2, // Sử dụng thuộc tính elevation để tạo bóng trên Android?
     },
-    content: {
+
+// Phần HomeScreen
+    subContainerHome:{
+        flexDirection: 'row',
+        marginHorizontal:10,
+        marginVertical:5,
+    },
+
+    itemImgCategoryHome:{
+        width:50,
+        height:50,
+        borderRadius:5,
+        margin:4,
+    },
+    textNameHome:{
+        color: '#000000',
+        fontSize: 16,
+        fontWeight: '500',
+
+        marginHorizontal: 10,
+    },
+
+// Phần CategoryScreen
+    subContentCategoryScreen: {
         flex: 1,
         justifyContent: 'center', // Để căn giữa theo chiều dọc
         alignItems: 'center', // Để căn giữa theo chiều ngang
     },
-
-// Phần product
-    itemProduct: {
-        marginLeft: 8,
-        marginRight: 8,
-        height: 215,
-    },
-    itemImgProduct: {
-        borderTopLeftRadius: 6,
-        borderTopRightRadius: 6,
-        width: '100%',
-        height: 150
-    },
-    textProduct: {
-        fontSize: 15,
-        marginTop: -20,
-        width: '100%',
-    },
-    iconProduct: {
-        flexDirection: 'row',
-        position: 'absolute', // Đặt vị trí là absolute
-        bottom: 0, // Đặt bottom là 0 để đặt ở phía dưới
-        left: 0, // Đặt left là 0 để căn chỉnh theo viền trái
-        right: 0, // Đặt right là 0 để căn chỉnh theo viền phải
-        justifyContent: 'space-between', // Để biểu tượng ở hai góc
-        padding: 6, // Điều chỉnh khoảng cách xung quanh icon nếu cần
-        marginHorizontal: 4,
-
-    },
-    icon: {
-        width: 10,
-        height: 10,
-        padding: 10
-    },
-
-// Phần Category
     itemCategory: {
         marginLeft: 10,
         marginRight: 10,

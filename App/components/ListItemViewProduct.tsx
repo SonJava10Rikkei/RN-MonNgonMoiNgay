@@ -1,14 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-// @ts-ignore
-import RNSpeedometer from "react-native-speedometer";
+import Animated, {FadeIn} from "react-native-reanimated";
+import {useNavigation} from "@react-navigation/native";
 // @ts-ignore
 import _ from 'lodash';
 import ICONS from "../theme/icon";
-import Animated, {FadeIn} from "react-native-reanimated";
-import {useNavigation} from "@react-navigation/native";
 import SCREEN from "../navigators/RouteKey";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ListItemViewProduct = (
     {
@@ -17,14 +15,27 @@ const ListItemViewProduct = (
         data?: any;
     }) => {
     const navigation = useNavigation()
-    // @ts-ignore
-    const OPDetailItem = (subItem) => {
+    const OPDetailItem = (subItem: any) => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_PRODUCT_SCREEN, {subItem})
     }
-    const containerStyle = [styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct];
-    const imageStyle = [styles.itemImgProduct]
-    const textStyle = [styles.textProduct];
+
+    // like logic AsyncStorage
+    const [listLikeProducts, setListLikeProducts] = useState([]);
+    const OPLikeProduct = async (likeId: number) => {
+        console.log("like product: likeId", likeId);
+        if (likeId !== 0) {
+            const newListLikeProducts = [likeId, ...listLikeProducts];
+            try {
+                await AsyncStorage.setItem('productId', JSON.stringify(likeId));
+            } catch (err) {
+                console.log("Lỗi OPlikeProduct: ", err);
+            }
+            // @ts-ignore
+            setListLikeProducts(newListLikeProducts);
+        }
+    }
+
     return (
         <ScrollView
             showsHorizontalScrollIndicator={false}
@@ -32,32 +43,31 @@ const ListItemViewProduct = (
             horizontal={false}
         >
             <View style={{flexDirection: 'column', marginVertical: 30, marginHorizontal: 8}}>
-                {/*@ts-ignore*/}
-                {_.chunk(data, 2).map((item, index) => (
+                {_.chunk(data, 2).map((item:any, index:number) => (
                     <View key={index} style={{flexDirection: 'row'}}>
                         {/*@ts-ignore*/}
                         {item.map((subItem, subIndex) => (
                             <TouchableOpacity key={subIndex} onPress={() => OPDetailItem(subItem)}
-                                              style={containerStyle}>
+                                              style={[styles.container, styles.boxShadow, styles.androidShadow, styles.itemProduct]}>
                                 <Animated.Image
                                     entering={FadeIn.delay(200)}
-                                    source={{uri:subItem.imageProduct[0].urlImage}}
-                                    style={imageStyle}
+                                    source={{uri: subItem?.imageProduct[0]?.urlImage}}
+                                    style={[styles.itemImgProduct]}
                                     resizeMode="cover"
                                 />
                                 <Animated.View
                                     entering={FadeIn.delay(200)}
                                     style={styles.content}>
                                     <View>
-                                        <Text style={textStyle}>{subItem.nameProduct}</Text>
+                                        <Text style={[styles.textProduct]}>{subItem?.nameProduct}</Text>
                                     </View>
                                     <View style={styles.iconProduct}>
-                                        <TouchableOpacity>
-                                            <Image source={ICONS.iconHeart} resizeMode="contain"
+                                        <TouchableOpacity onPress={() => OPLikeProduct(subItem?.id)}>
+                                            <Image source={ICONS?.iconHeart} resizeMode="contain"
                                                    style={styles.icon}/>
                                         </TouchableOpacity>
                                         <TouchableOpacity>
-                                            <Image source={ICONS.iconNote} resizeMode="contain"
+                                            <Image source={ICONS?.iconNote} resizeMode="contain"
                                                    style={styles.icon}/>
                                         </TouchableOpacity>
                                     </View>
@@ -70,7 +80,6 @@ const ListItemViewProduct = (
         </ScrollView>
     );
 };
-
 
 const styles = StyleSheet.create({
     container: {
@@ -123,38 +132,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between', // Để biểu tượng ở hai góc
         padding: 6, // Điều chỉnh khoảng cách xung quanh icon nếu cần
         marginHorizontal: 4,
-
     },
     icon: {
         width: 10,
         height: 10,
         padding: 10
     },
-
-// Phần Category
-    itemCategory: {
-        marginLeft: 10,
-        marginRight: 10,
-        height: 235,
-    },
-    itemImgCategory: {
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-        width: '100%',
-        height: 160,
-    },
-    textNameCategory: {
-        color: '#000000',
-        fontSize: 16,
-        fontWeight: '700',
-        textAlign: "center",
-        marginHorizontal: 1
-    },
-    textCountOfCategory: {
-        textAlign: "center",
-        width: '100%',
-    },
-
 });
 
 export default ListItemViewProduct;

@@ -1,15 +1,25 @@
 import axiosClient from './axiosClient';
-import { ListResponse, Product, ListParams } from '../models';
+import {ListParams, ListResponse, Product} from '../common/models';
+
 
 const productApi = {
-    getAll(params?: ListParams): Promise<ListResponse<Product>> {
+    getAll(params: ListParams): Promise<ListResponse<Product>> {
         const url = '/products';
-        return axiosClient.get(url, { params });
+        return axiosClient.get(url, {params});
     },
 
     getById(id: number): Promise<Product> {
         const url = `/products/${id}`;
         return axiosClient.get(url);
+    },
+    getProductsByCategoryId(id: number): Promise<ListResponse<Product>> {
+        const url = '/products';
+        return axiosClient.get(url, {params: {categoryId: id}});
+    },
+
+    getSearch(paramSearch: string): Promise<ListResponse<Product>> {
+        const url = '/products';
+        return axiosClient.get(url, {params: {nameProduct_like: paramSearch}});
     },
 
     add(data: Product): Promise<Product> {

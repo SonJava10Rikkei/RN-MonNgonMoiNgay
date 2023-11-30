@@ -1,6 +1,17 @@
 import React from 'react';
 import {Image, StyleSheet, TextInput, TouchableOpacity, View} from 'react-native';
 
+type Props = {
+    iconLeft?: any;
+    iconRight?: any;
+    value?: string;
+    onChangeText?: any;
+    placeholder?: string;
+    keyboardType?: any;
+    secureTextEntry?: boolean;
+    onPressImRight?: any;
+
+}
 const TextInputComponent = ({
                                 iconLeft,
                                 iconRight,
@@ -10,18 +21,9 @@ const TextInputComponent = ({
                                 keyboardType = 'default',
                                 secureTextEntry,
                                 onPressImRight,
-                            }: {
-    iconLeft?: any;
-    iconRight?: any;
-    value?: string;
-    onChangeText?: any;
-    placeholder?: string;
-    keyboardType?: any;
-    secureTextEntry?: boolean;
-    onPressImRight?: any;
-}) => {
+                            }: Props) => {
     return (
-        <View style={styles.containerItem}>
+        <View style={styles.container}>
             {iconLeft && <Image source={iconLeft} style={styles.icon}/>}
             <TextInput
                 style={styles.tpContainer}
@@ -41,7 +43,7 @@ const TextInputComponent = ({
 };
 
 const styles = StyleSheet.create({
-    containerItem: {
+    container: {
         borderWidth: 1,
         backgroundColor: '#fff',
         flexDirection: 'row',
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         padding: 6,
         width: '80%',
         alignSelf: 'center',
-        borderRadius: 10,
+        borderRadius: 50,
         marginBottom: 20,
     },
     icon: {
@@ -59,7 +61,6 @@ const styles = StyleSheet.create({
     },
     tpContainer: {
         flex: 1,
-        backgroundColor: 'transparent',
     },
 });
 

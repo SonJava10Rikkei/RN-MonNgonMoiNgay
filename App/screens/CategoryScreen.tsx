@@ -23,8 +23,7 @@ const CategoryScreen = () => {
     const navigation = useNavigation();
     const [touchNumberColumnCategory, setTouchNumberColumnCategory] = useState(1);
 
-    // @ts-ignore
-    const render = ({item}) => {
+    const render = (item:any) => {
         const totalDishCount = listProducts.reduce((count, product) => {
             // @ts-ignore
             if (product?.categoryId && product?.categoryId === item.id) {
@@ -44,21 +43,18 @@ const CategoryScreen = () => {
             // @ts-ignore
             navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
                 takeDetailCategory,
-                listCategories,
-                listProducts,
                 totalDishCount,
                 productsOfCategory
             }); // đi đến màn hình và truyền dữ liệu
         };
         return (
             <ListItemViewCategory
+                categoryScreen={true}
                 detailCategory={item}
                 titleItem={item?.nameCategory}
                 imageItem={item?.avatarCategory}
-                category={true}
-                totalDish={true}
-                totalDishCount={totalDishCount}
                 typeCategory={item?.type}
+                totalDishCount={totalDishCount}
                 onDetailCategory={onDetailCategory}
             />
         );
@@ -78,7 +74,7 @@ const CategoryScreen = () => {
             <View style={styles.contents}>
                 <FlatList
                     data={listCategories}
-                    renderItem={render}
+                    renderItem={({item})=>render(item)}
                     numColumns={touchNumberColumnCategory}
                     showsVerticalScrollIndicator={false}
                     key={touchNumberColumnCategory.toString()} // Add this key prop
