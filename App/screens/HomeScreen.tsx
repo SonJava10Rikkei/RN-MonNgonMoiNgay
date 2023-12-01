@@ -12,10 +12,14 @@ import SubContentComponent from "../components/SubContentComponent";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
-    const [listProducts, setListProducts] = useState([]);
+    const [listProducts, setListProducts] = useState([{
+        categoryId:1
+    }]);
     const [listCategories, setListCategories] = useState([]);
     const [listCategoryRandom, setListCategoryRandom] = useState([{
-        id: 1
+        id: 1,
+        nameCategory:'',
+        type:'',
     }])
     const [listProductCategoryIds, setListProductCategoryIds] = useState([[], [], []]);
     const numColumns = Math.ceil(listCategories.length / 3) | 4;
@@ -38,27 +42,30 @@ const HomeScreen = () => {
     ];
 
     useEffect(() => {
-        fetchData()
+        fetchData();
+        // getById(1)
     }, [])
     const fetchData = async () => {
         await categoryApi.getAll().then((response:any) => {
             setListCategories(response.data);
             generateRandom(response.data)
         });
-        productApi.getAll([]).then((response:any) => setListProducts(response.data))
+        await productApi.getAll([]).then((response:any) => setListProducts(response.data))
 
     }
 
     const generateRandom = (data: any) => {
+
         const randomSortedData = [...data].sort(() => Math.random() - 0.5);
         const selectedElements = randomSortedData.slice(0, 3);
         setListCategoryRandom(selectedElements);
     };
 
     useEffect(() => {
+
         // Chắc chắn listCategoryRandom có đủ phần tử để tránh lỗi
         if (listCategoryRandom && listCategoryRandom.length >= 3) {
-            // Lặp qua 3 danh mục và gọi hàm tương ứng
+            // Lặp qua 3 dash mục và gọi hàm tương ứng
             listCategoryRandom.forEach((category, index) => {
                 callProductsByCategoryId(category.id, index);
             });
@@ -66,8 +73,8 @@ const HomeScreen = () => {
     }, [listCategoryRandom]);
     const callProductsByCategoryId = async (id: any, index: number) => {
         try {
-            const res = await fetch(`http://192.168.9.104:3000/api/products?categoryId=${id}`);
-            const data = await res.json();
+            let data:any = [];
+                await productApi.getProductsByCategoryId(id).then((response:any)=>(data=response.data))
             setListProductCategoryIds(prevState => {
                 const updatedList = [...prevState];
                 updatedList[index] = data;
@@ -77,7 +84,6 @@ const HomeScreen = () => {
             console.log(`callProductsByCategoryId${index + 1}`, err);
         }
     };
-
 
     const contentNavigationButton = (subItemId: number) => {
         if (subItemId === 1) {
@@ -96,7 +102,7 @@ const HomeScreen = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.CATEGORY_SCREEN)
     };
-    const OPGotoScreenByCategory1 = () => {
+    const OPGotoScreenByCategory0 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
             takeDetailCategory:listCategoryRandom[0],
@@ -104,7 +110,7 @@ const HomeScreen = () => {
             productsOfCategory:listProductCategoryIds[0]
         });
     };
-    const OPGotoScreenByCategory2 = () => {
+    const OPGotoScreenByCategory1 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
             takeDetailCategory:listCategoryRandom[1],
@@ -112,7 +118,7 @@ const HomeScreen = () => {
             productsOfCategory:listProductCategoryIds[1]
         });
     };
-    const OPGotoScreenByCategory3 = () => {
+    const OPGotoScreenByCategory2 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
             takeDetailCategory:listCategoryRandom[2],
@@ -123,7 +129,6 @@ const HomeScreen = () => {
 
     const render = (item: any) => {
         const totalDishCount = listProducts.reduce((count, product) => {
-            // @ts-ignore
             if (product?.categoryId && product?.categoryId === item.id) {
                 return count + 1;
             }
@@ -131,7 +136,6 @@ const HomeScreen = () => {
         }, 0);
         // Hàm lấy ra product có category giống nhau
         const getProductsForCategory = (categoryId = item.id) => {
-            // @ts-ignore
             return listProducts.filter((product) => product.categoryId && product.categoryId === categoryId);
         };
         const productsOfCategory = getProductsForCategory(item.id);
@@ -181,7 +185,6 @@ const HomeScreen = () => {
                     <View style={[styles.detailSubContent, styles.paddingScreen]}>
                         <View>
                             <Text style={styles.textContent}>Tất cả chuyên mục</Text>
-                            {/*@ts-ignore*/}
                             <Text style={styles.textSubContent}>({listCategories?.length} chuyên mục)</Text>
                         </View>
                         <TouchableOpacity onPress={OPGotoScreen} style={styles.btnAllDetail}>
@@ -206,22 +209,27 @@ const HomeScreen = () => {
                 </View>
 
                 <SubContentComponent
-                    // @ts-ignore
                     title={listCategoryRandom[0]?.nameCategory}
+                    type={listCategoryRandom[0]?.type}
                     data={listProductCategoryIds[0]}
-                    onPress={OPGotoScreenByCategory1}
+                    onPressGoToScreen={OPGotoScreenByCategory0}
+                    displayStyle={1}
+
                 />
                 <SubContentComponent
-                    // @ts-ignore
                     title={listCategoryRandom[1]?.nameCategory}
+                    type={listCategoryRandom[1]?.type}
                     data={listProductCategoryIds[1]}
-                    onPress={OPGotoScreenByCategory2}
+                    onPressGoToScreen={OPGotoScreenByCategory1}
+                    displayStyle={2}
+
                 />
                 <SubContentComponent
-                    // @ts-ignore
                     title={listCategoryRandom[2]?.nameCategory}
-                    data={listProductCategoryIds[2]}
-                    onPress={OPGotoScreenByCategory3}
+                    type={listCategoryRandom[2]?.type}
+                    data={listProductCategoryIds[2].slice(0,5)}
+                    onPressGoToScreen={OPGotoScreenByCategory2}
+                    displayStyle={3}
                 />
             </ScrollView>
         </SafeAreaView>

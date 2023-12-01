@@ -43,12 +43,18 @@ const SuggestScreen = () => {
                     <Text style={styles.text}>Món Chính</Text>
                     <ListItemViewProduct
                         data={randomProducts}
+                        displayTypeRow={true}
+                        setStyles={1}
+                        numberFlex={2}
                     />
                 </View>
                 <View style={[styles.subContentMid, styles.subContent]}>
                     <Text style={styles.text}>Món Rau, Canh</Text>
                     <ListItemViewProduct
                         data={randomProducts2}
+                        displayTypeRow={true}
+                        setStyles={1}
+                        numberFlex={2}
                     />
                 </View>
 
@@ -56,6 +62,9 @@ const SuggestScreen = () => {
                     <Text style={styles.text}>Món Tráng Miệng, Khai Vị</Text>
                     <ListItemViewProduct
                         data={randomProducts3}
+                        displayTypeRow={true}
+                        setStyles={1}
+                        numberFlex={2}
                     />
                 </View>
             </ScrollView>

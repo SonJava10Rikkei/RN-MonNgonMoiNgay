@@ -1,11 +1,10 @@
-import React, {useRef} from "react";
+import React from "react";
 import {ScrollView, StyleSheet, Text, useWindowDimensions, View} from "react-native";
 import {useRoute} from '@react-navigation/native';
 import HeaderComponent from "../components/HeaderComponent";
 import ICONS from "../theme/icon";
 import Animated, {FadeIn,} from "react-native-reanimated";
 import ListItemViewProduct from "../components/ListItemViewProduct";
-import IMAGES from "../theme/images";
 
 
 const DetailCategoryScreen = () => {
@@ -31,7 +30,7 @@ const DetailCategoryScreen = () => {
                     <View style={styles.container}>
                         <Animated.Image
                             sharedTransitionTag={takeDetailCategory.nameCategory}
-                            source={{uri:takeDetailCategory.avatarCategory}}
+                            source={{uri: takeDetailCategory.avatarCategory}}
                             style={{width: width, height: 260}}
                         />
                         <Animated.View
@@ -44,6 +43,9 @@ const DetailCategoryScreen = () => {
                     </View>
                     <ListItemViewProduct
                         data={productsOfCategory}
+                        displayTypeRow={true}
+                        setStyles={0}
+                        numberFlex={2}
                     />
                 </View>
             </ScrollView>

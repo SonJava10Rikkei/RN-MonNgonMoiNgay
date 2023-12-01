@@ -131,6 +131,7 @@ const useSearch = () => {
             setHistorySearchKeyword([]);
             setListFilter([]);
             setKeywordInput('');
+            setValueInput('')
         } catch (error) {
             console.error('Lỗi khi xóa lịch sử tìm kiếm:', error);
         }

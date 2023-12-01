@@ -16,6 +16,7 @@ const tabLabelStyle = (focused: any) => ({
     color: focused ? '#FF9900' : '#9B4A10',
     bottom: -5,
     fontFamily:Fonts.RobotoBold,
+    marginBottom:10,
 });
 
 const tabIconStyle = {
@@ -39,6 +40,8 @@ const BottomTab = () => {
                 },
                 tabBarItemStyle: {
                     marginTop: 10,
+                    justifyContent:'space-evenly',
+
                 }
             }}
             initialRouteName={SCREEN.HOME_SCREEN}

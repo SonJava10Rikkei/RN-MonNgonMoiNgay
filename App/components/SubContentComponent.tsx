@@ -1,27 +1,64 @@
 // SubContentComponent.js
 import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import ListItemViewProduct from '../components/ListItemViewProduct';
 
 type Props = {
-    title?:string,
-    data?:any,
-    onPress?:any
+    title?: string,
+    data?: any,
+    onPressGoToScreen?: any,
+    type?: string,
+    displayStyle: number
 }
-const SubContentComponent = ({ title, data, onPress }:Props) => (
-    <View style={[styles.subContent, styles.paddingScreen]}>
-        <View style={styles.detailSubContent}>
-            <View>
-                <Text style={styles.textContent}>{title}</Text>
-                <Text style={styles.textSubContent}>({data?.length} món)</Text>
+const SubContentComponent = ({
+                                 title,
+                                 data,
+                                 onPressGoToScreen,
+                                 type,
+                                 displayStyle,
+                             }: Props) => {
+
+
+        return (
+            <View style={[styles.subContent, styles.paddingScreen]}>
+                <View style={styles.detailSubContent}>
+                    <View>
+                        <Text style={styles.textContent}>{title}</Text>
+                        <Text style={styles.textSubContent}>({data?.length} {type})</Text>
+                    </View>
+                    <TouchableOpacity onPress={onPressGoToScreen} style={styles.btnAllDetail}>
+                        <Text style={styles.textBtnAllDetail}>Xem tất cả</Text>
+                    </TouchableOpacity>
+                </View>
+                {displayStyle == 1 &&
+                    <ListItemViewProduct
+                        data={data}
+                        displayTypeRow={false}
+                        setStyles={1}
+                        numberFlex={1}
+                    />
+                }
+                {displayStyle == 2 &&
+                    <ListItemViewProduct
+                        data={data}
+                        displayTypeRow={false}
+                        setStyles={0}
+                        numberFlex={2}
+                    />
+                }
+                {displayStyle == 3 &&
+                    <ListItemViewProduct
+                        data={data}
+                        displayTypeRow={true}
+                        setStyles={2}
+                        numberFlex={1}
+                    />
+                }
+
             </View>
-            <TouchableOpacity onPress={onPress} style={styles.btnAllDetail}>
-                <Text style={styles.textBtnAllDetail}>Xem tất cả</Text>
-            </TouchableOpacity>
-        </View>
-        <ListItemViewProduct data={data} />
-    </View>
-);
+        )
+    }
+;
 
 const styles = StyleSheet.create({
     container: {

@@ -1,5 +1,5 @@
 import React from "react";
-import {FlatList, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
+import {FlatList, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 
 import HeaderComponent from '../components/HeaderComponent';
 import ICONS from '../theme/icon';
@@ -41,47 +41,53 @@ const SearchScreen = () => {
                 setValueInput={setValueInput}
             />
             <View style={styles.contents}>
-                <View>
+                <View style={{padding:20}}>
                     <View>
                         <View>
-                            <Text style={styles.textKeywordStyle}>Gợi ý từ khóa</Text>
-                        </View>
-                        <FlatList
-                            data={nameKey}
-                            renderItem={renderItem}
-                            showsHorizontalScrollIndicator={false}
-                            horizontal={true}
-
-                        />
-                    </View>
-                    <View>
-                        {(historySearchKeyword.length !== 0) && (
-                            <View style={[styles.textTitleHistory]}>
-                                <View style={{flexDirection: 'row'}}>
-                                    <Image source={ICONS.iconClockGreen} style={styles.iconHistory}></Image>
-                                    <Text style={styles.textKeywordStyle}>Lịch sử tìm kiếm</Text>
-                                </View>
-                                <TouchableOpacity onPress={OPClearHistorySearch}>
-                                    <Text>Xóa lịch sử</Text>
-                                </TouchableOpacity>
+                            <View>
+                                <Text style={styles.textKeywordStyle}>Gợi ý từ khóa</Text>
                             </View>
-                        )}
-                        <FlatList
-                            data={historySearchKeyword}
-                            renderItem={renderItem}
-                            showsHorizontalScrollIndicator={false}
-                            horizontal={true}
-                        />
-                    </View>
-                </View>
-                {(checkData.length === 0 || listFilter !== null && listFilter.length !== 0) && (
-                    <View>
-                        <View style={{flexDirection: 'row', marginTop: 10}}>
-                            <Image source={ICONS.iconSearchBlack} style={styles.iconSearch}></Image>
-                            <Text style={styles.textResultStyle}>Kết quả tìm kiếm :</Text>
+                            <FlatList
+                                data={nameKey}
+                                renderItem={renderItem}
+                                showsHorizontalScrollIndicator={false}
+                                horizontal={true}
+
+                            />
+                        </View>
+                        <View>
+                            {(historySearchKeyword.length !== 0) && (
+                                <View style={[styles.textTitleHistory]}>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Image source={ICONS.iconClockGreen} style={styles.iconHistory}></Image>
+                                        <Text style={styles.textKeywordStyle}>Lịch sử tìm kiếm</Text>
+                                    </View>
+                                    <TouchableOpacity onPress={OPClearHistorySearch}>
+                                        <Text>Xóa lịch sử</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            )}
+                            <FlatList
+                                data={historySearchKeyword}
+                                renderItem={renderItem}
+                                showsHorizontalScrollIndicator={false}
+                                horizontal={true}
+                            />
                         </View>
                     </View>
-                )}
+                    {(checkData.length === 0 || listFilter !== null && listFilter.length !== 0) && (
+                        <View>
+                            <View style={{flexDirection: 'row', marginTop: 10}}>
+                                <Image source={ICONS.iconSearchBlack} style={styles.iconSearch}></Image>
+                                <Text style={styles.textResultStyle}>Kết quả tìm kiếm :</Text>
+                            </View>
+                        </View>
+                    )}
+                </View>
+                <ScrollView
+                showsVerticalScrollIndicator={false}
+                showsHorizontalScrollIndicator={false}
+                >
                 {checkData.length === 0 && (
                     <View>
                         <Text style={styles.textNull}>Không tìm thấy kết quả nào !</Text>
@@ -90,9 +96,14 @@ const SearchScreen = () => {
                 {listFilter !== null && listFilter.length !== 0 && (
                     <ListItemViewProducts
                         data={listFilter}
+                        displayTypeRow={true}
+                        setStyles={1}
+                        numberFlex={2}
                     />
                 )}
+                </ScrollView>
             </View>
+
         </SafeAreaView>
     );
 };
@@ -108,7 +119,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopStartRadius: 30,
         borderTopEndRadius: 30,
-        padding: 20,
+        // padding: 20,
     },
     iconHistory: {
         width: 17,
