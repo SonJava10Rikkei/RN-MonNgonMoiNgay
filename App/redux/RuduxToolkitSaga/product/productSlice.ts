@@ -1,14 +1,13 @@
-
 import {createSlice} from '@reduxjs/toolkit';
 import {Product} from "../../../common/models";
 
 
-interface UserState {
+interface ProductState {
     listProducts: Product[];
     isLoading: boolean;
 }
 
-const initialState: UserState = {
+const initialState: ProductState = {
     listProducts: [],
     isLoading: false,
 };
@@ -26,9 +25,17 @@ export const productSlice = createSlice({
         getProductsFailure: (state) => {
             state.isLoading = false;
         },
+
     },
 });
 
+// Actions
+export const productActions = productSlice.actions;
 
-export const {getProductsFetch, getProductsSuccess, getProductsFailure} = productSlice.actions;
-export default productSlice.reducer;
+// Selectors
+export const selectProducts = (state: any) => state.product.listProducts;
+export const selectIsLoading = (state: any) => state.product.isLoading;
+
+// Reducer
+const productReducer = productSlice.reducer;
+export default productReducer;

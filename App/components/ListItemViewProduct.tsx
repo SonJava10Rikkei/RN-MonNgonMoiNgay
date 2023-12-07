@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Animated, {FadeIn} from "react-native-reanimated";
 import {useNavigation} from "@react-navigation/native";
@@ -6,6 +6,7 @@ import {useNavigation} from "@react-navigation/native";
 import _ from 'lodash';
 import ICONS from "../theme/icon";
 import SCREEN from "../navigators/RouteKey";
+import UseListItemViewProduct from "../containers/useListItemViewProduct";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ListItemViewProduct = (
@@ -26,23 +27,6 @@ const ListItemViewProduct = (
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_PRODUCT_SCREEN, {subItem})
     }
-
-    // like logic AsyncStorage
-    const [listLikeProducts, setListLikeProducts] = useState([]);
-    const OPLikeProduct = async (likeId: number) => {
-        console.log("like product: likeId", likeId);
-        if (likeId !== 0) {
-            const newListLikeProducts = [likeId, ...listLikeProducts];
-            try {
-                await AsyncStorage.setItem('productId', JSON.stringify(likeId));
-            } catch (err) {
-                console.log("Lỗi OPlikeProduct: ", err);
-            }
-            // @ts-ignore
-            setListLikeProducts(newListLikeProducts);
-        }
-    }
-
     const containerStyles: any = [styles.container];
     const subContainerStyles: any = [];
     if (displayTypeRow) {
@@ -52,6 +36,67 @@ const ListItemViewProduct = (
         containerStyles.push(styles.flexDirectionRow);
         subContainerStyles.push(styles.flexDirectionColumn);
     }
+    // like logic AsyncStorage
+    const [listLikeProducts, setListLikeProducts] = useState([{ id: undefined }]);
+    const [likeStatusMap, setLikeStatusMap] = useState(new Map());
+    const OPLikeProduct = async (likeId: number) => {
+        console.log("like product: likeId", likeId);
+        if (likeId !== 0) {
+            try {
+                const existingLikes = await AsyncStorage.getItem('likeProducts');
+                const currentListLikeProducts = existingLikes ? JSON.parse(existingLikes) : [];
+                const existingProductIndex = currentListLikeProducts.findIndex((product: any) => product.id === likeId);
+                if (existingProductIndex !== -1) {
+                    // Nếu đã tồn tại, loại bỏ nó khỏi danh sách
+                    const newListLikeProducts = [...currentListLikeProducts];
+                    newListLikeProducts.splice(existingProductIndex, 1);
+                    await AsyncStorage.setItem('likeProducts', JSON.stringify(newListLikeProducts));
+                    setListLikeProducts(newListLikeProducts);
+
+                    // Cập nhật trạng thái like trong likeStatusMap
+                    const newLikeStatusMap = new Map(likeStatusMap);
+                    newLikeStatusMap.set(likeId, !newLikeStatusMap.get(likeId));
+                    setLikeStatusMap(newLikeStatusMap);
+
+                    return;
+                }
+                // Nếu likeId chưa tồn tại, thêm vào danh sách
+                const newProduct = { id: likeId };
+                const newListLikeProducts = [newProduct, ...currentListLikeProducts];
+
+                await AsyncStorage.setItem('likeProducts', JSON.stringify(newListLikeProducts));
+                setListLikeProducts(newListLikeProducts);
+
+                // Cập nhật trạng thái like trong likeStatusMap
+                const newLikeStatusMap = new Map(likeStatusMap);
+                newLikeStatusMap.set(likeId, true);
+                setLikeStatusMap(newLikeStatusMap);
+            } catch (err) {
+                console.log("Lỗi OPLikeProduct: ", err);
+            }
+        }
+    };
+
+    // Trong hàm khởi tạo component hoặc một hàm useEffect
+    const fetchData = async () => {
+        try {
+            const existingLikes = await AsyncStorage.getItem('likeProducts');
+            const currentListLikeProducts = existingLikes ? JSON.parse(existingLikes) : [];
+            // Tạo một đối tượng Map mới với trạng thái like của từng sản phẩm
+            const newLikeStatusMap = new Map();
+            currentListLikeProducts.forEach((product: any) => {
+                newLikeStatusMap.set(product.id, true);
+            });
+            setLikeStatusMap(newLikeStatusMap);
+        } catch (err) {
+            console.log("Lỗi khi lấy danh sách đã like: ", err);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
 
     // set styles
     const itemProductStyle: any = [styles.boxShadow, styles.androidShadow,];
@@ -94,9 +139,7 @@ const ListItemViewProduct = (
         iconProductStyle.push(styles.iconProduct2);
         iconStyle1.push(styles.icon2);
         iconStyle2.push(styles.icon3);
-
     }
-
 
     return (
         <ScrollView
@@ -129,10 +172,14 @@ const ListItemViewProduct = (
                                         </View>
                                         <View style={iconProductStyle}>
                                             <TouchableOpacity onPress={() => OPLikeProduct(subItem?.id)}>
-                                                <Image source={ICONS?.iconHeart} resizeMode="contain"
-                                                       style={iconStyle1}/>
+                                                <Image
+                                                    source={likeStatusMap.get(subItem?.id) ? ICONS?.iconHeartRed : ICONS?.iconHeart}
+                                                    resizeMode="contain"
+                                                    style={iconStyle1}
+                                                />
                                             </TouchableOpacity>
-                                            {setStyles ==2 ? null :
+
+                                            {setStyles == 2 ? null :
                                                 <TouchableOpacity>
                                                     <Image source={ICONS?.iconNote} resizeMode="contain"
                                                            style={iconStyle2}/>
@@ -266,7 +313,7 @@ const styles = StyleSheet.create({
 
     },
     textProduct1: {
-        fontSize: 16,
+        fontSize: 20,
         fontWeight: 'bold',
         width: 300,
         color: '#ffffff',
@@ -307,7 +354,7 @@ const styles = StyleSheet.create({
     },
     textProduct2: {
         fontSize: 16,
-        width: 285,
+        width: 305,
         textAlign: 'center',
         justifyContent: 'center',
         marginRight: 10,

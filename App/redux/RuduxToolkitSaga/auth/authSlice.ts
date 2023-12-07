@@ -20,7 +20,6 @@ const initialState: AuthSate = {
 
 }
 
-
 const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,

@@ -3,8 +3,6 @@ import {call, fork, put, take} from "redux-saga/effects";
 import {PayloadAction} from "@reduxjs/toolkit";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {Animated} from "react-native";
-import {useNavigation} from "@react-navigation/native";
-import SCREEN from "../../../navigators/RouteKey";
 import delay = Animated.delay;
 
 
@@ -20,7 +18,7 @@ const checkAccessToken = async () => {
         console.error('Error checking access token:', error);
     }
 };
-checkAccessToken()
+checkAccessToken();
 
 // Gọi hàm kiểm tra
 function* handleLogin(payload: LoginPayload) {
@@ -34,9 +32,6 @@ function* handleLogin(payload: LoginPayload) {
                 name: 'fake_token'
             })
         );
-
-        // Dispatch action để cập nhật trạng thái xác thực
-        // yield put(authActions.setLoggedIn(true));
 
     } catch (error: any) {
         console.error('Error in handleLogin:', error);

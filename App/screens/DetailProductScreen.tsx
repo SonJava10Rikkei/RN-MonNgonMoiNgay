@@ -7,14 +7,11 @@ import {useRoute} from "@react-navigation/native";
 const DetailProductScreen = (
     {}: {}
 ) => {
-    const {width} = useWindowDimensions();
     const route = useRoute();
     // @ts-ignore
     const {subItem} = route.params;
 
-    const detailObject = subItem.description[0].ingredient.detail[1];
 
-    const formattedText = Object.entries(detailObject).map(([key, value]) => `${key}: ${value}`).join('\n');
     return (
         <SafeAreaView style={styles.container}>
             <HeaderComponent
@@ -26,6 +23,7 @@ const DetailProductScreen = (
                 showIconLeft={true}
                 showIconRight1={true}
                 showIconRight2={true}
+                subItem ={subItem}
             />
             <View>
                 <ScrollView

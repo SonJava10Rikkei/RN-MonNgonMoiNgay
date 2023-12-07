@@ -9,17 +9,21 @@ import categoryApi from "../api/categoryApi";
 import productApi from "../api/productApi";
 import ButtonListHorizontal from "../components/ButtonListHorizontal";
 import SubContentComponent from "../components/SubContentComponent";
+import {useDispatch, useSelector} from "react-redux";
+import {productActions, selectProducts} from "../redux/RuduxToolkitSaga/product/productSlice";
+import {Product} from "../common/models";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
-    const [listProducts, setListProducts] = useState([{
-        categoryId:1
-    }]);
+
+    const dispatch = useDispatch();
+    const listProducts = useSelector(selectProducts);
+
     const [listCategories, setListCategories] = useState([]);
     const [listCategoryRandom, setListCategoryRandom] = useState([{
         id: 1,
-        nameCategory:'',
-        type:'',
+        nameCategory: '',
+        type: '',
     }])
     const [listProductCategoryIds, setListProductCategoryIds] = useState([[], [], []]);
     const numColumns = Math.ceil(listCategories.length / 3) | 4;
@@ -41,28 +45,25 @@ const HomeScreen = () => {
         },
     ];
 
-    useEffect(() => {
-        fetchData();
-        // getById(1)
-    }, [])
+
     const fetchData = async () => {
-        await categoryApi.getAll().then((response:any) => {
+        dispatch(productActions.getProductsFetch());
+        await categoryApi.getAll().then((response: any) => {
             setListCategories(response.data);
             generateRandom(response.data)
         });
-        await productApi.getAll([]).then((response:any) => setListProducts(response.data))
-
     }
+    useEffect(() => {
+        fetchData();
+    }, [dispatch])
 
     const generateRandom = (data: any) => {
-
         const randomSortedData = [...data].sort(() => Math.random() - 0.5);
         const selectedElements = randomSortedData.slice(0, 3);
         setListCategoryRandom(selectedElements);
     };
 
     useEffect(() => {
-
         // Chắc chắn listCategoryRandom có đủ phần tử để tránh lỗi
         if (listCategoryRandom && listCategoryRandom.length >= 3) {
             // Lặp qua 3 dash mục và gọi hàm tương ứng
@@ -73,8 +74,8 @@ const HomeScreen = () => {
     }, [listCategoryRandom]);
     const callProductsByCategoryId = async (id: any, index: number) => {
         try {
-            let data:any = [];
-                await productApi.getProductsByCategoryId(id).then((response:any)=>(data=response.data))
+            let data: any = [];
+            await productApi.getProductsByCategoryId(id).then((response: any) => (data = response.data))
             setListProductCategoryIds(prevState => {
                 const updatedList = [...prevState];
                 updatedList[index] = data;
@@ -105,30 +106,30 @@ const HomeScreen = () => {
     const OPGotoScreenByCategory0 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
-            takeDetailCategory:listCategoryRandom[0],
-            totalDishCount:listProductCategoryIds[0].length,
-            productsOfCategory:listProductCategoryIds[0]
+            takeDetailCategory: listCategoryRandom[0],
+            totalDishCount: listProductCategoryIds[0].length,
+            productsOfCategory: listProductCategoryIds[0]
         });
     };
     const OPGotoScreenByCategory1 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
-            takeDetailCategory:listCategoryRandom[1],
-            totalDishCount:listProductCategoryIds[1].length,
-            productsOfCategory:listProductCategoryIds[1]
+            takeDetailCategory: listCategoryRandom[1],
+            totalDishCount: listProductCategoryIds[1].length,
+            productsOfCategory: listProductCategoryIds[1]
         });
     };
     const OPGotoScreenByCategory2 = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.DETAIL_CATEGORY_SCREEN, {
-            takeDetailCategory:listCategoryRandom[2],
-            totalDishCount:listProductCategoryIds[2].length,
-            productsOfCategory:listProductCategoryIds[2]
+            takeDetailCategory: listCategoryRandom[2],
+            totalDishCount: listProductCategoryIds[2].length,
+            productsOfCategory: listProductCategoryIds[2]
         });
     };
 
     const render = (item: any) => {
-        const totalDishCount = listProducts.reduce((count, product) => {
+        const totalDishCount = listProducts.reduce((count: number, product: Product) => {
             if (product?.categoryId && product?.categoryId === item.id) {
                 return count + 1;
             }
@@ -136,7 +137,7 @@ const HomeScreen = () => {
         }, 0);
         // Hàm lấy ra product có category giống nhau
         const getProductsForCategory = (categoryId = item.id) => {
-            return listProducts.filter((product) => product.categoryId && product.categoryId === categoryId);
+            return listProducts.filter((product: Product) => product.categoryId && product.categoryId === categoryId);
         };
         const productsOfCategory = getProductsForCategory(item.id);
 
@@ -227,10 +228,16 @@ const HomeScreen = () => {
                 <SubContentComponent
                     title={listCategoryRandom[2]?.nameCategory}
                     type={listCategoryRandom[2]?.type}
-                    data={listProductCategoryIds[2].slice(0,5)}
+                    data={listProductCategoryIds[2].slice(0, 5)}
                     onPressGoToScreen={OPGotoScreenByCategory2}
                     displayStyle={3}
                 />
+                <View>
+                    <TouchableOpacity style={styles.btnGoToCategories} onPress={OPGotoScreen}>
+                        <Text style={styles.textGotoCategories}>Xem tất cả chuyên mục</Text>
+                    </TouchableOpacity>
+                </View>
+
             </ScrollView>
         </SafeAreaView>
     );
@@ -249,7 +256,7 @@ const styles = StyleSheet.create({
     subContent: {
         paddingVertical: 10,
         borderColor: 'rgba(0,0,0,0.03)',
-        borderTopWidth: 10,
+        borderTopWidth:10,
         borderBottomWidth: 10,
     },
     detailSubContent: {
@@ -279,8 +286,22 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         justifyContent: 'center',
         marginVertical: 3,
-    }
+    },
+    btnGoToCategories: {
+        backgroundColor: '#4BA468',
+        marginTop:30,
+        marginBottom: 10,
+        marginHorizontal: 10,
+        height: 45,
+    },
+    textGotoCategories: {
+        color: '#fff',
+        fontWeight: 'bold',
+        fontSize: 20,
+        textAlign: 'center',
+        marginVertical:8,
 
+    },
 
 });
 

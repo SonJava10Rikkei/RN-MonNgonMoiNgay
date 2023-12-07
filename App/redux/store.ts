@@ -9,7 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    whitelist:['auth'], // Chọn lọc mục cần lưu trữ
+    whitelist:['auth','product'], // Chọn lọc mục cần lưu trữ
     blackList: ['historySearch'],
 };
 const persistedReducer = persistReducer(persistConfig, rootReducer);

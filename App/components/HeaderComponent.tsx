@@ -24,6 +24,7 @@ export type Props = {
     setTouchNumberColumnCategory?: any;
     detailStyle?: boolean;
     activeDetailProduct?: boolean;
+    subItem?: any
 
 };
 
@@ -46,8 +47,10 @@ const HeaderComponent = (
         setTouchNumberColumnCategory,
         detailStyle,
         activeDetailProduct,
+        subItem
 
     }: Props) => {
+
 
     const containerStyle = [];
     const iconLeftStyle = [styles.iconLeftHeader,];
@@ -80,7 +83,8 @@ const HeaderComponent = (
     };
     const onPressButtonRight1 = () => {
         if (activeDetailProduct) {
-            console.log('activeDetailProduct Heart')
+            console.log("activeDetailProduct: ", subItem)
+
         } else {
             if (touchNumberColumnCategory === 1) {
                 setTouchNumberColumnCategory(2)

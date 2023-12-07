@@ -67,16 +67,15 @@ const styles = StyleSheet.create({
 
     },
     paddingScreen: {
-        paddingHorizontal: 10,
     },
     content: {},
     subContent: {
-        paddingVertical: 10,
         borderColor: 'rgba(0,0,0,0.03)',
-        borderTopWidth: 10,
+        borderTopWidth: 1,
         borderBottomWidth: 10,
     },
     detailSubContent: {
+        paddingHorizontal: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginVertical: 8,

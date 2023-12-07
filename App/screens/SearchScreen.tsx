@@ -97,7 +97,7 @@ const SearchScreen = () => {
                     <ListItemViewProducts
                         data={listFilter}
                         displayTypeRow={true}
-                        setStyles={1}
+                        setStyles={0}
                         numberFlex={2}
                     />
                 )}

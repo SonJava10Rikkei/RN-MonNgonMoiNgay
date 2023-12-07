@@ -44,7 +44,7 @@ const SuggestScreen = () => {
                     <ListItemViewProduct
                         data={randomProducts}
                         displayTypeRow={true}
-                        setStyles={1}
+                        setStyles={0}
                         numberFlex={2}
                     />
                 </View>
@@ -53,7 +53,7 @@ const SuggestScreen = () => {
                     <ListItemViewProduct
                         data={randomProducts2}
                         displayTypeRow={true}
-                        setStyles={1}
+                        setStyles={0}
                         numberFlex={2}
                     />
                 </View>
@@ -63,7 +63,7 @@ const SuggestScreen = () => {
                     <ListItemViewProduct
                         data={randomProducts3}
                         displayTypeRow={true}
-                        setStyles={1}
+                        setStyles={0}
                         numberFlex={2}
                     />
                 </View>
