@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {useNavigation} from "@react-navigation/native";
 import {
     ImageBackground,
     SafeAreaView,
@@ -8,44 +7,45 @@ import {
     StyleSheet,
     Text,
     TouchableOpacity,
-    View,
+    View
 } from 'react-native';
-
-import IMAGES from '../theme/images';
-import ICONS from '../theme/icon';
-import TextInputComponent from '../components/TextInputComponent';
+import IMAGES from "../theme/images";
+import TextInputComponent from "../components/TextInputComponent";
+import ICONS from "../theme/icon";
 import {useDispatch, useSelector} from "react-redux";
-import {authActions, selectIsLoggedIn} from "../redux/RuduxToolkitSaga/auth/authSlice";
+import {useNavigation} from "@react-navigation/native";
+import {selectIsLoggedIn} from "../redux/RuduxToolkitSaga/auth/authSlice";
 import SCREEN from "../navigators/RouteKey";
 import {AuthContext} from "../context/AuthContext";
-import UploadMultipleImg from "../components/uploadFirebase/UploadMultipleImg";
-import UploadFileImg from "../components/uploadFirebase/UploadFileImg";
 
-const LoginScreen = () => {
+type Props = {}
+
+const RegisterScreen = ({}: Props) => {
+
     const dispatch = useDispatch();
     const navigation = useNavigation();
     const [userName, setUserName] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
     const [useSecureTextEntry, setUseSecureTextEntry] = useState(true);
     const val = useContext(AuthContext)
+
     const onChangeUserName = (value: string) => {
         setUserName(value);
     };
     const onChangePassword = (value: string) => {
         setPassword(value);
     };
+    const onChangeEmail = (value: string) => {
+        setEmail(value);
+    };
+
     const onPressImRight = () => {
         setUseSecureTextEntry(!useSecureTextEntry); // Đảo ngược trạng thái
     };
-    const onLoginClick = () => {
-        // TO DO get user = password from login form
-        dispatch(authActions.login({
-            username: '',
-            password: '',
-        }))
-        //
-        // // @ts-ignore
-        // navigation.navigate(SCREEN.BOTTOM_TAB);
+    const onGotoLoggin = () => {
+        // @ts-ignore
+        navigation.navigate(SCREEN.LOGIN_SCREEN);
     };
 
     const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -57,10 +57,11 @@ const LoginScreen = () => {
         }
     }, [isLoggedIn]);
 
-    const onGotoRegister = () => {
+    const onRegisterClick = () => {
         // @ts-ignore
         navigation.navigate(SCREEN.REGISTER_SCREEN);
     };
+
     return (
         <ImageBackground
             source={IMAGES.backgroundHistory}
@@ -73,6 +74,7 @@ const LoginScreen = () => {
                 >
                     <Text style={styles.text}>Welcome {userName} !</Text>
                     <Text>{val}</Text>
+
                     <TextInputComponent
                         iconLeft={ICONS.iconUser}
                         placeholder="User Name"
@@ -91,24 +93,28 @@ const LoginScreen = () => {
                         }
                         onPressImRight={onPressImRight} // Truyền hàm onPressImRight trực tiếp
                     />
+                    <TextInputComponent
+                        iconLeft={ICONS.iconUser}
+                        placeholder="Email"
+                        value={email}
+                        onChangeText={(text: string) => onChangeEmail(text)}
+                    />
                     <View style={styles.btnContainer}>
-                        <TouchableOpacity onPress={onLoginClick} style={styles.btnSubmit}>
-                            <Text style={styles.textSubmit}>Login</Text>
+                        <TouchableOpacity onPress={onRegisterClick} style={styles.btnSubmit}>
+                            <Text style={styles.textSubmit}>Register</Text>
                         </TouchableOpacity>
                     </View>
-
                     <View style={styles.btnContainer}>
-                        <Text style={styles.textRegister}>Don't have account? </Text>
-                        <TouchableOpacity onPress={onGotoRegister}>
-                            <Text style={[styles.textRegister,{ color: '#4cc53d'}]}>Register</Text>
+                        <Text style={styles.textRegister}>Already have an account? </Text>
+                        <TouchableOpacity onPress={onGotoLoggin}>
+                            <Text style={[styles.textRegister, {color: '#007eff'}]}>Login</Text>
                         </TouchableOpacity>
                     </View>
                 </ScrollView>
             </SafeAreaView>
         </ImageBackground>
-    );
+    )
 };
-
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -132,7 +138,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     btnSubmit: {
-        backgroundColor: '#007eff',
+        backgroundColor: '#4cc53d',
         alignItems: 'center',
         padding: 10,
         width: '30%',
@@ -140,9 +146,9 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         margin: 10,
     },
-    textRegister:{
-        fontSize:18,
+    textRegister: {
+        fontSize: 18,
     }
 });
 
-export default LoginScreen;
+export default RegisterScreen;

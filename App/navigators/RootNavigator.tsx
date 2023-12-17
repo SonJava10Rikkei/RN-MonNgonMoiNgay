@@ -14,6 +14,7 @@ import UserScreen from "../screens/UserScreen";
 import DetailCategoryScreen from "../screens/DetailCategoryScreen";
 import DetailProductScreen from "../screens/DetailProductScreen";
 import StorageUserScreen from "../screens/StorageUserScreen";
+import RegisterScreen from "../screens/RegisterScreen";
 
 const RootNavigator = () => {
     const Stack = createNativeStackNavigator();
@@ -31,6 +32,11 @@ const RootNavigator = () => {
                 <Stack.Screen
                     name={SCREEN.LOGIN_SCREEN}
                     component={LoginScreen}
+                    options={{headerShown: false, animation: 'slide_from_left'}}
+                />
+                <Stack.Screen
+                    name={SCREEN.REGISTER_SCREEN}
+                    component={RegisterScreen}
                     options={{headerShown: false, animation: 'slide_from_left'}}
                 />
                 <Stack.Screen

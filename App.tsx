@@ -5,13 +5,16 @@ import {PersistGate} from 'redux-persist/integration/react';
 
 import store, {persistor} from './App/redux/store';
 import RootNavigator from './App/navigators/RootNavigator';
+import AuthProvider from "./App/context/AuthContext";
 
 const App = () => {
     return (
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 <GestureHandlerRootView style={{flex: 1}}>
-                    <RootNavigator/>
+                    <AuthProvider>
+                        <RootNavigator/>
+                    </AuthProvider>
                 </GestureHandlerRootView>
             </PersistGate>
         </Provider>

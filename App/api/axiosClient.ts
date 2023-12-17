@@ -2,8 +2,8 @@ import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
 const axiosClient = axios.create({
     // baseURL: 'http://mon-973767c9f0f6.herokuapp.com/api',
-    baseURL: 'http://192.168.9.104:3000/api/',
-
+    // baseURL: 'http://192.168.9.104:3000/api/',
+    baseURL: 'http://192.168.9.104:8080/',
     headers: {
         'Content-Type': 'application/json',
     },

@@ -171,13 +171,16 @@ const ListItemViewProduct = (
                                             <Text style={textProductStyle}>{subItem?.nameProduct}</Text>
                                         </View>
                                         <View style={iconProductStyle}>
-                                            <TouchableOpacity onPress={() => OPLikeProduct(subItem?.id)}>
-                                                <Image
-                                                    source={likeStatusMap.get(subItem?.id) ? ICONS?.iconHeartRed : ICONS?.iconHeart}
-                                                    resizeMode="contain"
-                                                    style={iconStyle1}
-                                                />
-                                            </TouchableOpacity>
+                                            {likeStatusMap&&
+
+                                                <TouchableOpacity onPress={() => OPLikeProduct(subItem?.id)}>
+                                                    <Image
+                                                        source={likeStatusMap.get(subItem?.id) ? ICONS?.iconHeartRed : ICONS?.iconHeart}
+                                                        resizeMode="contain"
+                                                        style={iconStyle1}
+                                                    />
+                                                </TouchableOpacity>
+                                            }
 
                                             {setStyles == 2 ? null :
                                                 <TouchableOpacity>

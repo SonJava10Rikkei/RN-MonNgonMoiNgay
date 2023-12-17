@@ -1,7 +1,8 @@
 // ButtonListHorizontal.js
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Image, Pressable, ScrollView, StyleSheet, Text, View} from 'react-native';
+import useLike from "../containers/useLike";
 
 type Props = {
     data?: any,
@@ -11,6 +12,7 @@ const ButtonListHorizontal = ({
                                   data,
                                   onPressButton,
                               }: Props) => {
+
     return (
         <ScrollView
             showsHorizontalScrollIndicator={false}
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
         marginVertical: 20,
         borderRadius: 50,
         padding: 3,
-        marginHorizontal:8,
+        marginHorizontal: 8,
     },
     button: {
         flexDirection: 'row',

@@ -12,6 +12,7 @@ import SubContentComponent from "../components/SubContentComponent";
 import {useDispatch, useSelector} from "react-redux";
 import {productActions, selectProducts} from "../redux/RuduxToolkitSaga/product/productSlice";
 import {Product} from "../common/models";
+import UploadMultipleImg from "../components/uploadFirebase/UploadMultipleImg";
 
 const HomeScreen = () => {
     const navigation = useNavigation();
@@ -128,6 +129,14 @@ const HomeScreen = () => {
         });
     };
 
+
+
+
+
+
+
+
+
     const render = (item: any) => {
         const totalDishCount = listProducts.reduce((count: number, product: Product) => {
             if (product?.categoryId && product?.categoryId === item.id) {
@@ -237,6 +246,7 @@ const HomeScreen = () => {
                         <Text style={styles.textGotoCategories}>Xem tất cả chuyên mục</Text>
                     </TouchableOpacity>
                 </View>
+
 
             </ScrollView>
         </SafeAreaView>

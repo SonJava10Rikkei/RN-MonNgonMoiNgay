@@ -3,8 +3,6 @@ import React, {useState} from 'react'
 import {launchImageLibrary} from "react-native-image-picker";
 import {getDownloadURL, ref, uploadBytes} from "firebase/storage";
 import {storage} from "../../firebase"
-// @ts-ignore
-import _ from "lodash";
 
 const UploadFileImg = () => {
 
